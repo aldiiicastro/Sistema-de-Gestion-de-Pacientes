@@ -1,11 +1,13 @@
 # Sistema-de-Gestion-de-Pacientes
 
 ## Herramientas
-ReactJs 
-NodeJs
-MongoDB
-Postman ?? 
-Selenium
+### ReactJs 
+### NodeJs
+### MongoDB
+### Postman ?? 
+### Selenium
+### Axios ?? 
+### Mongoose ??
 
 ## Jira 
 https://jfojodjfodjfodjfojdofj.atlassian.net/jira/software/projects/SGP/boards/5

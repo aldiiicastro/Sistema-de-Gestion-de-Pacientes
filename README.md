@@ -10,7 +10,7 @@
 - Mongoose ??
 
 ## Jira 
-https://jfojodjfodjfodjfojdofj.atlassian.net/jira/software/projects/SGP/boards/5
+https://sistema-gestion-pacientes.atlassian.net/jira/software/projects/SGP/boards/1/backlog
 
 ## Miro 
 https://miro.com/app/board/o9J_lxSyd5M=/

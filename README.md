@@ -5,9 +5,11 @@
 - NodeJs
 - MongoDB
 - Postman
-- Selenium
+- Jest
+- Jenkins
 - Axios ?? 
 - Mongoose ??
+
 
 ## Jira 
 https://sistema-gestion-pacientes.atlassian.net/jira/software/projects/SGP/boards/1/backlog

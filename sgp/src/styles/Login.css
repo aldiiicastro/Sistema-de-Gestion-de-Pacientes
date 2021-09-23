@@ -1,0 +1,36 @@
+.divFormLogin{
+    max-width: 20%;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.divFormLogin .boton {
+    margin-top: 10px;
+    border: 1.5px green solid;
+    font-weight: bold;
+}
+
+.divFormLogin .boton:hover {
+    transform: scale(1.05);
+}
+
+.boxInput {
+    border: 2px black solid;
+}
+
+.boxInput::placeholder {
+    font-weight: bold;
+}
+
+.urlRecover {
+    font-weight: bold;
+    color:#69b190;
+    text-decoration: underline;
+}
+
+.urlRecover:hover {
+    color: blue;
+}

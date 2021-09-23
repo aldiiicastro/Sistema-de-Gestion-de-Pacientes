@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Spg from './components/Spg';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Spg />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('Spg')
 );
 
 // If you want to start measuring performance in your app, pass a function

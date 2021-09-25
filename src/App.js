@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

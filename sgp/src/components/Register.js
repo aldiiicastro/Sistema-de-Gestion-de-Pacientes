@@ -1,11 +1,11 @@
 
 import React, {useState} from 'react';
-import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './elementos/Formularios';
+import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError, Input} from '../elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import Input from './componentes/Input';
 
-const App = () => {
+
+const Register = () => {
 	const [usuario, cambiarUsuario] = useState({campo: '', valido: null});
 	const [nombre, cambiarNombre] = useState({campo: '', valido: null});
 	const [password, cambiarPassword] = useState({campo: '', valido: null});
@@ -158,4 +158,4 @@ const App = () => {
 	);
 }
  
-export default App;
+export default Register;

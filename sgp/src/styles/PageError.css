@@ -1,0 +1,6 @@
+:root {
+    --mainFont: 'Merriweather', serif;
+    --backgroundImg: '../styles/Login.css';
+    --colorMain: #69b190;
+    --borderColor: grey;
+}

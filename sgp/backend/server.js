@@ -3,7 +3,6 @@ const app = express()
 require('./database')
 const apiRoutes = require('./routes/apiRoutes');
 const timeout = require('connect-timeout');
-const { response } = require('express');
 
 //Api
 app.use(timeout('5s'))

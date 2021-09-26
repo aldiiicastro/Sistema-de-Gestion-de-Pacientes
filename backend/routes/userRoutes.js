@@ -1,16 +1,21 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
-const User = mongoose.model('User');
+const usersControllers = require('../controllers/usersControllers');
 
 router.get('/users', async (req, res) => {
-    const users = await User.find();
-    res.json(users);
+   usersControllers.get_all_users(req, res)
 });
 
 router.get('/users/:id', async (req, res) => {
-    const user = await User.findById(req.params.id);
-    res.json(user);
+    usersControllers.get_user_by_id(req, res)
 });
+
+router.post('/login', async (req, res) => {
+    usersControllers.login_user(req, res)
+})
+
+router.post('/register', async (req, res) => {
+    usersControllers.register_user(req, res)
+})
 
 module.exports = router;

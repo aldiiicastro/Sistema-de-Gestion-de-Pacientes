@@ -11,6 +11,12 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.1.1",
+    "axios": "^0.21.4",
+    "connect-timeout": "^1.9.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^6.0.7",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-dom": "^17.0.2",
@@ -18,7 +24,7 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon backend/server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -41,7 +47,12 @@
       "last 1 safari version"
     ]
   },
+  "description": "Es un proyecto para gestion de pacientes",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "web-vitals": "^1.1.2"
+    "nodemon": "^2.0.12"
   }
 }

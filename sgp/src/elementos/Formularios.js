@@ -1,5 +1,6 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const colores = {
 	borde: "#0075FF",
@@ -11,6 +12,9 @@ const Formulario = styled.form`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 20px;
+	background-image: url('../assets/background.jpg');
+	text-align: center;
+	font-family: 'Merriweather', serif;
 
 	@media (max-width: 800px){
 		grid-template-columns: 1fr;
@@ -23,6 +27,7 @@ const Label = styled.label`
 	padding: 10px;
 	min-height: 40px;
 	cursor: pointer;
+	font-family: 'Merriweather', serif;
 
 	${props => props.valido === 'false' && css`
 		color: ${colores.error};
@@ -32,9 +37,12 @@ const Label = styled.label`
 const GrupoInput = styled.div`
 	position: relative;
 	z-index: 90;
+	text-align: center;
+	font-family: 'Merriweather', serif;
 `;
 
 const Input = styled.input`
+	border: 2px black solid;
 	width: 100%;
 	background: #fff;
 	border-radius: 3px;
@@ -43,6 +51,15 @@ const Input = styled.input`
 	padding: 0 40px 0 10px;
 	transition: .3s ease all;
 	border: 3px solid transparent;
+	text-align: center;
+	border: 2px black solid;
+	font-family: 'Merriweather', serif;
+
+	::placeholder,
+	::-webkit-input-placeholder {
+		transform:translate3d(12%,0,0)
+ 	}
+
 
 	&:focus {
 		border: 3px solid ${colores.borde};
@@ -64,6 +81,7 @@ const LeyendaError = styled.p`
 	margin-bottom: 0;
 	color: ${colores.error};
 	display: none;
+	font-family: 'Merriweather', serif;
 
 	${props => props.valido === 'true' && css`
 		display: none;
@@ -81,6 +99,7 @@ const IconoValidacion = styled(FontAwesomeIcon)`
 	z-index: 100;
 	font-size: 16px;
 	opacity: 0;
+	font-family: 'Merriweather', serif;
 
 	${props => props.valido === 'false' && css`
 		opacity: 1;
@@ -95,6 +114,7 @@ const IconoValidacion = styled(FontAwesomeIcon)`
 
 const ContenedorTerminos = styled.div`
 	grid-column: span 2;
+	font-family: 'Merriweather', serif;
 
 	input {
 		margin-right: 10px;
@@ -110,6 +130,7 @@ const ContenedorBotonCentrado = styled.div`
 	flex-direction: column;
 	align-items: center;
 	grid-column: span 2;
+	font-family: 'Merriweather', serif;
 
 	@media (max-width: 800px){
 		grid-column: span 1;
@@ -117,16 +138,18 @@ const ContenedorBotonCentrado = styled.div`
 `;
 
 const Boton = styled.button`
+	margin-top: 25px;
 	height: 45px;
 	line-height: 45px;
 	width: 30%;
-	background: #000;
+	background: #69b190;
 	color: #fff;
 	font-weight: bold;
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
 	transition: .1s ease all;
+	font-family: 'Merriweather', serif;
 
 	&:hover {
 		box-shadow: 3px 0px 30px rgba(163,163,163, 1);
@@ -136,6 +159,7 @@ const Boton = styled.button`
 const MensajeExito = styled.p`
 	font-size: 14px;
 	color: ${colores.exito};
+	font-family: 'Merriweather', serif;
 `;
 
 const MensajeError = styled.div`
@@ -145,6 +169,7 @@ const MensajeError = styled.div`
 	padding: 0px 15px;
 	border-radius: 3px;
 	grid-column: span 2;
+	font-family: 'Merriweather', serif;
 	p {
 		margin: 0;
 	} 
@@ -164,5 +189,5 @@ export {
 	ContenedorBotonCentrado,
 	Boton,
 	MensajeExito,
-	MensajeError
+	MensajeError,
 };

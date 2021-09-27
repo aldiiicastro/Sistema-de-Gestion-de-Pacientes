@@ -20,4 +20,8 @@ router.post('/register', timeout('20s'), async (req, res) => {
     usersControllers.register_user(req, res)
 })
 
+router.put('/delete/:id', timeout('20s'), async (req, res) => {
+    usersControllers.delete_user(req, res)
+})
+
 module.exports = router;

@@ -10,7 +10,7 @@ const User = mongoose.model('User');
 exports.login_user = async function (req, res) {
     try {
         if (!req.body.email || !req.body.password) {
-            return res.status(400).json({
+            return res.status(404).json({
                 response: 'Revisar campos y/o sus datos'
             })
         }
@@ -64,10 +64,30 @@ exports.register_user = async function (req, res) {
             const user = await User.create({ name: req.body.name, email: req.body.email, password: req.body.password })
 
             res.status(200).json({
-                response: 'Usuario registrado con exito'
+                response: 'Usuario registrado con exito',
+                user: user
             })
         }
 
+
+    } catch (error) {
+        res.status(500).json({
+            error: error
+        })
+    }
+}
+
+exports.delete_user = async function (req, res) {
+    try {
+        if(!req.params.id) {
+            return res.status(404).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+
+        const user = await User.deleteOne({_id: req.params.id});
+
+        res.status(200).json({response: 'Usuario eliminado correctamente!'})
 
     } catch (error) {
         res.status(500).json({

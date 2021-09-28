@@ -9,7 +9,7 @@ const ComponenteInput = ({estado, cambiarEstado, tipo, label, placeholder, name,
 
 	const validacion = () => {
 		if(expresionRegular){
-			if(expresionRegular.test(estado.campo)){
+			if(expresionRegular.test(estado.campo.trim())){
 				cambiarEstado({...estado, valido: 'true'});
 			} else {
 				cambiarEstado({...estado, valido: 'false'});

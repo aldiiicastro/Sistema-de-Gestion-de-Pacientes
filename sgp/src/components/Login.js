@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import '../styles/Login.css'
 import { useHistory } from 'react-router';
 import background from '../assets/background.jpg'
+import axios from 'axios'
 
 
 const Login = () => {
@@ -38,9 +39,17 @@ const Login = () => {
         return passwordInput.trim().length >= 5
     };
 
-    const goToHome = (event) => {
+    const goToHome = async (event) => {
         event.preventDefault();
-        console.log(`mi email es: ${data.email} y mi password es:${data.password}`)
+        const baseUrl = event.target.baseURI
+        const dataAx = {
+            email: data.email,
+            password: data.password
+        }
+
+        await axios.post(`http://localhost:3000/api/login`, dataAx)
+        .then( r => history.push('/home'))
+        .catch(e => console.log(e))
     };
 
     const goToRecover = () => {

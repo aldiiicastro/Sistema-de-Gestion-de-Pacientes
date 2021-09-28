@@ -43,7 +43,6 @@ exports.get_user_by_id = async function (req, res) {
     } catch (error) {
         res.status(404).json(error)
     }
-
 }
 
 exports.register_user = async function (req, res) {

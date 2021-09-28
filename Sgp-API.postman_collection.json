@@ -17,7 +17,7 @@
 							"script": {
 								"exec": [
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/login',",
+									"    url: 'localhost:3000/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -26,7 +26,7 @@
 									"        mode:'raw',",
 									"        raw: JSON.stringify({",
 									"            \"email\": \"emailFallo@gmail.com\",",
-									"            \"password\": \"aaaa\"",
+									"            \"password\": \"aaaaa\"",
 									"        })",
 									"    }",
 									"}, (err, res) => {",
@@ -41,7 +41,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/login',",
+									"    url: 'localhost:3000/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -50,7 +50,7 @@
 									"        mode:'raw',",
 									"        raw: JSON.stringify({",
 									"            \"email\": \"a@gmail.com\",",
-									"            \"password\": \"aaaa\"",
+									"            \"password\": \"aaaaa\"",
 									"        })",
 									"    }",
 									"}, (err, res) => {",
@@ -65,7 +65,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/login',",
+									"    url: 'localhost:3000/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -74,7 +74,7 @@
 									"        mode:'raw',",
 									"        raw: JSON.stringify({",
 									"            \"emai\": \"a@gmail.com\",",
-									"            \"password\": \"aaaa\"",
+									"            \"password\": \"aaaaa\"",
 									"        })",
 									"    }",
 									"}, (err, res) => {",
@@ -119,11 +119,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/login",
+							"raw": "localhost:3000/api/login",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "3000",
 							"path": [
 								"api",
 								"login"
@@ -279,7 +279,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/register',",
+									"    url: 'localhost:3000/api/register',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -304,7 +304,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/register',",
+									"    url: 'localhost:3000/api/register',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -333,7 +333,7 @@
 									"    const res = pm.response.json()",
 									"",
 									"    pm.sendRequest({",
-									"    url: `localhost:5000/api/delete/${res.user._id}`,",
+									"    url: `localhost:3000/api/delete/${res.user._id}`,",
 									"    method: 'PUT',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -370,11 +370,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/api/register",
+							"raw": "localhost:3000/api/register",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "3000",
 							"path": [
 								"api",
 								"register"
@@ -416,7 +416,7 @@
 									"",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:5000/api/users/614f9117cd2f4a0f81ca23f',",
+									"    url: 'localhost:3000/api/users/614f9117cd2f4a0f81ca23f',",
 									"    method: 'GET',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -437,12 +437,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/users/614f9117cd2f4a0f81ca23fa",
+							"raw": "http://localhost:3000/api/users/614f9117cd2f4a0f81ca23fa",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -487,12 +487,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/users",
+							"raw": "http://localhost:3000/api/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "5000",
+							"port": "3000",
 							"path": [
 								"api",
 								"users"

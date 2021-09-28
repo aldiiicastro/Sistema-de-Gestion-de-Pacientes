@@ -41,7 +41,6 @@ const Login = () => {
 
     const goToHome = async (event) => {
         event.preventDefault();
-        const baseUrl = event.target.baseURI
         const dataAx = {
             email: data.email,
             password: data.password

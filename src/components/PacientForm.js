@@ -52,7 +52,7 @@ export class PacientForm extends Component {
         });
     }
 
-    handleCheckBoxSymptoms = (event) => {
+    handleCheckBoxSymptoms = (event) => { 
         const name = event.target.name;
 
         event.target.checked ? this.state.sintomas.push(name) : this.state.sintomas =this.state.sintomas.filter(s => s != name)

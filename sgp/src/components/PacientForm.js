@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { altaPaciente } from '../routes/apiCallsPatient';
 
 export class PacientForm extends Component {
 
@@ -23,6 +24,7 @@ export class PacientForm extends Component {
             provincia: '',
             nn: false,
             infoNN: '',
+            bSintomasExtras:false,
         };
     }
 
@@ -37,7 +39,7 @@ export class PacientForm extends Component {
 
     handleChangeCheckBox = (event) => {
         const name = event.target.name;
-        const value = event.target.value;
+        const value = event.target.checked;
         const area = document.getElementById('ControlTextAreaNN')
 
         for (let index = 1; index < 10; index++) {
@@ -60,23 +62,29 @@ export class PacientForm extends Component {
 
     handleExtraSymptoms = (event) => {
         const name = event.target.name;
-        const value = event.target.value;
+        const value = event.target.checked;
         const area = document.getElementById('formControlSE')
 
         area.disabled = !event.target.checked
+        this.setState({
+            [name]: value
+        });
     }
 
-    handleSubmit = event => {
-        alert('Se ingreso un paciente: ' + this.state.nombre + ' ' + this.state.apellido);
+    handleSubmit = async event => {
 
         event.preventDefault();
 
+        
 
-        //funcion post para dar de alta un paciente 
+        await altaPaciente(this.state).then( r => console.log(r))
+        .catch(e => console.log(e.response))
+    }
 
+    test = () => {
+        const check = document.getElementById('checkNN')
 
-
-
+        return check.checked
     }
 
 
@@ -94,7 +102,7 @@ export class PacientForm extends Component {
                                     name='nombre'
                                     size="sm" 
                                     type="text"
-                                    disabled />
+                                    disabled = {this.test} />
                             </Form.Group>
                         </Col>
                         <Col xs={6}>
@@ -105,7 +113,7 @@ export class PacientForm extends Component {
                                     name='apellido'
                                     size="sm" 
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -118,7 +126,7 @@ export class PacientForm extends Component {
                                     name='dni'
                                     size="sm" 
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -131,7 +139,7 @@ export class PacientForm extends Component {
                                     name='provincia'
                                     size="sm"
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                         <Col xs={3}>
@@ -142,7 +150,7 @@ export class PacientForm extends Component {
                                     name='localidad'
                                     size="sm" 
                                     type="text"
-                                    disabled />
+                                    disabled = {this.test} />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -155,7 +163,7 @@ export class PacientForm extends Component {
                                     name='calle'
                                     size="sm" 
                                     type="text"
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -166,7 +174,7 @@ export class PacientForm extends Component {
                                     name='numero'
                                     size="sm" 
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -177,7 +185,7 @@ export class PacientForm extends Component {
                                     name='piso'
                                     size="sm" 
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -188,7 +196,7 @@ export class PacientForm extends Component {
                                     name='codigo_postal'
                                     size="sm" 
                                     type="text" 
-                                    disabled/>
+                                    disabled = {this.test}/>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -224,7 +232,7 @@ export class PacientForm extends Component {
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleExtraSymptoms} name="Aclaraciones Extras" />
+                            <InputGroup.Checkbox onChange={this.handleExtraSymptoms} name="bSintomasExtras" />
                             <InputGroup.Text> Aclaraciones Extras </InputGroup.Text>
                             <Col xs={4}>
                                 <Form.Control value={this.state.sintomasExtras}
@@ -240,7 +248,7 @@ export class PacientForm extends Component {
                     </Row>
                     <Row>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleChangeCheckBox} aria-label="Checkbox for following text input" />
+                            <InputGroup.Checkbox name="nn" id="checkNN" onChange={this.handleChangeCheckBox} aria-label="Checkbox for following text input" />
                             <InputGroup.Text> Es NN </InputGroup.Text>
                         </InputGroup>
 

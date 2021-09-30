@@ -4,7 +4,7 @@ const pacienteControllers = require('../controllers/pacienteControllers');
 const timeout = require('connect-timeout');
 
 
-router.get('/pacientes', timeout('20s'), async (req, res) => {
+router.post('/altaPaciente', timeout('50s'), async (req, res) => {
     pacienteControllers.patient_register(req, res)
 })
 

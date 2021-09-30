@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../styles/Login.css'
+import '../styles/Login.css';
 import { useHistory } from 'react-router';
-import background from '../assets/background.jpg'
-import axios from 'axios'
-
+import background from '../assets/background.jpg';
+import { login } from '../routes/apiCallsUser';
 
 const Login = () => {
 
@@ -46,14 +45,12 @@ const Login = () => {
             password: data.password
         }
 
-        await axios.post(`http://localhost:3000/api/login`, dataAx)
-        .then( r => history.push('/home'))
-        .catch(e => console.log(e))
+        await login(dataAx).then( r => history.push('/home')).catch(e => console.log(e))
     };
 
     const goToRecover = () => {
         history.push("/recoverPassword")
-    }
+    };
 
     return (
         <>
@@ -79,7 +76,7 @@ const Login = () => {
                 </Form>
             </div>
         </>
-    )
+    );
 };
 
 

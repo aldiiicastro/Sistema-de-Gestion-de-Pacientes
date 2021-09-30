@@ -3,11 +3,13 @@ const app = express()
 require('./database')
 const apiRoutes = require('./routes/apiRoutes');
 const timeout = require('connect-timeout');
+const cors = require('cors')
 
 //Api
 app.use(timeout('5s'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(cors())
 app.use('/api', apiRoutes);
 
 //Connect to PORT

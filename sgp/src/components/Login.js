@@ -57,7 +57,7 @@ const Login = () => {
 
     return (
         <>
-            <img src={background} alt="background" className="myBackgroundLogin"></img>
+            <img src={background} alt="background" className="myBackgroundLogin"/>
             
             <div className="divFormLogin">
                 <p className="title"> SGP </p>

@@ -9,7 +9,8 @@ import Login from "./Login";
 import PageError from "./PageError";
 import RecoverPassword from "./RecoverPassword";
 import Register from './Register'
-import { Header } from "./Header";
+import Home from "./Home";
+//import { Header } from "./Header";
 import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
 
@@ -18,12 +19,13 @@ const Spg = () => {
     <>
       <Router>
         <Switch>
-          <Route path="/ingreso-paciente" component={PacientForm}></Route>
-          <Route path="/lista-pacientes" component={Paciente}></Route>
-          <Route path="/recoverPassword" component={RecoverPassword}></Route>
-          <Route path="/error" component={PageError}></Route>
-          <Route path="/register" component={Register}></Route>
-          <Route path="/" component={Login}></Route>
+          <Route path="/ingreso-paciente" component={PacientForm}/>
+          <Route path="/lista-pacientes" component={Paciente}/>
+          <Route path="/recoverPassword" component={RecoverPassword}/>
+          <Route path="/error" component={PageError}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/home" component={Home}/>
+          <Route path="/" component={Login}/>
         </Switch>
       </Router>
     </>

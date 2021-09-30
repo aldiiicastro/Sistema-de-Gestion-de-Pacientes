@@ -11,7 +11,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import background from "../assets/background.jpg";
 import "../styles/Register.css";
-import axios from "axios";
+import { register } from "../routes/apiCallsUser";
 
 const Register = () => {
 	const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
@@ -64,11 +64,9 @@ const Register = () => {
 			cambiarPassword2({ campo: "", valido: "null" });
 			cambiarCorreo({ campo: "", valido: null });
 
-			await axios.post('http://localhost:3000/api/register', dataAx)
-			.then(r => {
+			await register(dataAx).then(r => {
 				
-			})
-			.catch(e => {console.log(e.response); refSpan.current.innerHTML = e.response.data.response;
+			}).catch(e => {console.log(e.response); refSpan.current.innerHTML = e.response.data.response;
 							refSpan.current.style.color = 'red';
 			})
 

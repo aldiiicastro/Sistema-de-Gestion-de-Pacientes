@@ -12,12 +12,14 @@ import Register from './Register'
 import { Header } from "./Header";
 import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
+import Home from "./Home";
 
 const Spg = () => {
   return (
     <>
       <Router>
         <Switch>
+          <Route path="/Home" component={Home}></Route>
           <Route path="/ingreso-paciente" component={PacientForm}></Route>
           <Route path="/lista-pacientes" component={Paciente}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>

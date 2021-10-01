@@ -1,0 +1,65 @@
+:root {
+    --colorHover:whitesmoke;
+}
+
+
+/*Estilo para la imagen de fondo*/
+.myBackgroundHome{
+    height: 100vh;
+    width: 100vw;
+}
+
+/*Estilo para el texto de bienvenida*/
+.welcome{
+    position: absolute;
+    top: 25%;
+    left: 28%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 200%;
+    z-index: 1;
+}
+
+/* .iconsHomeColor {
+    color:#69b190;
+} */
+/*Estilo para todos los botones*/
+.buttonsGeneral { 
+    background-color:rgba(255, 255, 255, 0.74);
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-family: var(--mainFont);
+    border: var(--borderColor) 1px solid;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+}
+
+.buttonsGeneral:hover {
+    background-color: var(--colorHover);
+}
+
+/*Para que esten arriba*/
+.buttonsTop {
+    top:  45%;
+}
+
+/*Para que esten abajo*/
+.buttonsBottom {
+    top:  70%;
+}
+
+/*Para que esten a la izquierda*/
+.buttonsLeft {
+    left: 20%;
+}
+
+/*Para que esten a la derecha*/
+.buttonsRight {
+    left: 35%;
+}
+
+

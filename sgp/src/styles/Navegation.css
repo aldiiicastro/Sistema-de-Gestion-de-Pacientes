@@ -1,0 +1,16 @@
+/*Estilo para los links de la navbar */
+.linkNavBar { 
+    color: #69b190 !important;
+}
+.linkNavBar:hover { 
+    color: #00B8EE !important;
+}
+/*Borde de separación entre Brand y links*/
+.borderBrand { 
+    border-left: 1px solid black;
+}
+
+/*Color para el Brand*/
+.navBarBrand {
+    color: #00B8EE !important;
+}

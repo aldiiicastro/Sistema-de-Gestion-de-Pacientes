@@ -4,6 +4,7 @@ import '../styles/Login.css';
 import { useHistory } from 'react-router';
 import background from '../assets/background.jpg';
 import { login } from '../routes/apiCallsUser';
+import FontAwesome from 'react-fontawesome';
 
 const Login = () => {
 
@@ -57,8 +58,8 @@ const Login = () => {
             <img src={background} alt="background" className="myBackgroundLogin"/>
             
             <div className="divFormLogin">
-                <p className="title"> SGP </p>
-                <Form className="mainForm" onSubmit={goToHome}>
+                    <p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
+                    <Form className="mainForm" onSubmit={goToHome}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={emailRef} className="boxInput" name="email" onChange={handleInputChange} placeholder="Email" />
                     </Form.Group>

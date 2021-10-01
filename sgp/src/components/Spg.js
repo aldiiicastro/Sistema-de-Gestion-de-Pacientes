@@ -13,7 +13,6 @@ import Home from "./Home";
 //import { Header } from "./Header";
 import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
-import Home from "./Home";
 
 const Spg = () => {
   return (
@@ -21,8 +20,8 @@ const Spg = () => {
       <Router>
         <Switch>
           <Route path="/Home" component={Home}></Route>
-          <Route path="/ingreso-paciente" component={PacientForm}></Route>
-          <Route path="/lista-pacientes" component={Paciente}></Route>
+          <Route path="/add-patient" component={PacientForm}></Route>
+          <Route path="/watting-list" component={Paciente}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/error" component={PageError}></Route>
           <Route path="/register" component={Register}></Route>

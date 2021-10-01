@@ -16,10 +16,10 @@ exports.login_user = async function (req, res) {
         }
         const findUser = await User.findOne({ email: req.body.email, password: req.body.password })
 
-        findUser ? res.status(200).json({ response: 'usuario logueado' }) : res.status(404).json({ response: 'usuario no encontrado' })
+        findUser ? res.status(202).json({ response: 'usuario logueado' }) : res.status(406).json({ response: 'usuario no encontrado' })
     } catch (error) {
         res.status(500).json({
-            error: error
+            response: 'Error en el sistema'
         })
     }
 }
@@ -27,10 +27,10 @@ exports.login_user = async function (req, res) {
 exports.get_all_users = async function (req, res) {
     try {
         const users = await User.find();
-        res.status(200).json({ response: users });
+        res.status(200).json({ response: 'todos los usuarios', data: users });
     } catch (error) {
         res.status(500).json({
-            error: error
+            response: 'Error en el sistema'
         })
     }
 }
@@ -39,9 +39,11 @@ exports.get_user_by_id = async function (req, res) {
     try {
         const user = await User.findById(req.params.id);
 
-        res.status(200).json({response: 'Usuario encontrado', data: user })
+        res.status(200).json({ response: 'Usuario encontrado', data: user })
     } catch (error) {
-        res.status(404).json(error)
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
     }
 }
 
@@ -56,7 +58,7 @@ exports.register_user = async function (req, res) {
         const findUser = await User.findOne({ email: req.body.email })
 
         if (findUser) {
-            res.status(400).json({
+            res.status(406).json({
                 response: 'Usuario ya creado para este email'
             })
         } else {
@@ -71,26 +73,26 @@ exports.register_user = async function (req, res) {
 
     } catch (error) {
         res.status(500).json({
-            error: error
+            response: 'Error en el sistema'
         })
     }
 }
 
 exports.delete_user = async function (req, res) {
     try {
-        if(!req.params.id) {
-            return res.status(404).json({
+        if (!req.params.id) {
+            return res.status(400).json({
                 response: 'No se pasó ningún Id como parametro'
             })
         }
 
-        const user = await User.deleteOne({_id: req.params.id});
+        const user = await User.deleteOne({ _id: req.params.id });
 
-        res.status(200).json({response: 'Usuario eliminado correctamente!'})
+        res.status(200).json({ response: 'Usuario eliminado correctamente!' })
 
     } catch (error) {
         res.status(500).json({
-            error: error
+            response: 'Error en el sistema'
         })
     }
 }

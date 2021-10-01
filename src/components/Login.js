@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import background from '../assets/background.jpg';
 import { login } from '../routes/apiCallsUser';
 import FontAwesome from 'react-fontawesome';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -40,13 +41,30 @@ const Login = () => {
     };
 
     const goToHome = async (event) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
         event.preventDefault();
         const dataAx = {
             email: data.email,
             password: data.password
         }
 
-        await login(dataAx).then( r => history.push('/home')).catch(e => console.log(e))
+        await login(dataAx).then(r => history.push('/home')).catch(e => {
+            Toast.fire({
+                icon: 'error',
+                title: e.response.data.response
+            })
+        })
     };
 
     const goToRecover = () => {
@@ -55,11 +73,11 @@ const Login = () => {
 
     return (
         <>
-            <img src={background} alt="background" className="myBackgroundLogin"/>
-            
+            <img src={background} alt="background" className="myBackgroundLogin" />
+
             <div className="divFormLogin">
-                    <p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
-                    <Form className="mainForm" onSubmit={goToHome}>
+                <p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
+                <Form className="mainForm" onSubmit={goToHome}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={emailRef} className="boxInput" name="email" onChange={handleInputChange} placeholder="Email" />
                     </Form.Group>

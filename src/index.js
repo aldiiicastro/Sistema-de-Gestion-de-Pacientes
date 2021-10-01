@@ -4,7 +4,6 @@ import './estilos.css';
 //import './index.css';
 import Spg from './components/Spg';
 import reportWebVitals from './reportWebVitals';
-
 ReactDOM.render(
   <React.StrictMode>
     <Spg />

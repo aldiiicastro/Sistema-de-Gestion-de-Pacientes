@@ -1,26 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
 	Formulario,
 	ContenedorBotonCentrado,
 	Boton,
-	MensajeExito,
-	MensajeError,
+	// MensajeExito,
+	// MensajeError,
 } from "../elementos/Formularios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import background from "../assets/background.jpg";
 import "../styles/Register.css";
 import { register } from "../routes/apiCallsUser";
+import Swal from 'sweetalert2';
 
 const Register = () => {
 	const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
 	const [password, cambiarPassword] = useState({ campo: "", valido: null });
 	const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
 	const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
-	const [formularioValido, cambiarFormularioValido] = useState(null);
-	const refSpan = useRef(null);
-	
+	// const [formularioValido, cambiarFormularioValido] = useState(null);
+	// const refSpan = useRef(null);
+
+
 
 	const expresiones = {
 		usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -45,6 +47,18 @@ const Register = () => {
 	};
 
 	const onSubmit = async (e) => {
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+
 		e.preventDefault();
 
 		if (
@@ -53,9 +67,9 @@ const Register = () => {
 			password2.valido === "true" &&
 			correo.valido === "true"
 		) {
-			cambiarFormularioValido(true);
+			//cambiarFormularioValido(true);
 			const dataAx = {
-				name:  nombre.campo,
+				name: nombre.campo,
 				email: correo.campo,
 				password: password.campo
 			}
@@ -65,14 +79,20 @@ const Register = () => {
 			cambiarCorreo({ campo: "", valido: null });
 
 			await register(dataAx).then(r => {
-				
-			}).catch(e => {console.log(e.response); refSpan.current.innerHTML = e.response.data.response;
-							refSpan.current.style.color = 'red';
+				Toast.fire({
+					icon: 'success',
+					title: r.data.response
+				})
+			}).catch(e => {
+				Toast.fire({
+					icon: 'error',
+					title: e.response.data.response
+				})
 			})
 
 			// ...
 		} else {
-			cambiarFormularioValido(false);
+			//cambiarFormularioValido(false);
 		}
 	};
 
@@ -131,19 +151,19 @@ const Register = () => {
 							funcion={validarPassword2}
 						/>
 
-						{formularioValido === false && (
+						{/* {formularioValido === false && (
 							<MensajeError>
 								<p>
 									<FontAwesomeIcon icon={faExclamationTriangle} />
 									<b>Error:</b> <span> Formulario Llenado incorrectamente </span>
 								</p>
 							</MensajeError>
-						)}
+						)} */}
 						<ContenedorBotonCentrado>
 							<Boton type="submit">Enviar</Boton>
-							{formularioValido === true && (
+							{/* {formularioValido === true && (
 								<MensajeExito ref={refSpan}> Usuario registrado exitosamente!</MensajeExito>
-							)}
+							)} */}
 						</ContenedorBotonCentrado>
 					</Formulario>
 				</main>

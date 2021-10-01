@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { altaPaciente } from '../routes/apiCallsPatient';
+import Swal from 'sweetalert2';
+import '../styles/PacientForm.css'
 
 export class PacientForm extends Component {
 
@@ -24,7 +26,7 @@ export class PacientForm extends Component {
             provincia: '',
             nn: false,
             infoNN: '',
-            bSintomasExtras:false,
+            bSintomasExtras: false,
         };
     }
 
@@ -46,7 +48,7 @@ export class PacientForm extends Component {
             let area2 = document.getElementById(`ControlTextAreaNN${index}`)
             area2.disabled = event.target.checked
         }
-        
+
         area.disabled = !event.target.checked
 
         this.setState({
@@ -54,10 +56,13 @@ export class PacientForm extends Component {
         });
     }
 
-    handleCheckBoxSymptoms = (event) => { 
+
+
+
+    handleCheckBoxSymptoms = (event) => {
         const name = event.target.name;
 
-        event.target.checked ? this.state.sintomas.push(name) : this.state.sintomas =this.state.sintomas.filter(s => s != name)
+        event.target.checked ? this.state.sintomas.push(name) : this.setState({ [name]: this.state.sintomas.filter(s => s !== name) })
     }
 
     handleExtraSymptoms = (event) => {
@@ -72,17 +77,79 @@ export class PacientForm extends Component {
     }
 
     handleSubmit = async event => {
+        const Toast =  Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
         event.preventDefault();
 
+        await altaPaciente(this.state).then(r => {
+            Toast.fire({
+                icon: 'success',
+                title: r.data.response
+            })
+        })
+            .catch(e => {
+                Toast.fire({
+                    icon: 'error',
+                    title: e.response.data.response
+                })
+            })
         
-
-        await altaPaciente(this.state).then( r => console.log(r))
-        .catch(e => console.log(e.response))
+        this.resetForm()
     }
 
-    test = () => {
+    resetForm = () => {
+        this.setState({
+            nombre: '',
+            apellido: '',
+            dni: '',
+            calle: '',
+            numero: '',
+            piso: '',
+            codigo_postal: '',
+            localidad: '',
+            sintomas: [],
+            sintomasExtras: '',
+            provincia: '',
+            nn: false,
+            infoNN: '',
+            bSintomasExtras: false,
+        })
+
+        const checkToReset = Array.from(document.getElementsByClassName("checkBoxToResetPFIngreso"))
+        
+
+        checkToReset.forEach( c => {
+            c.checked = false
+        })
+
+        const area = document.getElementById('ControlTextAreaNN')
+
+        for (let index = 1; index < 10; index++) {
+            let area2 = document.getElementById(`ControlTextAreaNN${index}`)
+            area2.disabled = false
+        }
+
+        area.disabled = false
+
+        const areaExtra = document.getElementById('formControlSE')
+
+        areaExtra.disabled = true
+    }
+
+    test = () => { console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
         const check = document.getElementById('checkNN')
+
+        console.log(check)
 
         return check.checked
     }
@@ -100,9 +167,8 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.nombre}
                                     onChange={this.handleChange}
                                     name='nombre'
-                                    size="sm" 
-                                    type="text"
-                                    disabled = {this.test} />
+                                    size="sm"
+                                    type="text" />
                             </Form.Group>
                         </Col>
                         <Col xs={6}>
@@ -111,9 +177,8 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.apellido}
                                     onChange={this.handleChange}
                                     name='apellido'
-                                    size="sm" 
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="text" />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -124,9 +189,9 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.dni}
                                     onChange={this.handleChange}
                                     name='dni'
-                                    size="sm" 
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="number"
+                                    className="controlNumber" />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -138,8 +203,7 @@ export class PacientForm extends Component {
                                     onChange={this.handleChange}
                                     name='provincia'
                                     size="sm"
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    type="text" />
                             </Form.Group>
                         </Col>
                         <Col xs={3}>
@@ -148,9 +212,8 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.localidad}
                                     onChange={this.handleChange}
                                     name='localidad'
-                                    size="sm" 
-                                    type="text"
-                                    disabled = {this.test} />
+                                    size="sm"
+                                    type="text" />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -161,9 +224,8 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.calle}
                                     onChange={this.handleChange}
                                     name='calle'
-                                    size="sm" 
-                                    type="text"
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="text" />
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -172,9 +234,9 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.numero}
                                     onChange={this.handleChange}
                                     name='numero'
-                                    size="sm" 
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="number"
+                                    className="controlNumber" />
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -183,9 +245,9 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.piso}
                                     onChange={this.handleChange}
                                     name='piso'
-                                    size="sm" 
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="number"
+                                    className="controlNumber" />
                             </Form.Group>
                         </Col>
                         <Col xs={2}>
@@ -194,49 +256,48 @@ export class PacientForm extends Component {
                                 <Form.Control value={this.state.codigo_postal}
                                     onChange={this.handleChange}
                                     name='codigo_postal'
-                                    size="sm" 
-                                    type="text" 
-                                    disabled = {this.test}/>
+                                    size="sm"
+                                    type="text" />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="Fiebre" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Fiebre" />
                             <InputGroup.Text> Fiebre </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="tos" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="tos" />
                             <InputGroup.Text> Tos </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="Perdida de Gusto/Olfato" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Perdida de Gusto/Olfato" />
                             <InputGroup.Text> Perdida de Gusto/olfato </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="Dolor de Cabeza" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dolor de Cabeza" />
                             <InputGroup.Text> Dolor de Cabeza </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="Dolor de Garganta" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dolor de Garganta" />
                             <InputGroup.Text> Dolor de Garganta </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} name="Dificultad para respirar o disnea" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dificultad para respirar o disnea" />
                             <InputGroup.Text> Dificultad para respirar o disnea </InputGroup.Text>
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleExtraSymptoms} name="bSintomasExtras" />
+                            <InputGroup.Checkbox onChange={this.handleExtraSymptoms} className="checkBoxToResetPFIngreso" name="bSintomasExtras" />
                             <InputGroup.Text> Aclaraciones Extras </InputGroup.Text>
                             <Col xs={4}>
                                 <Form.Control value={this.state.sintomasExtras}
-                                    id= 'formControlSE'
+                                    id='formControlSE'
                                     onChange={this.handleChange}
                                     name='sintomasExtras'
                                     as="textarea" rows={5}
@@ -248,7 +309,7 @@ export class PacientForm extends Component {
                     </Row>
                     <Row>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox name="nn" id="checkNN" onChange={this.handleChangeCheckBox} aria-label="Checkbox for following text input" />
+                            <InputGroup.Checkbox name="nn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
                             <InputGroup.Text> Es NN </InputGroup.Text>
                         </InputGroup>
 

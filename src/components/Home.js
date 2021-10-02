@@ -34,12 +34,12 @@ const Home = () => {
             </div>
             {/* Botones, te llevan a las paginas que dice */}
             <div className='gridStyle marginTop'>
-                <ButtonActions text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'}/>
-                <ButtonActions text={'Dar de baja un paciente'} onClickDo={goToHome} icon={'user-times'}/>
+                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'}/>
+                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToHome} icon={'user-times'}/>
             </div>
             <div className='gridStyle'>
-                <ButtonActions text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'}/>
-                <ButtonActions text={'Ver estadisticas'} onClickDo={goToHome} icon={'signal'}/>
+                <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'}/>
+                <ButtonActions id={"statistics"} text={'Ver estadisticas'} onClickDo={goToHome} icon={'signal'}/>
             </div>
         </React.Fragment>
     )

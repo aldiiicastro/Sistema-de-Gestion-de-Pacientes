@@ -1,65 +1,110 @@
 :root {
     --colorHover:whitesmoke;
 }
-
-
-/*Estilo para la imagen de fondo*/
-.myBackgroundHome{
-    height: 100vh;
-    width: 100vw;
+.html {
+    height:100vh;
 }
 
+body { 
+    display: grid;
+    background: url(../assets/background-home.jpg) no-repeat;
+      /* Centramos el fondo horizontal y verticalmente */
+      background-position: center;
+      /* El fonde no se repite */
+      background-repeat: no-repeat;
+      /* Fijamos la imagen a la ventana para que no supere el alto de la ventana */
+      background-attachment: fixed;
+      /* El fonde se re-escala automáticamente */
+      background-size: cover;
+      /* Color de fondo si la imagen no se encuentra o mientras se está cargando */
+      background-color: #FFF;
+}
+
+.marginTop {
+    margin-top: 2rem;
+}
+
+.gridStyle {
+    display: grid;
+    margin-bottom: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    grid-auto-rows: 10rem;
+    grid-template-rows: 2fr;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    grid-gap: 2rem 2rem;
+}
+
+
 /*Estilo para el texto de bienvenida*/
-.welcome{
-    position: absolute;
-    top: 25%;
-    left: 28%;
-    transform: translate(-50%,-50%);
+ .welcome{
+    display: grid;
+    margin-top: 7rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));    
     text-align: center;
     font-family: 'Anton', sans-serif;
     font-size: 200%;
     z-index: 1;
 }
 
+.btnStyle {
+    background-color:rgba(255, 255, 255, 0.74);
+    border: var(--borderColor) 1px solid;
+    width: auto;
+    height: auto;
+}
+
+.btnStyle:hover {
+    background-color: var(--colorHover);
+}
 /* .iconsHomeColor {
     color:#69b190;
 } */
-/*Estilo para todos los botones*/
-.buttonsGeneral { 
+/* 
+.gallery {
+    display: grid;
+    grid-auto-rows: 10rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
+}
+
+.btnsStyles {
     background-color:rgba(255, 255, 255, 0.74);
-    position: absolute;
     cursor: pointer;
-    transform: translate(-50%,-50%);
+    width: auto;
+    height: auto;
+}
+ */
+/*Estilo para todos los botones*/
+/* .buttonsGeneral { 
+    position: absolute;
     text-align: center;
     font-family: var(--mainFont);
     border: var(--borderColor) 1px solid;
-    width: 200px;
-    height: 200px;
     z-index: 1;
 }
 
 .buttonsGeneral:hover {
     background-color: var(--colorHover);
 }
-
+ */
 /*Para que esten arriba*/
-.buttonsTop {
-    top:  45%;
+/* .buttonsTop {
+    top: 45%;
 }
-
+ */
 /*Para que esten abajo*/
-.buttonsBottom {
+/* .buttonsBottom {
     top:  70%;
-}
+} */
 
 /*Para que esten a la izquierda*/
-.buttonsLeft {
+/* .buttonsLeft {
     left: 20%;
-}
+} */
 
 /*Para que esten a la derecha*/
-.buttonsRight {
+/* .buttonsRight {
     left: 35%;
-}
+} */
 
 

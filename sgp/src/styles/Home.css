@@ -20,36 +20,35 @@ body {
       background-color: #FFF;
 }
 
-.marginTop {
-    margin-top: 2rem;
-}
-
-.gridStyle {
-    display: grid;
-    margin-bottom: 2rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    grid-auto-rows: 10rem;
-    grid-template-rows: 2fr;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
-    grid-gap: 2rem 2rem;
-}
-
 
 /*Estilo para el texto de bienvenida*/
  .welcome{
     display: grid;
     margin-top: 7rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));    
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 50rem), 1fr));    
     text-align: center;
     font-family: 'Anton', sans-serif;
     font-size: 200%;
     z-index: 1;
 }
 
+/*Estilo de grid para los botones*/
+.gridStyle {
+    display: grid;
+    margin-bottom: 2rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    grid-auto-rows: 10rem;
+    grid-template-rows: 2fr;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    grid-gap: 2rem 2rem;
+}
+
+/*Estilos de los botones*/
 .btnStyle {
     background-color:rgba(255, 255, 255, 0.74);
     border: var(--borderColor) 1px solid;
+    border-radius: 10px;
     width: auto;
     height: auto;
 }
@@ -57,54 +56,12 @@ body {
 .btnStyle:hover {
     background-color: var(--colorHover);
 }
+
+/*Se parar los botones del texto*/
+.marginTop {
+    margin-top: 2rem;
+}
+
 /* .iconsHomeColor {
     color:#69b190;
 } */
-/* 
-.gallery {
-    display: grid;
-    grid-auto-rows: 10rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
-}
-
-.btnsStyles {
-    background-color:rgba(255, 255, 255, 0.74);
-    cursor: pointer;
-    width: auto;
-    height: auto;
-}
- */
-/*Estilo para todos los botones*/
-/* .buttonsGeneral { 
-    position: absolute;
-    text-align: center;
-    font-family: var(--mainFont);
-    border: var(--borderColor) 1px solid;
-    z-index: 1;
-}
-
-.buttonsGeneral:hover {
-    background-color: var(--colorHover);
-}
- */
-/*Para que esten arriba*/
-/* .buttonsTop {
-    top: 45%;
-}
- */
-/*Para que esten abajo*/
-/* .buttonsBottom {
-    top:  70%;
-} */
-
-/*Para que esten a la izquierda*/
-/* .buttonsLeft {
-    left: 20%;
-} */
-
-/*Para que esten a la derecha*/
-/* .buttonsRight {
-    left: 35%;
-} */
-
-

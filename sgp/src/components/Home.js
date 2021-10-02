@@ -2,6 +2,7 @@ import '../styles/Home.css';
 import React from 'react'
 import { useHistory } from 'react-router';
 import Navegation from './Navegation';
+import Popup from 'reactjs-popup';
 import ButtonActions from '../elementos/ButtonActions';
 
 const Home = () => {
@@ -24,7 +25,6 @@ const Home = () => {
 
     return(
         <React.Fragment>
-
             {/*La barra de navegacion, se encuentra en otro componente*/}
             <Navegation/>
 

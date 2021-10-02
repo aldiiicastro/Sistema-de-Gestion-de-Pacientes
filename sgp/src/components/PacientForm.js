@@ -268,7 +268,7 @@ export class PacientForm extends Component {
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="tos" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Tos" />
                             <InputGroup.Text> Tos </InputGroup.Text>
                         </InputGroup>
 

@@ -18,31 +18,27 @@ describe('Home', () => {
     })
     /*Se puede ir dentro de eliminar paciente --PROVISORIO, aun no existe la pagina*/
     it('go to deletePatient', () => {
-        cy.get('[id=deletePatient]').click()
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+        cy.get('[id=deletePatient]').should('be.disabled')
     })
     /*Lo mismo pero para la nav bar*/
     it('go to deletePatient in nav', () => {
-        cy.get('[id=deletePatientNav]').click()
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+        cy.get('[id=deletePatientNav]').should('have.class', 'disabled')
     })
     /*Se puede ir dentro de ver lista de espera --PROVISORIO, aun no existe la pagina*/
     it('go to wattingList', () => {
-        cy.get('[id=wattingList]').click()
+        cy.get('[id=wattingList]').should('be.disabled')
     })
     /*Lo mismo pero para la nav bar*/
     it('go to wattingList in nav', () => {
-        cy.get('[id=wattingListNav]').click()
+        cy.get('[id=wattingListNav]').should('have.class', 'disabled')
     })
     /*Se puede ir dentro de ver las estadisticas --PROVISORIO, aun no existe la pagina*/
     it('go to statistics', () => {
-        cy.get('[id=statistics]').click()
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+        cy.get('[id=statistics]').should('be.disabled')
     })
     /*Lo mismo pero para la nav bar*/
     it('go to statistics in nav', () => {
-        cy.get('[id=statisticsNav]').click()
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+        cy.get('[id=statisticsNav]').should('have.class', 'disabled')
     })
     /*Nav logo e inicio */
     it('go to home in nav', () => {

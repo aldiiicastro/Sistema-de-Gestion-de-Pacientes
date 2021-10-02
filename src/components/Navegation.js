@@ -37,9 +37,9 @@ const Navegation = () => {
         <Nav className="me-auto" >
           <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
           <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
-          <Nav.Link href="/Home" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
-          <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
-          <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar">Ver estadisticas</Nav.Link>
+          <Nav.Link href="/Home" id="deletePatientNav" className="linkNavBar" disabled>Dar de baja paciente</Nav.Link>
+          <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar" disabled>Ver lista de espera</Nav.Link>
+          <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
         </Nav>
       </Navbar.Collapse>
      <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>

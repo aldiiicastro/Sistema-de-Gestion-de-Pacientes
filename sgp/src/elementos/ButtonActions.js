@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 //Se crea el siguiente componente para poder agregar la cantidad de botones que queramos mas facilmente a la pagina.
 const ButtonsHome = props => { 
     return (
-    <Button  variant="outline-info"  id={props.id} className={'btn btn-block btnStyle' } onClick={props.onClickDo}>
+    <Button  variant="outline-info"  id={props.id} className={'btn btn-block btnStyle' } onClick={props.onClickDo} disabled={props.isDisabled}>
         <FontAwesome name={props.icon} size='4x' className='iconsHomeColor'/>
         <br/>
          {props.text}

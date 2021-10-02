@@ -16,7 +16,7 @@ exports.login_user = async function (req, res) {
         }
         const findUser = await User.findOne({ email: req.body.email, password: req.body.password })
 
-        findUser ? res.status(202).json({ response: 'usuario logueado' }) : res.status(406).json({ response: 'usuario no encontrado' })
+        findUser ? res.status(202).json({ response: 'Usuario logueado' }) : res.status(406).json({ response: 'Usuario no encontrado' })
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'

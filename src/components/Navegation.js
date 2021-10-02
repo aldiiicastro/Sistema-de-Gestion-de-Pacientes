@@ -1,8 +1,34 @@
 import '../styles/Navegation.css';
+import React from 'react';
+import { useHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { Navbar, Nav, Container } from "react-bootstrap"
+import Swal from 'sweetalert2';
 const Navegation = () => { 
-return(
+  const history = useHistory();
+  const openModal = () => {
+    Swal.fire({
+      title: '¿Estas seguro que quieres cerrar sesión?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      confirmButtonAttributes :{
+        id: 'yesLogOut'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          history.push('/'),
+          'Se cerro sesión correctamente'
+        )
+      }
+    })
+  }
+ 
+  return(
   <Navbar bg="light" expand="lg" className='navegationPosition'>
     <Container>
       <Navbar.Brand href="/Home" className='navBarBrand' id='brand'> <FontAwesome name='heartbeat' size='2x'> SGP </FontAwesome> </Navbar.Brand>
@@ -16,9 +42,10 @@ return(
           <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar">Ver estadisticas</Nav.Link>
         </Nav>
       </Navbar.Collapse>
+     <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
     </Container>
   </Navbar>
-)
+  )
 }
 
 export default Navegation

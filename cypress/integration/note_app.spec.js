@@ -1,3 +1,4 @@
+/*global cy*/
 describe('Sistema Gestion', () => {
     describe('Register',()=> {
         it('register page can be open', () => {
@@ -52,40 +53,51 @@ describe('Sistema Gestion', () => {
             cy.contains('SGP')
             cy.get('[placeholder="Email"]')
             cy.get('[placeholder="Contraseña"]')
-            cy.contains('Iniciar sesion')
+            cy.get('[id=btnLogIn]')
             cy.contains('¿Olvidaste tu contraseña?')
         })
         /*Se puede clickear el recuperar contrseña*/
         it('login page recover password click', () => {
             cy.contains('¿Olvidaste tu contraseña?').click()
         })
-
         /*No se puede loguear */
         it('login page cant log in', () => {
             cy.get('[placeholder="Email"]').type('aldana@gmail.com')
             cy.get('[placeholder="Contraseña"]').type('aaaaa')
-            cy.contains('Iniciar sesion').click()
-            cy.contains('usuario no encontrado')
+            cy.get('[id=btnLogIn]').click()
+            cy.contains('Usuario no encontrado')
+        })
+        /*No se habilita el inicio de sesion*/
+        it('login page cant press log in if have no password', () => {
+            cy.get('[placeholder="Email"]').type('aldana@gmail.com')
+            cy.get('[id=btnLogIn]').should('be.disabled');
+        })
+        it('login page cant press log in if have no email', () => {
+            cy.get('[placeholder="Contraseña"]').type('aaaaa')
+            cy.get('[id=btnLogIn]').should('be.disabled');
+        })
+        it('login page cant press log in if have nothing', () => {
+            cy.get('[id=btnLogIn]').should('be.disabled');
         })
         /*Se puede loguear*/
         it('login page can log in', () => {
             cy.get('[placeholder="Email"]').type('a@gmail.com')
             cy.get('[placeholder="Contraseña"]').type('aaaaa')
-            cy.contains('Iniciar sesion').click()
+            cy.get('[id=btnLogIn]').click()
             cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
             cy.contains('Agregar un paciente')
             cy.contains('Dar de baja un paciente')
             cy.contains('Ver lista de espera')
             cy.contains('Ver estadisticas')
+            cy.contains('Cerrar sesión')
         })
-
 
     /*Test dentro de la pagina de Home*/ 
         describe('when logged in', () => {
             beforeEach(() => {
                 cy.get('[placeholder="Email"]').type('a@gmail.com')
                 cy.get('[placeholder="Contraseña"]').type('aaaaa')
-                cy.contains('Iniciar sesion').click()
+                cy.get('[id=btnLogIn]').click()
             })
             /*Se puede ir dentro de agregar paciente*/
             it('go to addPatient', () => {
@@ -130,10 +142,27 @@ describe('Sistema Gestion', () => {
                 cy.get('[id=homeNav]').click()
                 cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
             })
-            it('go to home in nav', () => {
+            it('go to home in nav from brand', () => {
                 cy.get('[id=brand]').click()
                 cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
             })
+                /*Nav si se apreta no, no se cierra la sesion*/
+                it('press close sesion and press no', () => {
+                    cy.get('[id=logoutNav]').click();
+                    cy.contains('¿Estas seguro que quieres cerrar sesión?');
+                    cy.get('[class="swal2-confirm swal2-styled swal2-default-outline"]')
+                    cy.get('[class="swal2-cancel swal2-styled swal2-default-outline"]').click();
+                    cy.contains('Bienvenidos al Sistema de Gestión de Pacientes');
+                })
+            /*Nav si apreta que si, se cierra.*/
+            it('press close sesion and press yes', () => {
+                cy.get('[id=logoutNav]').click();
+                cy.contains('¿Estas seguro que quieres cerrar sesión?');
+                cy.get('[class="swal2-cancel swal2-styled swal2-default-outline"]')
+                cy.get('[class="swal2-confirm swal2-styled swal2-default-outline"]').click();
+                cy.contains('Se cerro sesión correctamente');
+            })
+
         }) 
     })
     describe('Add Patient', () => {
@@ -141,7 +170,7 @@ describe('Sistema Gestion', () => {
             cy.visit('http://localhost:5000');
             cy.get('[placeholder="Email"]').type('a@gmail.com');
             cy.get('[placeholder="Contraseña"]').type('aaaaa');
-            cy.contains('Iniciar sesion').click();
+            cy.get('[id=btnLogIn]').click();
             cy.contains('Bienvenidos al Sistema de Gestión de Pacientes');
             cy.contains('Agregar un paciente').click();
         })

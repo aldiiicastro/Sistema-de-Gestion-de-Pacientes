@@ -114,8 +114,8 @@ const Register = () => {
 							estado={nombre}
 							cambiarEstado={cambiarNombre}
 							tipo="text"
-							label="Nombre Y Apellido"
-							placeholder="Nombre Y Apellido"
+							label="Nombre completo"
+							placeholder="Nombre completo"
 							name="usuario"
 							leyendaError="El nombre solo puede contener letras y espacios."
 							expresionRegular={expresiones.nombre}
@@ -144,8 +144,8 @@ const Register = () => {
 							estado={password2}
 							cambiarEstado={cambiarPassword2}
 							tipo="password"
-							label="Repetir Contraseña"
-							placeholder="Contraseña"
+							label="Repetir contraseña"
+							placeholder="Repertir Contraseña"
 							name="password2"
 							leyendaError="Ambas contraseñas deben ser iguales."
 							funcion={validarPassword2}

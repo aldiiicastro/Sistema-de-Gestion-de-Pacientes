@@ -24,7 +24,7 @@ export class PacientForm extends Component {
             sintomas: [],
             sintomasExtras: '',
             provincia: '',
-            nn: false,
+            isNn: false,
             infoNN: '',
             bSintomasExtras: false,
         };
@@ -120,7 +120,7 @@ export class PacientForm extends Component {
             sintomas: [],
             sintomasExtras: '',
             provincia: '',
-            nn: false,
+            isNn: false,
             infoNN: '',
             bSintomasExtras: false,
         })
@@ -309,7 +309,7 @@ export class PacientForm extends Component {
                     </Row>
                     <Row>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox name="nn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
+                            <InputGroup.Checkbox name="isNn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
                             <InputGroup.Text> Es NN </InputGroup.Text>
                         </InputGroup>
 

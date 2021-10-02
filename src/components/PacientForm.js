@@ -325,7 +325,7 @@ export class PacientForm extends Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="primary" type="submit"> Cargar </Button>
+                    <Button variant="primary" id="ingresarButton" type="submit"> Ingresar Paciente </Button>
                 </Form>
             </Container>
         );

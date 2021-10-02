@@ -4,7 +4,7 @@ describe('Add Patient', () => {
         cy.visit('http://localhost:5000');
         cy.get('[placeholder="Email"]').type('a@gmail.com');
         cy.get('[placeholder="Contraseña"]').type('aaaaa');
-        cy.get('[id=btnLogIn]').click();
+        cy.contains('Iniciar sesion').click();
         cy.contains('Bienvenidos al Sistema de Gestión de Pacientes');
         cy.contains('Agregar un paciente').click();
     })
@@ -31,8 +31,8 @@ describe('Add Patient', () => {
         cy.get('[id= ControlTextAreaNN]');
     })
 
-    it('has cargar button', () => {
-        cy.contains('Cargar');
+    it('has ingresar paciente button', () => {
+        cy.contains('Ingresar Paciente');
     })
 
     it('inputs text block when esNn is checked and textArea is not disabled', () => {
@@ -47,7 +47,7 @@ describe('Add Patient', () => {
     it('give turn to NN person', () => {
         cy.get('[id= checkNN]').click()
         cy.get('[id= ControlTextAreaNN]').type('persona femenina, pelo negro de 30 a 40 años desvanecida con fiebre.');
-        cy.contains('Cargar').click();
+        cy.contains('Ingresar Paciente').click();
         cy.contains('Paciente NN ingresado con exito!')
     })
 
@@ -63,7 +63,8 @@ describe('Add Patient', () => {
         cy.get('[id= ControlTextAreaNN9]').type("1888");
         cy.get('input[name= Fiebre]').check();
         cy.get('input[name= Tos]').check();
-        cy.contains('Cargar').click();
+        cy.scrollTo(0, 500)
+        cy.get('[id= ingresarButton]').click();
         cy.contains(`Paciente Carlos Saldaña ingresado con Exito!`);
     })
 })

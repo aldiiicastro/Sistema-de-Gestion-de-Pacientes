@@ -11,7 +11,7 @@ exports.patient_register = async function (req, res) {
             const patientNn = await Patient.create({name: '', surname: '', dni: "", street: '', number: '',
                 floor: '', zipCode: '', location: '', state: '',
                 isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date})
+                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING'})
 
             return res.status(201).json({
                 response: 'Paciente NN ingresado con exito!',
@@ -26,7 +26,7 @@ exports.patient_register = async function (req, res) {
         const patient = await Patient.create({name: body.nombre, surname: body.apellido, dni: body.dni, street: body.calle, number: body.numero,
                                                 floor: body.piso, zipCode: body.codigo_postal, location: body.localidad, state: body.provincia,
                                                 isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-                                                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date})
+                                                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING'})
                                                 
         res.status(201).json({
             response: `Paciente ${patient.name} ${patient.surname} ingresado con Exito!`,

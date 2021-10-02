@@ -14,3 +14,10 @@
 .navBarBrand {
     color: #00B8EE !important;
 }
+
+.navegationPosition{
+    position: absolute;
+    width: 100vw;
+    height: 100hv;
+    z-index: 1;
+}

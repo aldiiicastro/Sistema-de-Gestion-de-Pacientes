@@ -19,10 +19,10 @@ const Spg = () => {
     <>
       <Router>
         <Switch>
+          <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/Home" component={Home}></Route>
           <Route path="/add-patient" component={PacientForm}></Route>
           <Route path="/watting-list" component={Paciente}></Route>
-          <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/error" component={PageError}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/" component={Login}></Route>

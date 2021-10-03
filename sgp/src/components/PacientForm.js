@@ -159,7 +159,7 @@ export class PacientForm extends Component {
         return (
             <>
             <Navegation/>
-                <Container>
+                <Container className='marginTop'>
                     <h3>Ingrese los datos:</h3>
                     <Form onSubmit={this.handleSubmit}>
                         <Row>

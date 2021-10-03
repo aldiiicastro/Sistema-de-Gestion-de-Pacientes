@@ -1,8 +1,8 @@
 import '../styles/Home.css';
 import React from 'react'
 import { useHistory } from 'react-router';
-import background from '../assets/background-home.jpg';
 import Navegation from './Navegation';
+
 import ButtonActions from '../elementos/ButtonActions';
 
 const Home = () => {
@@ -25,21 +25,22 @@ const Home = () => {
 
     return(
         <React.Fragment>
-
             {/*La barra de navegacion, se encuentra en otro componente*/}
             <Navegation/>
 
             {/*El fondo de la pagina*/}
-            <img src={background} alt="background" className="myBackgroundHome"/>
             <div className='welcome'>
                 <p>Bienvenidos al Sistema de Gestión de Pacientes</p>
             </div>
-
             {/* Botones, te llevan a las paginas que dice */}
-            <ButtonActions text={'Agregar un paciente'} onClickDo={goToAddPatient} style={"buttonsTop buttonsLeft"} icon={'user-plus'}/>
-            <ButtonActions text={'Dar de baja un paciente'} onClickDo={goToHome} style={"buttonsTop buttonsRight"} icon={'user-times'}/>
-            <ButtonActions text={'Ver lista de espera'} onClickDo={goToWattingList} style={"buttonsBottom buttonsLeft"} icon={'list'}/>
-            <ButtonActions text={'Ver estadisticas'} onClickDo={goToHome} style={"buttonsBottom buttonsRight"} icon={'signal'}/>
+            <div className='gridStyle marginTop'>
+                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={false}/>
+                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToHome} icon={'user-times'} isDisabled={true}/>
+            </div>
+            <div className='gridStyle'>
+                <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={true}/>
+                <ButtonActions id={"statistics"} text={'Ver estadisticas'} onClickDo={goToHome} icon={'signal'} isDisabled={true}/>
+            </div>
         </React.Fragment>
     )
 }

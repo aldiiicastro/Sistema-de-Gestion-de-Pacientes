@@ -7,9 +7,8 @@
 - Postman
 - Jest
 - Jenkins
-- Axios ?? 
-- Mongoose ??
-
+- Axios
+-Cypress
 
 ## Jira 
 https://sistema-gestion-pacientes.atlassian.net/jira/software/projects/SGP/boards/1/backlog

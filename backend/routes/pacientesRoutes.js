@@ -7,9 +7,13 @@ const timeout = require('connect-timeout');
 router.post('/altaPaciente', timeout('50s'), async (req, res) => {
     pacienteControllers.patient_register(req, res)
 })
-router.put('/borrarPaciente/:id', timeout('50s'), async (req, res) => {
+
+router.delete('/borrarPaciente/:id', timeout('50s'), async (req, res) => {
     pacienteControllers.delete_patient(req, res)
 })
 
+router.get('/allPatients', timeout('20s'), async (req,res) => {
+    pacienteControllers.get_all_patients(req,res);
+});
 
 module.exports = router;

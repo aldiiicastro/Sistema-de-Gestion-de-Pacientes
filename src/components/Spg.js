@@ -13,12 +13,14 @@ import Home from "./Home";
 //import { Header } from "./Header";
 import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
+import PatientsList from './PatientsList';
 
 const Spg = () => {
   return (
     <>
       <Router>
         <Switch>
+          <Route path="/patient-list" component={PatientsList}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/Home" component={Home}></Route>
           <Route path="/add-patient" component={PacientForm}></Route>

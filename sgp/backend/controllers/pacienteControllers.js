@@ -40,6 +40,17 @@ exports.patient_register = async function (req, res) {
     }
 }
 
+exports.get_all_patients = async function (req,res) {
+    try {
+        const patients = await Patient.find();
+        res.status(200).json({ response: 'todos los pacientes', data: patients });
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
 exports.delete_patient = async function (req, res) {
     try {
         if (!req.params.id) {
@@ -48,7 +59,7 @@ exports.delete_patient = async function (req, res) {
             })
         }
 
-        const user = await Patient.deleteOne({ _id: req.params.id });
+        const patient = await Patient.deleteOne({ _id: req.params.id });
 
         res.status(200).json({ response: 'Paciente eliminado correctamente!' })
 

@@ -9,3 +9,7 @@
     -webkit-appearance: none;
     -webkit-appearance: textfield;
 }
+
+.marginTop {
+  margin-top: 6rem;
+}

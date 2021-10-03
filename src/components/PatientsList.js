@@ -44,7 +44,7 @@ class PatientsList extends React.Component {
             <Container className="align-center">
                 <Row xs={1} md={2} className="g-4">
                     {this.state.data.map(paci => (
-                        <Card  className="title" key={paci._id} style={{ width: '18rem' }}>
+                        <Card  className="titlePatientList" key={paci._id} style={{ width: '18rem' }}>
                         <Card.Body>
                         <Card.Title className="linea">{paci.name} {paci.surname}</Card.Title>
                         <Card.Text>DNI: {paci.dni}</Card.Text>

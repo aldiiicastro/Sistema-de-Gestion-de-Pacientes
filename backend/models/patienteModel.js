@@ -20,6 +20,7 @@ const pacienteSchema = new Schema({
     dataNN: String,
     entryDate: Date,
     outDate: Date,
+    turnState: String
 });
 
 mongoose.model('Patient', pacienteSchema, 'Patientes'); 

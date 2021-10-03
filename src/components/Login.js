@@ -85,7 +85,7 @@ const Login = () => {
                         <Form.Control ref={passwordRef} className="boxInput" name="password" type="password" placeholder="Contraseña" onChange={handleInputChange} />
                     </Form.Group>
 
-                    <Button className="boton" ref={inputRef} variant="success" type="submit" disabled>
+                    <Button id="btnLogIn" className="boton" ref={inputRef} variant="success" type="submit" disabled>
                         Iniciar sesion
                     </Button>
                     <hr />

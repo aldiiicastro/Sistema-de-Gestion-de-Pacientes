@@ -24,7 +24,7 @@ export class PacientForm extends Component {
             sintomas: [],
             sintomasExtras: '',
             provincia: '',
-            nn: false,
+            isNn: false,
             infoNN: '',
             bSintomasExtras: false,
         };
@@ -120,7 +120,7 @@ export class PacientForm extends Component {
             sintomas: [],
             sintomasExtras: '',
             provincia: '',
-            nn: false,
+            isNn: false,
             infoNN: '',
             bSintomasExtras: false,
         })
@@ -268,7 +268,7 @@ export class PacientForm extends Component {
                         </InputGroup>
 
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="tos" />
+                            <InputGroup.Checkbox onChange={this.handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Tos" />
                             <InputGroup.Text> Tos </InputGroup.Text>
                         </InputGroup>
 
@@ -309,7 +309,7 @@ export class PacientForm extends Component {
                     </Row>
                     <Row>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox name="nn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
+                            <InputGroup.Checkbox name="isNn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
                             <InputGroup.Text> Es NN </InputGroup.Text>
                         </InputGroup>
 
@@ -325,7 +325,7 @@ export class PacientForm extends Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="primary" type="submit"> Cargar </Button>
+                    <Button variant="primary" id="ingresarButton" type="submit"> Ingresar Paciente </Button>
                 </Form>
             </Container>
         );

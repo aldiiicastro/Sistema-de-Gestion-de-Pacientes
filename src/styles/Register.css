@@ -20,3 +20,17 @@
     z-index: 1;
 }
 
+@media(max-width:768px) {
+    .divFormRegister{
+        width: 0%;
+
+    }
+
+}
+
+@media(max-width:480px) {
+    .divFormRegister{
+        width: 0%;
+    }
+}
+

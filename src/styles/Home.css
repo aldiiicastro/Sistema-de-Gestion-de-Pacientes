@@ -65,3 +65,16 @@ body {
 /* .iconsHomeColor {
     color:#69b190;
 } */
+@media(max-width:768px) {
+    .welcome{
+        width: 75%;
+
+    }
+
+}
+
+@media(max-width:480px) {
+    .welcome{
+        width: 48%;
+    }
+}

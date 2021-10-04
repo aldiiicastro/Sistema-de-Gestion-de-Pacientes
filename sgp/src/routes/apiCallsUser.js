@@ -9,9 +9,11 @@ export const login = (obj) => {
 export const register = (obj) => {
     return axios.post(basicUrl + `/register`, obj)
 }
-export const recoverPassword = (obj) => {
-    return axios.post(basicUrl + `/recoverPassword`, obj)
+
+export const mailRegistered = (obj) => {
+    return axios.post(basicUrl + `/mailRegistered`, obj)
 }
-export const restabContraseña = (obj) => {
-    return axios.post(basicUrl + `/restabContraseña`, obj)
+
+export const changePassword =  (obj) => {
+    return axios.put(basicUrl + `/changePassword`, obj)
 }

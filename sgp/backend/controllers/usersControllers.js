@@ -97,3 +97,28 @@ exports.delete_user = async function (req, res) {
     }
 }
 
+exports.change_password = async function(req, res) {
+    try {
+        if (!req.body.email) {
+            return res.status(400).json({
+                response: 'No se pasó ningún mail como data'
+            });
+        }
+
+        let findUser = await User.findOne({ email: req.body.email })
+        
+        findUser["password"] = req.body.password
+        
+        await User.updateOne({_id: findUser._id}).set(findUser)
+
+        res.status(200).json({
+            response: `Tú contraseña, fue cambiada exitosamente!`
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+

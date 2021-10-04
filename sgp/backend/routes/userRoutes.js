@@ -24,4 +24,8 @@ router.put('/delete/:id', timeout('20s'), async (req, res) => {
     usersControllers.delete_user(req, res)
 })
 
+router.put('/changePassword', timeout('20000s'), async (req, res) => {
+    usersControllers.change_password(req, res)
+})
+
 module.exports = router;

@@ -146,7 +146,7 @@ export class PacientForm extends Component {
         areaExtra.disabled = true
     }
 
-    test = () => { console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
+    test = () => { 
         const check = document.getElementById('checkNN')
 
         console.log(check)
@@ -309,7 +309,7 @@ export class PacientForm extends Component {
                             </InputGroup>
 
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <InputGroup className="mb-3">
                                 <InputGroup.Checkbox name="isNn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
                                 <InputGroup.Text> Es NN </InputGroup.Text>
@@ -326,7 +326,7 @@ export class PacientForm extends Component {
                                     />
                                 </Form.Group>
                             </Col>
-                        </Row>
+                        </Row> */}
                         <Button variant="primary" id="ingresarButton" type="submit"> Ingresar Paciente </Button>
                     </Form>
                 </Container>

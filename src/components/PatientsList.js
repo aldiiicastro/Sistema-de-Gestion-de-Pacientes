@@ -1,10 +1,13 @@
 import React from "react";
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import '../styles/PatientList.css';
+import Navegation from './Navegation';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClinicMedical } from '@fortawesome/free-solid-svg-icons'
 
 class PatientsList extends React.Component {
 
@@ -29,33 +32,80 @@ class PatientsList extends React.Component {
     }
 
     deletePatient = (id) => {
+        
+        const Toast =  Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
         axios.delete('http://localhost:3000/api/borrarPaciente/'+id)
         .then(res => {
             console.log(res);
             console.log("Se elimino un paciente");
+            Toast.fire({
+                icon: 'success',
+                title: res.data.response
+            });
+        }).catch(e => {
+            Toast.fire({
+                icon: 'error',
+                title: e.response
+            });
         });
 
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload();
+        }, 2001);
     }
 
     render () {
-        return (
-            
-            <Container className="align-center">
-                <Row xs={1} md={2} className="g-4">
-                    {this.state.data.map(paci => (
-                        <Card  className="titlePatientList" key={paci._id} style={{ width: '18rem' }}>
-                        <Card.Body>
-                        <Card.Title className="linea">{paci.name} {paci.surname}</Card.Title>
-                        <Card.Text>DNI: {paci.dni}</Card.Text>
-                        <Card.Text>Localidad: {paci.state}</Card.Text>
-                        <Button variant="danger" onClick = {() => this.deletePatient(paci._id)}>Dar de baja</Button>
-                        </Card.Body>
-                    </Card>
-                    ))}
-               </Row>
-            </Container>
-        );
+
+        if(this.state.data.length != 0){
+            return (
+                   
+                <div> 
+                    <Navegation/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h3>Pacientes a dar de baja:</h3>
+                    <Row xs={1} md={2} className="g-4">
+                         {this.state.data.map(paciente => (
+                             <Card  className="titlePatientList" key={paciente._id} style={{ width: '18rem' }}>
+                                 <Card.Body>
+                                 <Card.Title className="linea">{paciente.name} {paciente.surname}</Card.Title>
+                                 <Card.Text>DNI: {paciente.dni}</Card.Text>
+                                 <Card.Text>Localidad: {paciente.location}</Card.Text>
+                                 <Button variant="danger" onClick = {() => this.deletePatient(paciente._id)}>Dar de baja</Button>
+                                 </Card.Body>
+                             </Card>
+                         ))}
+                     </Row>
+                     
+                     
+                 </div>
+             );
+        } else {
+            return (
+                <React.Fragment>
+                    
+                    <Navegation/>
+
+                    <div className="centrar">
+                        <FontAwesomeIcon icon={faClinicMedical} size="4x"/>
+                        <p>No hay pacientes</p>
+                    </div>
+                </React.Fragment>
+               
+            );
+        }
     }
 }
 

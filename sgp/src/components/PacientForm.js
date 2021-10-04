@@ -165,7 +165,7 @@ export class PacientForm extends Component {
                         <Row>
                             <Col xs={6}>
                                 <Form.Group className="mb-3" controlId="ControlTextAreaNN1">
-                                    <Form.Label>Nombre</Form.Label>
+                                    <Form.Label>Nombre/s</Form.Label>
                                     <Form.Control value={this.state.nombre}
                                         onChange={this.handleChange}
                                         name='nombre'
@@ -175,7 +175,7 @@ export class PacientForm extends Component {
                             </Col>
                             <Col xs={6}>
                                 <Form.Group className="mb-3" controlId="ControlTextAreaNN2">
-                                    <Form.Label>Apellido</Form.Label>
+                                    <Form.Label>Apellido/s</Form.Label>
                                     <Form.Control value={this.state.apellido}
                                         onChange={this.handleChange}
                                         name='apellido'

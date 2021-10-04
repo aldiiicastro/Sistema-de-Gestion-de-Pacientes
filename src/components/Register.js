@@ -6,19 +6,21 @@ import {
 	// MensajeExito,
 	// MensajeError,
 } from "../elementos/Formularios";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FontAwesome from 'react-fontawesome';
 // import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import background from "../assets/background.jpg";
 import "../styles/Register.css";
 import { register } from "../routes/apiCallsUser";
 import Swal from 'sweetalert2';
+import { useHistory } from 'react-router';
 
 const Register = () => {
 	const [nombre, cambiarNombre] = useState({ campo: "", valido: null });
 	const [password, cambiarPassword] = useState({ campo: "", valido: null });
 	const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
 	const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
+	const history = useHistory();
 	// const [formularioValido, cambiarFormularioValido] = useState(null);
 	// const refSpan = useRef(null);
 
@@ -99,6 +101,9 @@ const Register = () => {
 	// const changeRef = () => {
 	// 	inputRef.current.disabled = nombre.valido && password.valido && password2.valido && password2.valido
 	// }
+	const goToLogin = () => {
+		history.push('/')
+	}
 
 	return (
 		<>
@@ -108,6 +113,7 @@ const Register = () => {
 				className="myBackgroundLogin"
 			></img>
 			<div className="divFormRegister">
+				<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
 				<main>
 					<Formulario action="" onSubmit={onSubmit}>
 						<Input
@@ -160,7 +166,7 @@ const Register = () => {
 							</MensajeError>
 						)} */}
 						<ContenedorBotonCentrado>
-							<Boton type="submit">Enviar</Boton>
+							<Boton type="submit" onClick={goToLogin}>Enviar</Boton>
 							{/* {formularioValido === true && (
 								<MensajeExito ref={refSpan}> Usuario registrado exitosamente!</MensajeExito>
 							)} */}

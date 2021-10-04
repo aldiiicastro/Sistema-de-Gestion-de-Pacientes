@@ -139,7 +139,7 @@ export class PacientForm extends Component {
             area2.disabled = false
         }
 
-        area.disabled = false
+        //area.disabled = false
 
         const areaExtra = document.getElementById('formControlSE')
 

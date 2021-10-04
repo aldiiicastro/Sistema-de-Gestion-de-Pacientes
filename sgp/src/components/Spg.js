@@ -8,6 +8,8 @@ import React from "react";
 import Login from "./Login";
 import PageError from "./PageError";
 import RecoverPassword from "./RecoverPassword";
+import RestabContraseña from "./RestabContraseña";
+
 import Register from './Register'
 import Home from "./Home";
 //import { Header } from "./Header";
@@ -21,6 +23,7 @@ const Spg = () => {
       <Router>
         <Switch>
           <Route path="/patient-list" component={PatientsList}></Route>
+          <Route path="/restabContraseña" component={RestabContraseña}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/Home" component={Home}></Route>
           <Route path="/add-patient" component={PacientForm}></Route>

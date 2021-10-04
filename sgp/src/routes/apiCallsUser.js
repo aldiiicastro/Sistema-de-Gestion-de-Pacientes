@@ -12,3 +12,6 @@ export const register = (obj) => {
 export const recoverPassword = (obj) => {
     return axios.post(basicUrl + `/recoverPassword`, obj)
 }
+export const restabContraseña = (obj) => {
+    return axios.post(basicUrl + `/restabContraseña`, obj)
+}

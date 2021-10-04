@@ -73,7 +73,7 @@ const RecoverPassword = () => {
                  
 
                     <Button className="boton" ref={inputRef} variant="success" type="submit" disabled>
-                        Enviar email
+                        Reestablecer contraseña
                     </Button>
                     <hr />
                   

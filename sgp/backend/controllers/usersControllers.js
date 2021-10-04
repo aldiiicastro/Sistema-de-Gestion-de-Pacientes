@@ -97,6 +97,32 @@ exports.delete_user = async function (req, res) {
     }
 }
 
+exports.mail_registered = async function(req, res) {
+    try {
+        if (!req.body.email) {
+            return res.status(400).json({
+                response: 'No se pasó ningún mail como data'
+            });
+        }
+
+        let findUser = await User.findOne({ email: req.body.email })
+
+        if(!findUser) {
+            return res.status(404).json({
+                response: "Email no encontrado!"
+            })
+        }
+
+        res.status(200).json({
+            response: `Email encontrado!`
+        });
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
 exports.change_password = async function(req, res) {
     try {
         if (!req.body.email) {
@@ -108,7 +134,7 @@ exports.change_password = async function(req, res) {
         let findUser = await User.findOne({ email: req.body.email })
         
         findUser["password"] = req.body.password
-        
+
         await User.updateOne({_id: findUser._id}).set(findUser)
 
         res.status(200).json({

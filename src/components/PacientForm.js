@@ -139,7 +139,7 @@ export class PacientForm extends Component {
             area2.disabled = false
         }
 
-        //area.disabled = false
+        area.disabled = false
 
         const areaExtra = document.getElementById('formControlSE')
 
@@ -309,7 +309,7 @@ export class PacientForm extends Component {
                             </InputGroup>
 
                         </Row>
-                        {/* <Row>
+                        <Row hidden>
                             <InputGroup className="mb-3">
                                 <InputGroup.Checkbox name="isNn" id="checkNN" onChange={this.handleChangeCheckBox} className="checkBoxToResetPFIngreso" />
                                 <InputGroup.Text> Es NN </InputGroup.Text>
@@ -326,7 +326,7 @@ export class PacientForm extends Component {
                                     />
                                 </Form.Group>
                             </Col>
-                        </Row> */}
+                        </Row>
                         <Button variant="primary" id="ingresarButton" type="submit"> Ingresar Paciente </Button>
                     </Form>
                 </Container>

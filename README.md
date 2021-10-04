@@ -19,3 +19,6 @@ https://miro.com/app/board/o9J_lxSyd5M=/
 
 ## Reportes
 https://docs.google.com/document/d/10kEqlvYxUtVBUiwifYdsq7pP6p64TibNZXx545G7rfo/edit?usp=sharing
+
+Reporte Sprint n° 2
+https://docs.google.com/document/d/1s91MdLV-R6vyxhWdp2TpIGnqFA3G3LsfrpOBQGyScjE/edit#

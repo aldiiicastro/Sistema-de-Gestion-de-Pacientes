@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Formulario,
 	ContenedorBotonCentrado,
@@ -11,17 +11,24 @@ import FontAwesome from 'react-fontawesome';
 import Input from "./Input";
 import background from "../assets/background.jpg";
 import "../styles/Register.css";
-import { restabContraseña } from "../routes/apiCallsUser";
+import { changePassword } from "../routes/apiCallsUser";
 import Swal from 'sweetalert2';
-import { useHistory } from 'react-router';
+import { useLocation } from "react-router-dom";
 
 const RestabContraseña = () => {
 
     const [password, cambiarPassword] = useState({ campo: "", valido: null });
 	const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
-	const history = useHistory();
+	const [email, setEmail] = useState({email: ''})
+	const location =  useLocation()
 	// const [formularioValido, cambiarFormularioValido] = useState(null);
 	// const refSpan = useRef(null);
+
+	useEffect(() => {
+		setEmail({
+			email : location.state.email
+		})
+	}, [location])
 
 
 
@@ -62,14 +69,14 @@ const RestabContraseña = () => {
 			password.valido === "true" &&
 			password2.valido === "true"
 		) {
-			//cambiarFormularioValido(true);
 			const dataAx = {
+				email: email.email,
 				password: password.campo
 			}
 			cambiarPassword({ campo: "", valido: null });
 			cambiarPassword2({ campo: "", valido: "null" });
 
-			/* await register(dataAx).then(r => {
+			await changePassword(dataAx).then(r => {
 				Toast.fire({
 					icon: 'success',
 					title: r.data.response
@@ -80,20 +87,14 @@ const RestabContraseña = () => {
 					title: e.response.data.response
 				})
 			})
- */
-			// ...
+ 
 		} else {
-			//cambiarFormularioValido(false);
+			Toast.fire({
+				icon: 'alert',
+				title: 'Las contraseñas no son identicas!'
+			})
 		}
 	};
-
-	// const changeRef = () => {
-	// 	inputRef.current.disabled = nombre.valido && password.valido && password2.valido && password2.valido
-	// }
-	const goToLogin = () => {
-		history.push('/')
-	}
-
 
     return (
         <>
@@ -127,17 +128,8 @@ const RestabContraseña = () => {
 							funcion={validarPassword2}
 						/>
 
-						{/* {formularioValido === false && (
-							<MensajeError>
-								<p>
-									<FontAwesomeIcon icon={faExclamationTriangle} />
-									<b>Error:</b> <span> Formulario Llenado incorrectamente </span>
-								</p>
-							</MensajeError>
-						)} */}
 						<ContenedorBotonCentrado>
-							<Boton type="submit" onClick={goToLogin}>Enviar</Boton>
-						
+							<Boton type="submit">Enviar</Boton>			
 						</ContenedorBotonCentrado>
 					</Formulario>
 				</main>

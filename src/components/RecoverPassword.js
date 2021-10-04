@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import '../styles/Login.css';
 import { useHistory } from 'react-router';
 import background from '../assets/background.jpg';
- import { recoverPassword } from '../routes/apiCallsUser';
+import { mailRegistered } from '../routes/apiCallsUser';
 import FontAwesome from 'react-fontawesome';
 import Swal from 'sweetalert2';
 
@@ -14,8 +14,7 @@ const RecoverPassword = () => {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [data, setData] = useState({
-        email: '',
-        password: ''
+        email: ''
     });
 
     const handleInputChange = (event) => {
@@ -34,7 +33,13 @@ const RecoverPassword = () => {
         return emailInput.length >= 5 && re.test(String(emailInput).toLowerCase())
     };
 
-    const goToHome = async (event) => {
+    const goToHome =  (event) => {
+        event.preventDefault();
+        history.push("/")
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -47,14 +52,19 @@ const RecoverPassword = () => {
             }
         })
 
-        event.preventDefault();
-        const dataAx = {
-            email: data.email,
-            password: data.password
-        }
-
-     
-    };
+        await mailRegistered(data).then( r =>{
+            history.push({
+                pathname: "/restabContraseña",
+                state: data
+            })
+        })
+        .catch(e => {
+            Toast.fire({
+                icon: 'error',
+                title: e.response.data.response
+            })
+        })
+    }
 
 
     return (
@@ -62,22 +72,24 @@ const RecoverPassword = () => {
             <img src={background} alt="background" className="myBackgroundLogin" />
 
             <div className="divFormLogin">
-                
+
                 <p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
                 <p className='center'> ¿Olvidaste tu contraseña?</p>
 
-                <Form className="mainForm" onSubmit={goToHome}>
+                <Form className="mainForm" onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={emailRef} className="boxInput" name="email" onChange={handleInputChange} placeholder="Email" />
                     </Form.Group>
-                 
 
-                    <Button className="boton" ref={inputRef} variant="success" type="submit" disabled>
+
+                    <Button className="boton" ref={inputRef} variant="success" type="submit">
                         Reestablecer contraseña
                     </Button>
                     <hr />
-                  
                 </Form>
+                <Button className="boton" variant="success" onClick={goToHome}>
+                    Ir a Login
+                </Button>
             </div>
         </>
     );

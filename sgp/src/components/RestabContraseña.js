@@ -100,13 +100,12 @@ const RestabContraseña = () => {
         <>
             <img src={background} alt="background" className="myBackgroundLogin" />
 
-            <div className="divFormRegister">
+            <div className="divForm">
 				<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
                 <p className='center'><FontAwesome name='heartbeat'>Ingrese su nueva contraseña</FontAwesome></p>
 
 				<main>
 					<Formulario action="" onSubmit={onSubmit}>
-						
 						<Input
 							estado={password}
 							cambiarEstado={cambiarPassword}
@@ -129,7 +128,7 @@ const RestabContraseña = () => {
 						/>
 
 						<ContenedorBotonCentrado>
-							<Boton type="submit">Enviar</Boton>			
+							<Boton id="btnEnviar"  type="submit">Enviar</Boton>			
 						</ContenedorBotonCentrado>
 					</Formulario>
 				</main>

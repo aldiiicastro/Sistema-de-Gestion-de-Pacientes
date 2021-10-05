@@ -9,16 +9,79 @@
     background-color:rgb(255, 255, 255);
     position: absolute;
     top:  50%;
-    left: 25%;
+    left: 30%;
     transform: translate(-50%,-50%);
     text-align: center;
     font-family: var(--mainFont);
     border: var(--borderColor) 1px solid;
-    width: 35%;
-    height: 50%;
+    width: 490px;
+    height: 500px;
     box-shadow: 20px 20px 50px  var(--borderColor);
     z-index: 1;
 }
+.title {
+    font-family: var(--mainFont);
+    font-weight: 580;
+    font-size: 60px;
+    color: #00B8EE
+}
+
+.divForm {
+    background-color:rgb(255, 255, 255);
+    position: absolute;
+    top:  50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-family: var(--mainFont);
+    border: var(--borderColor) 1px solid;
+    width: 40%;
+    height: 60%;
+    box-shadow: 20px 20px 50px  var(--borderColor);
+    z-index: 1;
+}
+.title {
+    font-family: var(--mainFont);
+    font-weight: 580;
+    font-size: 60px;
+    color: #00B8EE
+}
+
+.divFormLogin{
+    background-color:rgb(255, 255, 255);
+    position: absolute;
+    top:  50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-family: var(--mainFont);
+    border: var(--borderColor) 1px solid;
+    width: 400px;
+    height: 400px;
+    box-shadow: 20px 20px 50px  var(--borderColor);
+    z-index: 1;
+}
+
+
+
+.mainForm {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.divFormLogin .boton {
+    margin-top: 15px;
+    border: 1.5px var(--borderColor) solid;
+    font-weight: bold;
+    font-family: var(--mainFont);
+}
+.divFormLogin .boton {
+    margin-top: 15px;
+    border: 1.5px var(--borderColor) solid;
+    font-weight: bold;
+    font-family: var(--mainFont);
+}
+
 
 @media(max-width:768px) {
     .divFormRegister{

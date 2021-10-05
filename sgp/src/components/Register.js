@@ -113,8 +113,10 @@ const Register = () => {
 				className="myBackgroundLogin"
 			></img>
 			<div className="divFormRegister">
-				<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
-				<main>
+			<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
+
+			<main>
+				
 					<Formulario action="" onSubmit={onSubmit}>
 						<Input
 							estado={nombre}
@@ -156,17 +158,8 @@ const Register = () => {
 							leyendaError="Ambas contraseñas deben ser iguales."
 							funcion={validarPassword2}
 						/>
-
-						{/* {formularioValido === false && (
-							<MensajeError>
-								<p>
-									<FontAwesomeIcon icon={faExclamationTriangle} />
-									<b>Error:</b> <span> Formulario Llenado incorrectamente </span>
-								</p>
-							</MensajeError>
-						)} */}
 						<ContenedorBotonCentrado>
-							<Boton type="submit" onClick={goToLogin}>Enviar</Boton>
+							<Boton id="btnLogIn" type="submit"className="boton" onClick={goToLogin}>Enviar</Boton>
 							{/* {formularioValido === true && (
 								<MensajeExito ref={refSpan}> Usuario registrado exitosamente!</MensajeExito>
 							)} */}

@@ -131,11 +131,17 @@ exports.change_password = async function(req, res) {
             });
         }
 
+        if (!req.body.password) {
+            return res.status(400).json({
+                response: 'No se pasó ningún password como data'
+            });
+        }
+
         let findUser = await User.findOne({ email: req.body.email })
         
-        findUser["password"] = req.body.password
-
-        await User.updateOne({_id: findUser._id}).set(findUser)
+        await User.updateOne({_id: findUser._id}, {
+            password: req.body.password
+        })
 
         res.status(200).json({
             response: `Tú contraseña, fue cambiada exitosamente!`

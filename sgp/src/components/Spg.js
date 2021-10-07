@@ -17,6 +17,7 @@ import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
 import PatientsList from './PatientsList';
 import AttendedList from "./AttendedList";
+import WattingList from "./WattingList";
 import PatientFormPostTurn from "./PatientFormPostTurn";
 
 
@@ -32,7 +33,7 @@ const Spg = () => {
           <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/Home" component={Home}></Route>
           <Route path="/add-patient" component={PacientForm}></Route>
-          <Route path="/watting-list" component={Paciente}></Route>
+          <Route path="/watting-list" component={WattingList}></Route>
           <Route path="/error" component={PageError}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/" component={Login}></Route>

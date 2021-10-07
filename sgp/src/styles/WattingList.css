@@ -1,0 +1,27 @@
+.table
+{
+    background-color:white;
+    opacity:0.9;
+    width: 65%;
+    margin: 0 auto;  
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+th{
+    background-color: grey;
+}
+
+
+
+.centro
+{
+    width:100%;
+    padding:8px;
+    text-align: center;
+    position: relative;
+    top: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 100%;
+    
+}

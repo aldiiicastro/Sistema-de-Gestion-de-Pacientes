@@ -16,4 +16,8 @@ router.get('/allPatients', timeout('20s'), async (req,res) => {
     pacienteControllers.get_all_patients(req,res);
 });
 
+router.get('/pacientesAtendidos', timeout('30s'), async (req, res) => {
+    pacienteControllers.get_attended_patients(req, res);
+})
+
 module.exports = router;

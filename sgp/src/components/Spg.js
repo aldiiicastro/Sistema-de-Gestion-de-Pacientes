@@ -16,6 +16,9 @@ import Home from "./Home";
 import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
 import PatientsList from './PatientsList';
+import AttendedList from "./AttendedList";
+import PatientFormPostTurn from "./PatientFormPostTurn";
+
 
 const Spg = () => {
   return (
@@ -23,6 +26,8 @@ const Spg = () => {
       <Router>
         <Switch>
           <Route path="/patient-list" component={PatientsList}></Route>
+          <Route path="/post-add-patient" component={PatientFormPostTurn}></Route>
+          <Route path="/attended-list" component={AttendedList}></Route>
           <Route path="/restabContraseña" component={RestabContraseña}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>
           <Route path="/Home" component={Home}></Route>

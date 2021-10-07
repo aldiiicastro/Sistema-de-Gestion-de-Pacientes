@@ -9,3 +9,7 @@ export const altaPaciente = (obj) => {
         }
     })
 }
+
+export const pacientesAtendidos = () => {
+    return axios.get(basicUrl + '/pacientesAtendidos')
+}

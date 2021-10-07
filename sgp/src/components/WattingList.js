@@ -15,7 +15,7 @@ class WattingList extends React.Component {
     }
     
     getData = () => {
-        axios.get('http://localhost:3000/api/allPatients')
+        axios.get('http://localhost:3000/api/waitingPatients')
         .then(res => {
           console.log(res.data);
           var data = res.data

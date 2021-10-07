@@ -1,3 +1,5 @@
+ /*global cy*/
+  /*global Cypress*/
 describe('Delete Patient', ()=>{
     
     it('click en baja paciente', () => {

@@ -116,7 +116,6 @@ const Register = () => {
 			<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
 
 			<main>
-				
 					<Formulario action="" onSubmit={onSubmit}>
 						<Input
 							estado={nombre}

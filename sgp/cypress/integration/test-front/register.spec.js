@@ -1,3 +1,4 @@
+ /*global cy*/
 describe('Register',()=> {
     it('register page can be open', () => {
         cy.visit('http://localhost:5000/register')

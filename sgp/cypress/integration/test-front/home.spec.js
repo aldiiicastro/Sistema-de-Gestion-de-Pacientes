@@ -1,3 +1,4 @@
+ /*global cy*/
 /*Test dentro de la pagina de Home*/ 
 describe('Home', () => {
     beforeEach(() => {

@@ -1,3 +1,4 @@
+ /*global cy*/
 describe('Login',()=> {
     beforeEach(() => {
         cy.visit('http://localhost:5000')

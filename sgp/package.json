@@ -35,6 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:test": "NODE_ENV=production node index.js",
     "client": "cd backend && nodemon server.js",
     "dev": "concurrently \"cd backend && nodemon server.js\" \"npm start\"",
     "build": "react-scripts build",

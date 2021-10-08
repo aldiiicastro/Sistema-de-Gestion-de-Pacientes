@@ -2,11 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-var fs = require('fs');
 const app = express();
-const router = express.Router();
 var env = process.env.NODE_ENV
 require('./database');
+const apiRoutes = require('./routes/apiRoutes');
 app.use(cors());
 //Cargar middlewares
 app.use(bodyParser.urlencoded({ extended: false }));

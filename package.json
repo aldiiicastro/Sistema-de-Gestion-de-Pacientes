@@ -37,7 +37,7 @@
     "start": "cd backend && node server.js",
     "client": "npm run start --prefix client",
     "start:dev": "cd backend && nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && npm run build",
     "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",

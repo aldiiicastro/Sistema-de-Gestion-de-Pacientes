@@ -28,7 +28,7 @@
     "react-dom": "^17.0.2",
     "react-fontawesome": "^1.7.1",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "styled-components": "^5.2.1",
     "sweetalert2": "^11.1.7",
     "sweetalert2-react-content": "^4.1.1",
@@ -36,7 +36,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:test": "NODE_ENV=production node index.js",
     "client": "cd backend && nodemon server.js",
     "dev": "concurrently \"cd backend && nodemon server.js\" \"npm start\"",
     "build": "react-scripts build",

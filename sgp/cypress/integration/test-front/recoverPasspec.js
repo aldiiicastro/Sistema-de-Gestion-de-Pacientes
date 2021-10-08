@@ -7,7 +7,7 @@ describe('RecoverPassword',()=> {
     /*Se puede abrir y contiene lo necesario*/
     it('RecoverPassword page can be open', () => {
         cy.get('[placeholder="Email"]')
-        cy.get('[id=btn]')
+        cy.get('[id=btnReestablecer]')
         cy.get('[id=btnLog]')
     })
     /*Se puede clickear el reestablecer contraseña*/
@@ -20,15 +20,18 @@ describe('RecoverPassword',()=> {
         cy.contains('SGP')
 
     })
-       /*Se puede recuperar la contraseña con un email previamente no registrado*/
-    it('password can be recovered', () => {
+ 
+    /*no Se puede recuperar la contraseña con un email previamente no registrado*/
+    it('it is not possible to recover the password', () => {
     cy.get('[placeholder="Email"]').type('octaviojorge37@gmail.com')
-    cy.get('[id=btn]').click().should('be.disabled');
+    cy.get('[id=btnReestablecer]').click();
+    cy.get('[title:"e.response.data.response"]')
+
   })
     /*Se puede recuperar la contraseña*/
     it('password can be recovered', () => {
         cy.get('[placeholder="Email"]').type('a@gmail.com')
-        cy.get('[id=btn]').click()
+        cy.get('[id=btnReestablecer]').click()
         cy.contains('SGP')
         cy.contains('Enviar').click()   
     })

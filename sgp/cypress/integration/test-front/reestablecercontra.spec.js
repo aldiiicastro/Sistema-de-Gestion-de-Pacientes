@@ -24,12 +24,15 @@ describe('RestabContraseña',()=> {
  /*    it('login page cant press log in if have nothing', () => {
     cy.get('[id=btn]').click().should('be.disabled');
     })
- */
+ */ 
       /*No se puede tener menos de 5 caracteres en la contraseña*/
       it('password not can be recovered', () => {
         cy.get('[placeholder="Contraseña"]').type('1234')
         cy.get('[placeholder="Repertir Contraseña"]').type('1234')
-        cy.get('[id=btnEnviar]').click().should('be.disabled');
+        cy.get('[id=btnEnviar]').click();
+        cy.get('[title:"Las contraseñas no son identicas!"]')
+
+      //  Las contraseñas no son identicas!
 
    
     })

@@ -35,9 +35,9 @@
   },
 "proxy": "http://localhost:3000",
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "node backend/server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && npm run build",
+    "start": "react-scripts start",
+    "client": "cd backend && node server.js",
+    "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

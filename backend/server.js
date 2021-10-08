@@ -27,7 +27,6 @@ if (env === 'production') {
 }
 
 //Api
-app.use(timeout('5s'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())

@@ -34,15 +34,12 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "cd backend && node server.js",
-    "client": "npm run start --prefix client",
-    "start:dev": "cd backend && nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && npm run build",
-    "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "eslintConfig": {
     "extends": [

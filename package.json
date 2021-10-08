@@ -34,7 +34,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "cd backend && nodemon server.js",
+    "start": "cd backend && node server.js",
     "client": "cd backend && nodemon server.js",
     "dev": "concurrently \"cd backend && nodemon server.js\" \"npm start\"",
     "build": "react-scripts build",

@@ -1,21 +1,30 @@
-const express =  require('express')
-const app = express()
-require('./database')
-const apiRoutes = require('./routes/apiRoutes');
-const timeout = require('connect-timeout');
-const cors = require('cors')
-const db = require('./production').mongoURI;
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
+var fs = require('fs');
+const app = express();
+const router = express.Router();
+var env = process.env.NODE_ENV
+require('./database');
+app.use(cors());
+//Cargar middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  })
-  // use a promise to check if success
-  .then(() => console.log('MongoDB Connected!'))
-  .catch(error => console.log('MongoDB did not connect: ', error));
+//Activar el cors
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 
+if (env === 'production') {
+    app.use(express.static(path.join(__dirname, '../build')))
+}
 
 //Api
 app.use(timeout('5s'))
@@ -24,16 +33,8 @@ app.use(express.json())
 app.use(cors())
 app.use('/api', apiRoutes);
 
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static('client/build'));
-  
-    app.get('*', (request, response) => {
-      response.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-  }
-//Connect to PORT
-//const PORT = process.env.PORT || 5000
-// app.listen(PORT, console.log(`App is running in ${process.env.NODE_ENV} mode on port ${PORT}`))
-app.listen(process.env.PORT || 3000)
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});

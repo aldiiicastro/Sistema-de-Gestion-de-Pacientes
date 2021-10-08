@@ -36,6 +36,7 @@
   "scripts": {
     "start": "cd backend && node server.js",
     "client": "cd backend && node server.js",
+    "start:dev": "cd backend && nodemon server.js"
     "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",

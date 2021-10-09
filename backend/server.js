@@ -9,8 +9,18 @@ const cors = require('cors')
 app.use(timeout('5s'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(cors())
 app.use('/api', apiRoutes);
+app.use(cors())
+
+//Activar el cors
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 
 //Connect to PORT
 //const PORT = process.env.PORT || 5000

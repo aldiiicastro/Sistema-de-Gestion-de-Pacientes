@@ -7,7 +7,8 @@ import '../styles/PatientList.css';
 import Navegation from './Navegation';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClinicMedical } from '@fortawesome/free-solid-svg-icons'
+import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
+import { deletePatient , allPatient } from '../routes/apiCallsPatient';
 
 class PatientsList extends React.Component {
 
@@ -19,7 +20,7 @@ class PatientsList extends React.Component {
     }
     
     getData = () => {
-        axios.get('http://localhost:3000/api/allPatients')
+        allPatient()
         .then(res => {
           console.log(res.data);
           var data = res.data
@@ -45,7 +46,7 @@ class PatientsList extends React.Component {
             }
         });
 
-        axios.delete('http://localhost:3000/api/borrarPaciente/'+id)
+        deletePatient(id)
         .then(res => {
             console.log(res);
             console.log("Se elimino un paciente");
@@ -59,15 +60,15 @@ class PatientsList extends React.Component {
                 title: e.response
             });
         });
-
+        
         setTimeout(() => {
-            window.location.reload();
+            this.getData();
         }, 2001);
     }
 
     render () {
 
-        if(this.state.data.length != 0){
+        if(this.state.data.length !== 0){
             return (
                    
                 <div> 

@@ -13,3 +13,15 @@ export const altaPaciente = (obj) => {
 export const pacientesAtendidos = () => {
     return axios.get(basicUrl + '/pacientesAtendidos')
 }
+
+export const atenderPaciente = (id) => {
+    return axios.put(basicUrl + '/attendPatient/'+ id);
+}
+
+export const deletePatient = (id) => {
+    return axios.delete(basicUrl + '/borrarPaciente/' +id);
+}
+
+export const allPatient = () => {
+    return axios.get(basicUrl + '/allPatients');
+}

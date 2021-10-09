@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const basicUrl = 'http://localhost:3000/api';
+const basicUrl = 'http://sistema-gestion-paciente.herokuapp.com:3000/api';
 
 export const altaPaciente = (obj) => {
     return axios.post(basicUrl + `/altaPaciente`, obj, {

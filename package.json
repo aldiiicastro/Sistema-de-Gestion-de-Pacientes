@@ -33,7 +33,7 @@
     "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^2.1.0"
   },
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "client": "cd backend && node server.js",

@@ -38,7 +38,7 @@
     "start": "react-scripts start",
     "client": "cd backend && node server.js",
     "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
-    "heroku-postbuild": "cd public && npm --production=false && npm run build",
+    "heroku-postbuild": "cd public && NPM_CONFIG_PRODUCTION=false && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

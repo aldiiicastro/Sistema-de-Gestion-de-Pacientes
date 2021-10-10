@@ -12,7 +12,7 @@ exports.patient_register = async function (req, res) {
                 name: '', surname: '', dni: "", street: '', number: '',
                 floor: '', zipCode: '', location: '', state: '',
                 isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING'
+                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITTING'
             })
 
             return res.status(201).json({
@@ -29,7 +29,7 @@ exports.patient_register = async function (req, res) {
             name: body.nombre, surname: body.apellido, dni: body.dni, street: body.calle, number: body.numero,
             floor: body.piso, zipCode: body.codigo_postal, location: body.localidad, state: body.provincia,
             isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING'
+            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITTING'
         })
 
         res.status(201).json({
@@ -57,7 +57,7 @@ exports.get_all_patients = async function (req, res) {
 
 exports.get_waiting_patients = async function (req, res) {
     try {
-        const patients = await Patient.find({ turnState:'WAITING' });
+        const patients = await Patient.find({ turnState:'WAITTING' });
         res.status(200).json({ response: 'pacientes que esperan', data: patients });
     } catch (error) {
         res.status(500).json({
@@ -91,6 +91,25 @@ exports.delete_patient = async function (req, res) {
 
         res.status(200).json({ response: 'Paciente eliminado correctamente!' })
 
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
+exports.updateTurnState = async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await Patient.updateMany({_id: req.params.id},{turnState: 'ATTENDED'});
+        
+        res.status(200).json({ response: 'Se actualizo el paciente!'});
+    
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'

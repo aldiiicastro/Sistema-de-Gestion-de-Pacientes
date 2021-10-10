@@ -24,12 +24,9 @@ app.use((req, res, next) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/index.html'))
+    res.sendFile(path.join(__dirname + '/index.html'))
 })
 
-//Connect to PORT
-//const PORT = process.env.PORT || 5000
-// app.listen(PORT, console.log(`App is running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);

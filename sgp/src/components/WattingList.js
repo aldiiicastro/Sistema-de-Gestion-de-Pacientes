@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import '../styles/WattingList.css';
 import Navegation from './Navegation';
+import { pacientesEnEspera } from "../routes/apiCallsPatient";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,7 +16,7 @@ class WattingList extends React.Component {
     }
     
     getData = () => {
-        axios.get('http://localhost:3000/api/waitingPatients')
+        pacientesEnEspera()
         .then(res => {
           console.log(res.data);
           var data = res.data

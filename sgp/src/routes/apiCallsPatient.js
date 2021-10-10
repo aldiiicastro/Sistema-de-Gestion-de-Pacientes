@@ -11,5 +11,9 @@ export const altaPaciente = (obj) => {
 }
 
 export const pacientesAtendidos = () => {
-    return axios.get(basicUrl + '/pacientesAtendidos')
+    return axios.get(basicUrl + '/pacientesAtendidos');
+}
+
+export const pacientesEnEspera = () => {
+    return axios.get(basicUrl + '/waitingPatients');
 }

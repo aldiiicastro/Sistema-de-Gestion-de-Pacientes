@@ -35,7 +35,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "client": "cd backend && node server.js",
     "dev": "concurrently \"cd backend && node server.js\" \"npm start\"",
     "heroku-postbuild": "cd public && NPM_CONFIG_PRODUCTION=false && npm run build",

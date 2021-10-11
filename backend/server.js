@@ -4,7 +4,7 @@ require('./database')
 const apiRoutes = require('./routes/apiRoutes');
 const timeout = require('connect-timeout');
 const cors = require('cors')
-
+const path = require('path');
 //Api
 app.use(timeout('5s'))
 app.use(express.urlencoded({extended: true}))

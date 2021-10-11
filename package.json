@@ -65,6 +65,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "14.17.6"
+  },
   "devDependencies": {
     "cypress": "^8.5.0",
     "nodemon": "^2.0.13"

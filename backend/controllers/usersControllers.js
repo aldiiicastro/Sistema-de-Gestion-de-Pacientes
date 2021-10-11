@@ -1,6 +1,6 @@
 const { response } = require('express');
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const User = mongoose.model('User', userSchema);
 
 /**
  * Como anotación, deberiamos modificar las responses en caso de errores, hoy por hoy esta devolviendo un objeto completo.

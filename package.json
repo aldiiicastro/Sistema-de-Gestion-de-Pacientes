@@ -20,6 +20,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "http-proxy-middleware": "^0.19.1",
     "mongoose": "^6.0.8",
     "nodemailer": "^6.6.5",
     "react": "^17.0.2",
@@ -33,7 +34,6 @@
     "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^2.1.0"
   },
-  "proxy": "http://localhost:3000",
   "scripts": {
     "start": "react-scripts start",
     "client": "cd backend && node server.js",

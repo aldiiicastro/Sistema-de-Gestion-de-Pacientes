@@ -15,6 +15,14 @@ app.use(cors())
 //Activar el cors
 // Configurar cabeceras y cors
 app.use( cors({ origin: true, credentials: true  }) );
+const proxy = require("http-proxy-middleware");
+
+module.exports = function(app) {
+  app.use(
+    proxy(["/api"], { target: "http://localhost:3000" })
+  );
+};
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');

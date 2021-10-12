@@ -31,6 +31,10 @@ app.use((req, res, next) => {
     next();
 });
 
+if (env === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')))
+}
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

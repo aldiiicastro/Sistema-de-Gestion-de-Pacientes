@@ -1,5 +1,3 @@
-const { response, json } = require('express');
-const mongoose = require('mongoose');
 const Patient = require('../models/patienteModel');
 
 exports.patient_register = async function (req, res) {

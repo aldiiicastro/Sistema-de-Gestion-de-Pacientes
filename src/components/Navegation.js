@@ -27,6 +27,10 @@ const Navegation = () => {
       }
     })
   }
+  const goToAddPatient = () => {
+    history.push("/add-patient")
+};
+
  
   return(
   <Navbar bg="light" expand="lg" className='navegationPosition'>
@@ -35,8 +39,8 @@ const Navegation = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto" >
-          <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
-          <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
+          <Nav.Link href="/home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
+          <Nav.Link onClick={goToAddPatient} id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
           <Nav.Link href="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
           <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar" disabled>Ver lista de espera</Nav.Link>
           <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>

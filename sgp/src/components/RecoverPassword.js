@@ -81,7 +81,7 @@ const RecoverPassword = () => {
                     </Form.Group>
 
 
-                    <Button id="btn" className="boton" variant="success" type="submit">
+                    <Button id="btnReestablecer" className="boton" ref={inputRef} variant="success" type="submit">
                         Reestablecer contraseña
                     </Button>
                     <hr />

@@ -12,8 +12,6 @@ th{
     background-color: grey;
 }
 
-
-
 .centro
 {
     width:100%;
@@ -24,4 +22,9 @@ th{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 100%;
     
+}
+
+.icono:hover {
+    color:green;
+    cursor: pointer;
 }

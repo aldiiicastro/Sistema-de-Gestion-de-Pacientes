@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { pacientesAtendidos } from '../routes/apiCallsPatient';
 import Navegation from './Navegation';
-import { Card, Button, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Card, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../styles/AttendedList.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 
@@ -14,7 +13,11 @@ const AttendedList = () => {
 
     const [attended, setAttended] = useState([])
 
-    useEffect(async () => {
+    useEffect(() => {
+        charge()
+    }, [])
+
+    const charge = async () => {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -35,7 +38,7 @@ const AttendedList = () => {
                 title: 'No se pudó recuperar los pacientes'
             })
         })
-    }, [])
+    }
 
     const transformDate = (date) => {
         const newDate = moment(date).format("DD/MM/YYYY")

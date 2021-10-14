@@ -13,7 +13,6 @@ import RestabContraseña from "./RestabContraseña";
 import Register from './Register'
 import Home from "./Home";
 //import { Header } from "./Header";
-import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
 import PatientsList from './PatientsList';
 import AttendedList from "./AttendedList";

@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import {
-	Formulario,
-	ContenedorBotonCentrado,
-	Boton,
-	// MensajeExito,
-	// MensajeError,
-} from "../elementos/Formularios";
+import {ContenedorBotonCentrado, Boton } from "../elementos/Formularios";
+import { Form, Col } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-// import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import Input from "./Input";
+import Control from "../elementos/Control";
 import background from "../assets/background.jpg";
 import "../styles/Register.css";
 import { register } from "../routes/apiCallsUser";
@@ -20,11 +14,9 @@ const Register = () => {
 	const [password, cambiarPassword] = useState({ campo: "", valido: null });
 	const [password2, cambiarPassword2] = useState({ campo: "", valido: null });
 	const [correo, cambiarCorreo] = useState({ campo: "", valido: null });
+	const [recepcionista, esRecepcionista] = useState(false)
+	const [medico, esMedico] = useState(false)
 	const history = useHistory();
-	// const [formularioValido, cambiarFormularioValido] = useState(null);
-	// const refSpan = useRef(null);
-
-
 
 	const expresiones = {
 		usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -60,20 +52,25 @@ const Register = () => {
 				toast.addEventListener('mouseleave', Swal.resumeTimer)
 			}
 		})
-
 		e.preventDefault();
-
+		if (medico == '' && recepcionista == '') {
+			Toast.fire({
+				icon: 'error',
+				title: 'Debe seleccionar una casilla'
+			})
+		} else {
 		if (
 			nombre.valido === "true" &&
 			password.valido === "true" &&
 			password2.valido === "true" &&
 			correo.valido === "true"
 		) {
-			//cambiarFormularioValido(true);
 			const dataAx = {
 				name: nombre.campo,
 				email: correo.campo,
-				password: password.campo
+				password: password.campo,
+				receptionist: recepcionista,
+				doctor: medico
 			}
 			cambiarNombre({ campo: "", valido: null });
 			cambiarPassword({ campo: "", valido: null });
@@ -91,33 +88,28 @@ const Register = () => {
 					title: e.response.data.response
 				})
 			})
-
-			// ...
-		} else {
-			//cambiarFormularioValido(false);
+			history.push('/')
 		}
+	}
 	};
 
-	// const changeRef = () => {
-	// 	inputRef.current.disabled = nombre.valido && password.valido && password2.valido && password2.valido
-	// }
-	const goToLogin = () => {
-		history.push('/')
+	const handleMedico = (event) => { 
+		esMedico(event.target.checked)
+		esRecepcionista(!event.target.checked)
+	}
+	const handleRecepcionista = (event) => { 
+		esMedico(!event.target.checked)
+		esRecepcionista(event.target.checked)
 	}
 
 	return (
 		<>
-			<img
-				src={background}
-				alt="background"
-				className="myBackgroundLogin"
-			></img>
+			<img src={background} alt="background" className="myBackgroundLogin" />
 			<div className="divFormRegister">
-			<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
-
-			<main>
-					<Formulario action="" onSubmit={onSubmit}>
-						<Input
+				<p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>	
+				<Form className="mainFormRegister gridStyleRegister" onSubmit={onSubmit}>
+					<Form.Group className="mb-3" controlId="formBasicEmail">
+						<Control
 							estado={nombre}
 							cambiarEstado={cambiarNombre}
 							tipo="text"
@@ -127,7 +119,9 @@ const Register = () => {
 							leyendaError="El nombre solo puede contener letras y espacios."
 							expresionRegular={expresiones.nombre}
 						/>
-						<Input
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="formBasicPassword">
+						<Control
 							estado={correo}
 							cambiarEstado={cambiarCorreo}
 							tipo="email"
@@ -137,7 +131,9 @@ const Register = () => {
 							leyendaError="El correo solo puede contener letras, numeros, puntos, guiones y guion bajo."
 							expresionRegular={expresiones.correo}
 						/>
-						<Input
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="formBasicEmail">
+						<Control
 							estado={password}
 							cambiarEstado={cambiarPassword}
 							tipo="password"
@@ -147,7 +143,9 @@ const Register = () => {
 							leyendaError="La contraseña tiene que ser de 5 a 12 dígitos."
 							expresionRegular={expresiones.password}
 						/>
-						<Input
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="formBasicPassword">
+						<Control 
 							estado={password2}
 							cambiarEstado={cambiarPassword2}
 							tipo="password"
@@ -157,17 +155,57 @@ const Register = () => {
 							leyendaError="Ambas contraseñas deben ser iguales."
 							funcion={validarPassword2}
 						/>
-						<ContenedorBotonCentrado>
-							<Boton id="btnLogIn" type="submit"className="boton" onClick={goToLogin}>Enviar</Boton>
-							{/* {formularioValido === true && (
-								<MensajeExito ref={refSpan}> Usuario registrado exitosamente!</MensajeExito>
-							)} */}
-						</ContenedorBotonCentrado>
-					</Formulario>
-				</main>
+					</Form.Group>		
+					<Form.Group className="mb-3">
+						<Form.Check
+						className="checkInput"
+						type="radio"
+						label="Recepcionista"
+						placeholder="receptionist"
+						name="hospitalStaffCheck"
+						id="recepcinistaCheck"
+						onChange={handleRecepcionista}
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Check
+						className="checkInput"
+						type="radio"
+						label="Médico"
+						placeholder="Doctor"
+						name="hospitalStaffCheck"
+						id="medicoCheck"
+						onChange={handleMedico}
+						/>
+					</Form.Group>
+					<ContenedorBotonCentrado>
+						<Boton id="btnLogIn" type="submit" className="boton" >Enviar</Boton>
+					</ContenedorBotonCentrado>
+				</Form>
+			
 			</div>
 		</>
 	);
-};
+}; 
 
 export default Register;
+{/* <Input
+estado={password}
+cambiarEstado={cambiarPassword}
+tipo="password"
+label="Contraseña"
+placeholder="Contraseña"
+name="password1"
+leyendaError="La contraseña tiene que ser de 5 a 12 dígitos."
+expresionRegular={expresiones.password}
+/>
+<Input
+estado={password2}
+cambiarEstado={cambiarPassword2}
+tipo="password"
+label="Repetir contraseña"
+placeholder="Repertir Contraseña"
+name="password2"
+leyendaError="Ambas contraseñas deben ser iguales."
+funcion={validarPassword2}
+/> */}

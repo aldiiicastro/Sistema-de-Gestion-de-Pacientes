@@ -46,10 +46,21 @@ exports.get_user_by_id = async function (req, res) {
         })
     }
 }
+ 
+exports.get_user_by_email = async function (req, res) {
+    try {
+        const user = await User.findOne({email: req.params.email} );
+        res.status(200).json({ response: 'Usuario encontrado', data: user })
+    } catch (error) {
+        res.status(500).json({
+            response: 'Hola'
+        })
+    }
+}
 
 exports.register_user = async function (req, res) {
     try {
-        if (!req.body.name || !req.body.email || !req.body.password) {
+        if (!req.body.name || !req.body.email || !req.body.password || (!req.body.doctor && !req.body.receptionist)) {
             return res.status(404).json({
                 response: 'Revisar campos y/o sus datos'
             })
@@ -62,8 +73,8 @@ exports.register_user = async function (req, res) {
                 response: 'Usuario ya creado para este email'
             })
         } else {
-            const user = await User.create({ name: req.body.name, email: req.body.email, password: req.body.password })
-
+            const user = await User.create({ name: req.body.name, email: req.body.email, password: req.body.password, receptionist: req.body.receptionist, doctor: req.body.doctor })
+    
             res.status(200).json({
                 response: 'Usuario registrado con exito',
                 user: user
@@ -86,7 +97,26 @@ exports.delete_user = async function (req, res) {
             })
         }
 
-        const user = await User.deleteOne({ _id: req.params.id });
+        await User.deleteOne({ _id: req.params.id });
+
+        res.status(200).json({ response: 'Usuario eliminado correctamente!' })
+
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
+exports.delete_user_byEmail = async function (req, res) {
+    try {
+        if (!req.params.email) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+
+        await User.deleteOne({ email: req.params.email });
 
         res.status(200).json({ response: 'Usuario eliminado correctamente!' })
 

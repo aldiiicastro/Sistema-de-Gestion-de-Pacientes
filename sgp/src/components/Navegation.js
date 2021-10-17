@@ -22,7 +22,8 @@ const Navegation = () => {
       if (result.isConfirmed) {
         Swal.fire(
           history.push('/'),
-          'Se cerro sesión correctamente'
+          'Se cerro sesión correctamente',
+          localStorage.removeItem('id')
         )
       }
     })

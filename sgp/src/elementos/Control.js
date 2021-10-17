@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, InputGroup } from 'react-bootstrap';
-import {Label, GrupoInput, LeyendaError, IconoValidacion} from './Formularios';
+import { Form } from 'react-bootstrap';
+import {LeyendaError, IconoValidacion} from './Formularios';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Control = ({estado, cambiarEstado, tipo, label, placeholder, name, leyendaError, expresionRegular, funcion}) => {

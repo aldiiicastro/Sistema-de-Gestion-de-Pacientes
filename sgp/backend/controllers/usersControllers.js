@@ -16,7 +16,7 @@ exports.login_user = async function (req, res) {
         }
         const findUser = await User.findOne({ email: req.body.email, password: req.body.password })
 
-        findUser ? res.status(202).json({ response: 'Usuario logueado' }) : res.status(406).json({ response: 'Usuario no encontrado' })
+        findUser ? res.status(202).json({ response: 'Usuario logueado', data: findUser.id }) : res.status(406).json({ response: 'Usuario no encontrado' })
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'
@@ -39,7 +39,7 @@ exports.get_user_by_id = async function (req, res) {
     try {
         const user = await User.findById(req.params.id);
 
-        res.status(200).json({ response: 'Usuario encontrado', data: user })
+        res.status(200).json({ response: 'Usuario encontrado', data: {name: user.name, email: user.email, receptionist: user.receptionist, doctor: user.doctor} })
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'

@@ -23,15 +23,17 @@ const HomeRecepcionist = () => {
         history.push("/Home")
     };
 
-return(<React.Fragment>
-
-<div className='gridStyle marginTop'>
-                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={false}/>
-                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={false}/>
-            </div>
-            <div className='gridStyle'>
+    return(
+        <React.Fragment>
+            <div className='gridStyle marginTop'>
                 {/* <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={false}/> */}
                 <ButtonActions id={"statistics"} text={'Ver estadisticas'} onClickDo={goToHome} icon={'signal'} isDisabled={true}/>
             </div>
-</React.Fragment>) }
+            <div className='gridStyle'>
+                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={false}/>
+                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={false}/>
+            </div>
+
+        </React.Fragment>
+    )}
 export default HomeRecepcionist;

@@ -1,7 +1,4 @@
-const { response } = require('express');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
-
+const User = require('../models/usersModel');
 /**
  * Como anotación, deberiamos modificar las responses en caso de errores, hoy por hoy esta devolviendo un objeto completo.
  * Lo mismo para usuarios, los endpoints no deberian devolver el id y contraseñas.

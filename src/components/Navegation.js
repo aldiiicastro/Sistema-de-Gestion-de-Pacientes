@@ -27,42 +27,22 @@ const Navegation = () => {
       }
     })
   }
-  const goToAddPatient = () => {
-    history.push("/add-patient")
-};
-
-  // Para poder ir a la pagina de lista de espera.
-  const goToWattingList = () => {
-    history.push("/watting-list")
-};
-
-// Para poder ir a la baja de pacientes
-const goToPatientsList = () => {
-    history.push("/patient-list")
-};
-
-// Provisorio hasta que esten las paginas reales.
-const goToHome = () => {
-    history.push("/Home")
-};
-
-
  
   return(
   <Navbar bg="light" expand="lg" className='navegationPosition'>
     <Container>
-      <Navbar.Brand onClick={goToHome} className='navBarBrand' id='brand'> <FontAwesome name='heartbeat' size='2x'> SGP </FontAwesome> </Navbar.Brand>
+      <Navbar.Brand href="/Home" className='navBarBrand' id='brand'> <FontAwesome name='heartbeat' size='2x'> SGP </FontAwesome> </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto" >
-          <Nav.Link onClick={goToHome} id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
-          <Nav.Link onClick={goToAddPatient} id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
-          <Nav.Link onClick={goToPatientsList} id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
-          <Nav.Link onClick={goToWattingList} id="wattingListNav" className="linkNavBar" disabled>Ver lista de espera</Nav.Link>
-          <Nav.Link onClick={goToHome} id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
+          <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
+          <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
+          <Nav.Link href="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
+          <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
+          <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
+          <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
         </Nav>
       </Navbar.Collapse>
-     <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
     </Container>
   </Navbar>
   )

@@ -93,7 +93,7 @@ const Login = () => {
                     </Button>
                     <hr />
                     <Form.Group>
-                        <p className="urlRecover" onClick={goToRecover}>¿Olvidaste tu contraseña?</p>
+                        <p id="passRecover" className="urlRecover" onClick={goToRecover}>¿Olvidaste tu contraseña?</p>
                     </Form.Group>
                 </Form>
             </div>

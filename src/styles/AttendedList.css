@@ -1,0 +1,35 @@
+.MainCardAt {
+    width: 15rem;
+    margin-left: 40px;
+    background-color: rgb(179, 211, 248);
+    text-align: center;
+    min-height: 125px;
+    max-height: 125px;
+    font-size: 13px;
+}
+
+.MainCardAt:hover {
+    background-color: white;
+}
+
+
+.spanAt:hover {
+    white-space: initial;
+    text-overflow: unset;
+    font-size: 12px;
+}
+
+.spanAt {
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden
+}
+
+
+.textAt {
+    margin-top: -7%;
+    text-align: center;
+}

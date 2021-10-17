@@ -23,4 +23,4 @@ const pacienteSchema = new Schema({
     turnState: String
 });
 
-module.exports  = mongoose.model('Patient', pacienteSchema, 'Patientes'); 
+mongoose.model('Patient', pacienteSchema, 'Patientes'); 

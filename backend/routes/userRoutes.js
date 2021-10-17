@@ -12,6 +12,10 @@ router.get('/users/:id', timeout('20s'), async (req, res) => {
     usersControllers.get_user_by_id(req, res)
 });
 
+router.get('/users/byEmail/:email', timeout('20s'), async (req, res) => { 
+    usersControllers.get_user_by_email(req, res)
+})
+
 router.post('/login', timeout('20s'), async (req, res) => {
     usersControllers.login_user(req, res)
 })
@@ -24,6 +28,10 @@ router.put('/delete/:id', timeout('20s'), async (req, res) => {
     usersControllers.delete_user(req, res)
 })
 
+router.delete('/delete/byEmail/:email', timeout('20s'), async (req, res) => {
+    usersControllers.delete_user_byEmail(req, res)
+})
+
 router.put('/changePassword', timeout('20s'), async (req, res) => {
     usersControllers.change_password(req, res)
 })
@@ -31,5 +39,6 @@ router.put('/changePassword', timeout('20s'), async (req, res) => {
 router.post('/mailRegistered', timeout('20s'), async (req, res) => {
     usersControllers.mail_registered(req, res)
 })
+
 
 module.exports = router;

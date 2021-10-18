@@ -97,7 +97,7 @@ class PatientsList extends React.Component {
             return (
                 <React.Fragment>
                     
-                    <Navegation/>
+                    <NavegationDoctor/>
 
                     <div className="centrar">
                         <FontAwesomeIcon icon={faClinicMedical} size="4x"/>

@@ -6,8 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { atenderPaciente } from '../routes/apiCallsPatient';
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
+
+function Example(patient) { 
+    const history = useHistory();
+
+        history.push({
+            pathname: "/patient-edit",
+            state: patient
+        })
+}
 
 class WattingList extends React.Component {
+    
 
     constructor(props){
         super(props);
@@ -40,6 +52,11 @@ class WattingList extends React.Component {
         });
     }
 
+    goToEdit(params) {
+        Example(params)
+    }
+
+
     render () {
 
         if(this.state.data.length !== 0){
@@ -69,7 +86,9 @@ class WattingList extends React.Component {
                                     <td>{pati.surname}</td>
                                     <td>{pati.dni}</td>
                                     <FontAwesomeIcon title="Atender" className="icono" icon={faUserPlus} size="2x"
-                                    onClick={() => this.atender(pati._id)}/>                                   
+                                    onClick={() => this.atender(pati._id)}/>  
+                                    <FontAwesomeIcon title="Editar" className="icono" icon={faUserEdit} size="2x" 
+                                    onClick={() => this.goToEdit(pati)}/>                                 
                                 </tr>
                                 
                         ))}

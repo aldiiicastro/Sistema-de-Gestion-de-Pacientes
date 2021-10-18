@@ -78,10 +78,10 @@ const AttendedList = () => {
                             </Card.Title>
                             <hr />
                             <Card.Body>
-                                <Card.Text className="textAt">
+                                <Card.Text className="textAt" name ="dniT">
                                     DNI: <span> {person.dni} </span>
                                 </Card.Text>
-                                <Card.Text className="textAt">
+                                <Card.Text className="textAt" name="ingresoT">
                                     Ingreso: {transformDate(person.entryDate)}
                                 </Card.Text>
                             </Card.Body>

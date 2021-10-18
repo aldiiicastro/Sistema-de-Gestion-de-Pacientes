@@ -27,6 +27,7 @@ export class PacientForm extends Component {
             isNn: false,
             infoNN: '',
             bSintomasExtras: false,
+            born: ''
         };
     }
 
@@ -123,6 +124,7 @@ export class PacientForm extends Component {
             isNn: false,
             infoNN: '',
             bSintomasExtras: false,
+            born: '',
         })
 
         const checkToReset = Array.from(document.getElementsByClassName("checkBoxToResetPFIngreso"))
@@ -134,7 +136,7 @@ export class PacientForm extends Component {
 
         const area = document.getElementById('ControlTextAreaNN')
 
-        for (let index = 1; index < 10; index++) {
+        for (let index = 1; index < 11; index++) {
             let area2 = document.getElementById(`ControlTextAreaNN${index}`)
             area2.disabled = false
         }
@@ -196,6 +198,19 @@ export class PacientForm extends Component {
                                         className="controlNumber" />
                                 </Form.Group>
                             </Col>
+
+                            <Col xs={3}>
+                            <Form.Group className="mb-3" controlId="ControlTextAreaNN10">
+                                <Form.Label>Fecha de nacimiento</Form.Label>
+                                <Form.Control
+                                    value={this.state.born}
+                                    onChange={this.handleChange}
+                                    name='born'
+                                    size="sm"
+                                    type="date"
+                                    className="controlNumber" />
+                            </Form.Group>
+                        </Col>
                         </Row>
                         <Row>
                             <Col xs={3}>

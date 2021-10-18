@@ -13,19 +13,19 @@ import RestabContraseña from "./RestabContraseña";
 import Register from './Register'
 import Home from "./Home";
 //import { Header } from "./Header";
-import Paciente from "./Paciente";
 import { PacientForm } from "./PacientForm";
 import PatientsList from './PatientsList';
 import AttendedList from "./AttendedList";
 import WattingList from "./WattingList";
 import PatientFormPostTurn from "./PatientFormPostTurn";
-
+import PatientEdit from "./PatientEdit";
 
 const Spg = () => {
   return (
     <>
       <Router>
         <Switch>
+          <Route path="/patient-edit" component={PatientEdit}></Route>
           <Route path="/patient-list" component={PatientsList}></Route>
           <Route path="/post-add-patient" component={PatientFormPostTurn}></Route>
           <Route path="/attended-list" component={AttendedList}></Route>

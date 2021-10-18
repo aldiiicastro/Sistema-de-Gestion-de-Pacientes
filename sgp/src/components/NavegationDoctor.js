@@ -22,7 +22,8 @@ const Navegation = () => {
       if (result.isConfirmed) {
         Swal.fire(
           history.push('/'),
-          'Se cerro sesión correctamente'
+          'Se cerro sesión correctamente',
+          localStorage.removeItem('id')
         )
       }
     })
@@ -36,13 +37,12 @@ const Navegation = () => {
       <Navbar.Collapse>
         <Nav className="me-auto" >
           <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
-          <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
-          <Nav.Link href="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
           <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
-          <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
+          <Nav.Link href="/start-turn" id="startTurnNav" className="linkNavBar" disabled>Comenzar turno</Nav.Link>
+          <Nav.Link href="/finish-turn" id="finishTurnNav" className="linkNavBar" disabled>Finalizar turno</Nav.Link>
           <Nav.Link href="/attended-list" id="attendedNav" className="linkNavBar">Ver pacientes atendidos</Nav.Link>
-          <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
         </Nav>
+        <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
       </Navbar.Collapse>
     </Container>
   </Navbar>

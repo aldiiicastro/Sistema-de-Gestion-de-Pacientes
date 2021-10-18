@@ -29,7 +29,7 @@ exports.patient_register = async function (req, res) {
             name: body.nombre, surname: body.apellido, dni: body.dni, street: body.calle, number: body.numero,
             floor: body.piso, zipCode: body.codigo_postal, location: body.localidad, state: body.provincia,
             isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITTING'
+            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITTING', born: body.born
         })
 
         res.status(201).json({

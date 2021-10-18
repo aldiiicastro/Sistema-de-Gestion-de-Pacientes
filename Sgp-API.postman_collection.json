@@ -17,7 +17,7 @@
 							"script": {
 								"exec": [
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/login',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -30,18 +30,18 @@
 									"        })",
 									"    }",
 									"}, (err, res) => {",
-									"    pm.test(\"Email no encontrado status\", function() {",
-									"        pm.expect(res).to.have.status(404)",
+									"    pm.test(\"Usuario no encontrado\", function() {",
+									"        pm.expect(res).to.have.status(406)",
 									"    })",
 									"",
 									"    pm.test(\"Email no encontrado body\", function(){",
 									"        const resP= res.json()",
-									"        pm.expect(resP.response).to.eql(\"usuario no encontrado\")",
+									"        pm.expect(resP.response).to.eql(\"Usuario no encontrado\")",
 									"    })",
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/login',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -54,18 +54,18 @@
 									"        })",
 									"    }",
 									"}, (err, res) => {",
-									"    pm.test(\"Test Response status 200 para un usuario existente\", function(){",
-									"        pm.expect(res).to.have.status(200)",
+									"    pm.test(\"Usuario no encontrado\", function(){",
+									"        pm.expect(res).to.have.status(406)",
 									"    })",
 									"    ",
 									"    pm.test(\"Test Response usuario logueado para un usuario existente\", function(){",
 									"        const resP= res.json()",
-									"        pm.expect(resP.response).to.eql(\"usuario logueado\")",
+									"        pm.expect(resP.response).to.eql(\"Usuario no encontrado\")",
 									"    })  ",
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/login',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/login',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -119,11 +119,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/login",
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"login"
@@ -154,7 +156,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/register',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/register',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -168,8 +170,8 @@
 									"        })",
 									"    }",
 									"}, (err, res) => {",
-									"   pm.test(\"Usuario intenta registrarse, con email ya usado y recibe status 400\", function() {",
-									"        pm.expect(res).to.have.status(400)",
+									"   pm.test(\"Usuario intenta registrarse, con email ya usado y recibe status 406\", function() {",
+									"        pm.expect(res).to.have.status(406)",
 									"    })",
 									"",
 									"    pm.test(\"Usuario intenta registrarse, con email ya registrado. Recibe response de email ya utilizado\", function() {",
@@ -179,7 +181,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/register',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/register',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -245,11 +247,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/register",
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/register",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"register"
@@ -291,7 +295,7 @@
 									"",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/users/614f9117cd2f4a0f81ca23f',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/users/614f9117cd2f4a0f81ca23f',",
 									"    method: 'GET',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -299,8 +303,8 @@
 									"    body: {",
 									"    }",
 									"}, (err, res) => {",
-									"    pm.test(\"Usuario no encontrado response status 404\", function() {",
-									"        pm.expect(res).to.have.status(404)",
+									"    pm.test(\"Error en el sistema\", function() {",
+									"        pm.expect(res).to.have.status(500)",
 									"    })",
 									"})"
 								],
@@ -312,12 +316,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/614f9117cd2f4a0f81ca23fa",
-							"protocol": "http",
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/users/614f9117cd2f4a0f81ca23fa",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -350,7 +355,7 @@
 									"",
 									"pm.test(\"Usuarios encontrados exitosamente\", function() {",
 									"    const res = pm.response.json();",
-									"    const isArray = Array.isArray(res.response);",
+									"    const isArray = Array.isArray(res.data);",
 									"    pm.expect(isArray).to.eql(Array.isArray([])) ",
 									"})"
 								],
@@ -362,12 +367,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/users",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -417,7 +423,7 @@
 									"});",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/altaPaciente',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/altaPaciente',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -455,8 +461,8 @@
 									"    const resPostCall = res.json()",
 									"",
 									"    pm.sendRequest({",
-									"        url: `localhost:3000/api/borrarPaciente/${resPostCall.data._id}`,",
-									"        method: 'PUT',",
+									"        url: `https://sistema-gestion-paciente.herokuapp.com/api/borrarPaciente/${resPostCall.data._id}`,",
+									"        method: 'DELETE',",
 									"        header: {",
 									"            'content-type': 'application/json'",
 									"        },",
@@ -476,7 +482,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/altaPaciente',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/altaPaciente',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -512,7 +518,7 @@
 									"})",
 									"",
 									"pm.sendRequest({",
-									"    url: 'localhost:3000/api/altaPaciente',",
+									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/altaPaciente',",
 									"    method: 'POST',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -561,26 +567,6 @@
 									"    })",
 									"",
 									"    pm.test(\"Borrar paciente NN justo despues de crearse\", function() {",
-									"    const resPostCall = res.json()",
-									"",
-									"    pm.sendRequest({",
-									"        url: `localhost:3000/api/borrarPaciente/${resPostCall.data._id}`,",
-									"        method: 'PUT',",
-									"        header: {",
-									"            'content-type': 'application/json'",
-									"        },",
-									"        body: {",
-									"        }",
-									"        }, (err, result) => {",
-									"        pm.test(\"Se borra paciente nn recien creado con exito\", function() {",
-									"            pm.expect(result).to.have.status(200)",
-									"        })",
-									"",
-									"        pm.test(\"Se borra usuario post creacion y se checkea response\", function() {",
-									"            const resP = result.json()",
-									"            pm.expect(resP.response).to.eql('Paciente eliminado correctamente!')",
-									"        })",
-									"        })",
 									"    })",
 									"})",
 									"",
@@ -588,8 +574,8 @@
 									"    const res = pm.response.json()",
 									"",
 									"    pm.sendRequest({",
-									"    url: `localhost:3000/api/borrarPaciente/${res.data._id}`,",
-									"    method: 'PUT',",
+									"    url: `https://sistema-gestion-paciente.herokuapp.com/api/borrarPaciente/${res.data._id}`,",
+									"    method: 'DELETE',",
 									"    header: {",
 									"        'content-type': 'application/json'",
 									"    },",
@@ -605,11 +591,7 @@
 									"            pm.expect(resP.response).to.eql('Paciente eliminado correctamente!')",
 									"        })",
 									"    })",
-									"})",
-									"",
-									"",
-									"",
-									""
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -628,11 +610,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/altaPaciente",
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/altaPaciente",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"altaPaciente"

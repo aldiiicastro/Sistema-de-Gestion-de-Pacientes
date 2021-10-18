@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const basicUrl = 'http://localhost:3000/api';
+const basicUrl = 'http://localhost:3000';
 
 export const altaPaciente = (obj) => {
-    return axios.post(basicUrl + `/altaPaciente`, obj, {
+    return axios.post(basicUrl + `/api/altaPaciente`, obj, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         }
@@ -15,17 +15,17 @@ export const pacientesEsperando= () => {
 }
 
 export const pacientesAtendidos = () => {
-    return axios.get(basicUrl + '/pacientesAtendidos')
+    return axios.get(basicUrl + '/api/pacientesAtendidos')
 }
 
 export const atenderPaciente = (id) => {
-    return axios.put(basicUrl + '/attendPatient/'+ id);
+    return axios.put(basicUrl + '/api/attendPatient/'+ id);
 }
 
 export const deletePatient = (id) => {
-    return axios.delete(basicUrl + '/borrarPaciente/' +id);
+    return axios.delete(basicUrl + '/api/borrarPaciente/' +id);
 }
 
 export const allPatient = () => {
-    return axios.get(basicUrl + '/allPatients');
+    return axios.get(basicUrl + '/api/allPatients');
 }

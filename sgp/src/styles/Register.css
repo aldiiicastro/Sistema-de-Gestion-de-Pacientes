@@ -1,11 +1,30 @@
 :root {
     --mainFont: 'Merriweather', serif;
-    /* --backgroundImg: '../asserts/background.jpg'; */
     --colorMain: #69b190;
     --borderColor: grey;
 }
 
-.divFormRegister {
+.myBackgroundLogin {
+    height: 100vh;
+    width: 100vw;
+}
+
+.title {
+    font-family: var(--mainFont);
+    font-weight: 580;
+    font-size: 60px;
+    color: #00B8EE
+}
+
+.gridStyleRegister {
+    display: grid;
+    grid-auto-rows: 3rem;
+    grid-template-rows: 2fr;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    grid-gap: 2rem 2rem;
+}
+
+.divFormRegister{
     background-color:rgb(255, 255, 255);
     position: absolute;
     top:  50%;
@@ -14,86 +33,37 @@
     text-align: center;
     font-family: var(--mainFont);
     border: var(--borderColor) 1px solid;
-    width: 490px;
+    width: 590px;
     height: 500px;
     box-shadow: 20px 20px 50px  var(--borderColor);
     z-index: 1;
 }
-.title {
-    font-family: var(--mainFont);
-    font-weight: 580;
-    font-size: 60px;
-    color: #00B8EE
-}
 
-.divForm {
-    background-color:rgb(255, 255, 255);
-    position: absolute;
-    top:  50%;
-    left: 30%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    font-family: var(--mainFont);
-    border: var(--borderColor) 1px solid;
-    width: 40%;
-    height: 60%;
-    box-shadow: 20px 20px 50px  var(--borderColor);
-    z-index: 1;
-}
-.title {
-    font-family: var(--mainFont);
-    font-weight: 580;
-    font-size: 60px;
-    color: #00B8EE
-}
-
-.divFormLogin{
-    background-color:rgb(255, 255, 255);
-    position: absolute;
-    top:  50%;
-    left: 30%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    font-family: var(--mainFont);
-    border: var(--borderColor) 1px solid;
-    width: 400px;
-    height: 400px;
-    box-shadow: 20px 20px 50px  var(--borderColor);
-    z-index: 1;
-}
-
-
-
-.mainForm {
+.mainFormRegister {
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 500px;
 }
 
-.divFormLogin .boton {
-    margin-top: 15px;
-    border: 1.5px var(--borderColor) solid;
-    font-weight: bold;
-    font-family: var(--mainFont);
-}
-.divFormLogin .boton {
+.divFormRegister .boton {
     margin-top: 15px;
     border: 1.5px var(--borderColor) solid;
     font-weight: bold;
     font-family: var(--mainFont);
 }
 
-
-@media(max-width:768px) {
-    .divFormRegister{
-        width: 0%;
-
-    }
-
+.divFormRegister .boton:hover {
+    transform: scale(1.05);
 }
 
-@media(max-width:480px) {
-    .divFormRegister{
-        width: 0%;
-    }
+.boxInput {
+    border: 2px black solid;
 }
 
+.boxInput::placeholder {
+    font-weight: bold;
+}
+
+
+.checkInput {
+    text-align: left;
+}

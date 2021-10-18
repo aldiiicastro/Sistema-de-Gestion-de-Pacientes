@@ -1,14 +1,30 @@
 import React from "react";
 import axios from 'axios';
 import '../styles/WattingList.css';
+<<<<<<< HEAD
 import Navegation from './Navegation';
 import { pacientesEnEspera } from "../routes/apiCallsPatient";
+=======
+import NavegationDoctor from './NavegationDoctor';
+>>>>>>> 6f8f9e047017a64bb87efc75543ef7dda0f5bbb3
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { atenderPaciente } from '../routes/apiCallsPatient';
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
+
+function Example(patient) { 
+    const history = useHistory();
+
+        history.push({
+            pathname: "/patient-edit",
+            state: patient
+        })
+}
 
 class WattingList extends React.Component {
+    
 
     constructor(props){
         super(props);
@@ -41,13 +57,18 @@ class WattingList extends React.Component {
         });
     }
 
+    goToEdit(params) {
+        Example(params)
+    }
+
+
     render () {
 
         if(this.state.data.length !== 0){
             return (
                    
                 <div> 
-                    <Navegation/>
+                    <NavegationDoctor/>
                     <br/>
                     <br/>
                     <br/>
@@ -70,7 +91,9 @@ class WattingList extends React.Component {
                                     <td>{pati.surname}</td>
                                     <td>{pati.dni}</td>
                                     <FontAwesomeIcon title="Atender" className="icono" icon={faUserPlus} size="2x"
-                                    onClick={() => this.atender(pati._id)}/>                                   
+                                    onClick={() => this.atender(pati._id)}/>  
+                                    <FontAwesomeIcon title="Editar" className="icono" icon={faUserEdit} size="2x" 
+                                    onClick={() => this.goToEdit(pati)}/>                                 
                                 </tr>
                                 
                         ))}
@@ -85,7 +108,7 @@ class WattingList extends React.Component {
             return (
                 <React.Fragment>
                     
-                    <Navegation/>
+                    <NavegationDoctor/>
 
                     <div className="centrar">
                         <FontAwesomeIcon icon={faClinicMedical} size="4x"/>

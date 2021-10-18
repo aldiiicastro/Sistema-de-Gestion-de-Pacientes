@@ -12,7 +12,6 @@ const RecoverPassword = () => {
     const history = useHistory();
     const inputRef = useRef(null);
     const emailRef = useRef(null);
-    const passwordRef = useRef(null);
     const [data, setData] = useState({
         email: ''
     });

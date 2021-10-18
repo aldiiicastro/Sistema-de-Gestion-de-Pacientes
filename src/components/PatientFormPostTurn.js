@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Col, Row, InputGroup, Container } from 'react-bootstrap';
-import Navegation from './Navegation';
+import NavegationRecepcionista from './NavegationRecepcionista';
 import { useLocation } from "react-router-dom";
 
 
@@ -86,7 +86,7 @@ const PatientFormPostTurn = () => {
 
     return (
         <>
-            <Navegation />
+            <NavegationRecepcionista />
             <Container className='marginTop'>
                 <Form >
                     <Row>

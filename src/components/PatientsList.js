@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import '../styles/PatientList.css';
-import Navegation from './Navegation';
+import NavegationDoctor from './NavegationDoctor';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
@@ -72,7 +72,7 @@ class PatientsList extends React.Component {
             return (
                    
                 <div> 
-                    <Navegation/>
+                    <NavegationDoctor/>
                     <br/>
                     <br/>
                     <br/>
@@ -97,7 +97,7 @@ class PatientsList extends React.Component {
             return (
                 <React.Fragment>
                     
-                    <Navegation/>
+                    <NavegationDoctor/>
 
                     <div className="centrar">
                         <FontAwesomeIcon icon={faClinicMedical} size="4x"/>

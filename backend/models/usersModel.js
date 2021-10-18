@@ -9,4 +9,4 @@ const userSchema = new Schema({
   doctor: Boolean
 });
 
-mongoose.model('User', userSchema, 'Users'); 
+module.exports  = mongoose.model('User', userSchema, 'Users'); 

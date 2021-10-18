@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {ContenedorBotonCentrado, Boton } from "../elementos/Formularios";
-import { Form, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import Control from "../elementos/Control";
 import background from "../assets/background.jpg";
@@ -53,7 +53,7 @@ const Register = () => {
 			}
 		})
 		e.preventDefault();
-		if (medico == '' && recepcionista == '') {
+		if (medico === '' && recepcionista === '') {
 			Toast.fire({
 				icon: 'error',
 				title: 'Debe seleccionar una casilla'
@@ -189,23 +189,3 @@ const Register = () => {
 }; 
 
 export default Register;
-{/* <Input
-estado={password}
-cambiarEstado={cambiarPassword}
-tipo="password"
-label="Contraseña"
-placeholder="Contraseña"
-name="password1"
-leyendaError="La contraseña tiene que ser de 5 a 12 dígitos."
-expresionRegular={expresiones.password}
-/>
-<Input
-estado={password2}
-cambiarEstado={cambiarPassword2}
-tipo="password"
-label="Repetir contraseña"
-placeholder="Repertir Contraseña"
-name="password2"
-leyendaError="Ambas contraseñas deben ser iguales."
-funcion={validarPassword2}
-/> */}

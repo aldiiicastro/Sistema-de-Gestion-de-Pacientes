@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import '../styles/WattingList.css';
-import Navegation from './Navegation';
+import NavegationDoctor from './NavegationDoctor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -46,7 +46,7 @@ class WattingList extends React.Component {
             return (
                    
                 <div> 
-                    <Navegation/>
+                    <NavegationDoctor/>
                     <br/>
                     <br/>
                     <br/>
@@ -84,7 +84,7 @@ class WattingList extends React.Component {
             return (
                 <React.Fragment>
                     
-                    <Navegation/>
+                    <NavegationDoctor/>
 
                     <div className="centrar">
                         <FontAwesomeIcon icon={faClinicMedical} size="4x"/>

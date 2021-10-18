@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { pacientesAtendidos } from '../routes/apiCallsPatient';
-import Navegation from './Navegation';
+import NavegationDoctor from './NavegationDoctor';
 import { Card, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../styles/AttendedList.css'
 import moment from 'moment';
@@ -56,7 +56,7 @@ const AttendedList = () => {
 
     return (
         <>
-            <Navegation></Navegation>
+            <NavegationDoctor></NavegationDoctor>
             <br />
             <br />
             <br />

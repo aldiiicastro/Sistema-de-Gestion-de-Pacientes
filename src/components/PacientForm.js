@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { altaPaciente } from '../routes/apiCallsPatient';
 import Swal from 'sweetalert2';
 import '../styles/PacientForm.css'
-import Navegation from './Navegation'
+import NavegationRecepcionista from './NavegationRecepcionista'
 export class PacientForm extends Component {
 
     constructor(props) {
@@ -158,7 +158,7 @@ export class PacientForm extends Component {
     render() {
         return (
             <>
-            <Navegation/>
+            <NavegationRecepcionista/>
                 <Container className='marginTop'>
                     <h3>Ingrese los datos:</h3>
                     <Form onSubmit={this.handleSubmit}>

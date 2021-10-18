@@ -1,5 +1,4 @@
 const express = require('express');
-const { connect } = require('mongoose');
 const router = express.Router();
 const usersControllers = require('../controllers/usersControllers');
 const timeout = require('connect-timeout');

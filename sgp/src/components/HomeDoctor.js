@@ -23,8 +23,8 @@ const HomeDoctor = () => {     const history = useHistory();
                 <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={false}/>
             </div>
             <div className='gridStyle'>
-                <ButtonActions id={"addPatient"} text={'Comenzar turno'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={true}/>
-                <ButtonActions id={"deletePatient"} text={'Finalizar turno'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={true}/>
+                <ButtonActions id={"startTurn"} text={'Comenzar turno'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={true}/>
+                <ButtonActions id={"finishTurn"} text={'Finalizar turno'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={true}/>
             </div>
         </React.Fragment>
     )}

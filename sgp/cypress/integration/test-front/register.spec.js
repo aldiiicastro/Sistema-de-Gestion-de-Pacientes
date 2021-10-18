@@ -25,7 +25,7 @@ describe('Register',()=> {
         cy.get('[placeholder="Contraseña"]').type('bbbbb')
         cy.get('[placeholder="Repertir Contraseña"]').type('bbbbb')
         cy.contains('Enviar').click()
-        cy.contains('Debe seleccionar una casilla')
+        cy.contains('Revisar campos y/o sus datos')
     })
     it('register page with an already user', () => {
         cy.get('[placeholder="Nombre completo"]').type('B person')

@@ -18,8 +18,8 @@ describe('Login',()=> {
     })
     /*No se puede loguear */
     it('login page cant log in', () => {
-        cy.get('[placeholder="Email"]').type('aldana@gmail.com')
-        cy.get('[placeholder="Contraseña"]').type('aaaaa')
+        cy.get('[placeholder="Email"]').type('aldanacastro@gmail.com')
+        cy.get('[placeholder="Contraseña"]').type('12345')
         cy.get('[id=btnLogIn]').click()
         cy.contains('Usuario no encontrado')
     })
@@ -29,7 +29,7 @@ describe('Login',()=> {
         cy.get('[id=btnLogIn]').should('be.disabled');
     })
     it('login page cant press log in if have no email', () => {
-        cy.get('[placeholder="Contraseña"]').type('aaaaa')
+        cy.get('[placeholder="Contraseña"]').type('12345')
         cy.get('[id=btnLogIn]').should('be.disabled');
     })
     it('login page cant press log in if have nothing', () => {
@@ -38,13 +38,12 @@ describe('Login',()=> {
     /*Se puede loguear*/
     it('login page can log in', () => {
         cy.get('[placeholder="Email"]').type('a@gmail.com')
-        cy.get('[placeholder="Contraseña"]').type('aaaaa')
+        cy.get('[placeholder="Contraseña"]').type('12345')
         cy.get('[id=btnLogIn]').click()
         cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
         cy.contains('Agregar un paciente')
         cy.contains('Dar de baja un paciente')
         cy.contains('Ver lista de espera')
-        cy.contains('Ver estadisticas')
         cy.contains('Cerrar sesión')
     })
 })

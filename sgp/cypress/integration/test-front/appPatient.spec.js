@@ -3,7 +3,7 @@ describe('Add Patient', () => {
     beforeEach(() => {
         cy.visit('http://localhost:5000');
         cy.get('[placeholder="Email"]').type('a@gmail.com');
-        cy.get('[placeholder="Contraseña"]').type('aaaaa');
+        cy.get('[placeholder="Contraseña"]').type('12345');
         cy.contains('Iniciar sesion').click();
         cy.contains('Bienvenidos al Sistema de Gestión de Pacientes');
         cy.contains('Agregar un paciente').click();

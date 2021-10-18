@@ -4,45 +4,13 @@ describe('Home', () => {
     beforeEach(() => {
         cy.visit('http://localhost:5000')
         cy.get('[placeholder="Email"]').type('a@gmail.com')
-        cy.get('[placeholder="Contraseña"]').type('aaaaa')
-        cy.get('[id=btnLogIn]').click()
+        cy.get('[placeholder="Contraseña"]').type('12345')
+        cy.get('[id=btnLogIn]').click().should(() => {
+            expect(localStorage.getItem('id')).to.eq('614f9117cd2f4a0f81ca23fa')
+        })
     })
-    /*Se puede ir dentro de agregar paciente*/
-    it('go to addPatient', () => {
-        cy.get('[id=addPatient]').click()
-        cy.contains('Ingrese los datos:')
-    })
-    /*Lo mismo pero para la nav bar*/
-    it('go to addPatient in nav', () => {
-        cy.get('[id=addPatientNav]').click()
-        cy.contains('Ingrese los datos:')
-    })
-    /*Se puede ir dentro de eliminar paciente --PROVISORIO, aun no existe la pagina*/
-    it('go to deletePatient', () => {
-        cy.get('[id=deletePatient]').should('be.disabled')
-    })
-    /*Lo mismo pero para la nav bar*/
-    it('go to deletePatient in nav', () => {
-        cy.get('[id=deletePatientNav]').should('have.class', 'disabled')
-    })
-    /*Se puede ir dentro de ver lista de espera --PROVISORIO, aun no existe la pagina*/
-    it('go to wattingList', () => {
-        cy.get('[id=wattingList]').should('be.disabled')
-    })
-    /*Lo mismo pero para la nav bar*/
-    it('go to wattingList in nav', () => {
-        cy.get('[id=wattingListNav]').should('have.class', 'disabled')
-    })
-    /*Se puede ir dentro de ver las estadisticas --PROVISORIO, aun no existe la pagina*/
-    it('go to statistics', () => {
-        cy.get('[id=statistics]').should('be.disabled')
-    })
-    /*Lo mismo pero para la nav bar*/
-    it('go to statistics in nav', () => {
-        cy.get('[id=statisticsNav]').should('have.class', 'disabled')
-    })
-    /*Nav logo e inicio */
-    it('go to home in nav', () => {
+     /*Nav logo e inicio */
+     it('go to home in nav', () => {
         cy.get('[id=homeNav]').click()
         cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
     })
@@ -82,5 +50,4 @@ describe('Home', () => {
             cy.contains('¿Olvidaste tu contraseña?')
         })
     })
-
-}) 
+})

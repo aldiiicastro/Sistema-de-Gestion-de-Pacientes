@@ -111,7 +111,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"a@gmail.com\",\n    \"password\": \"aaaa\"\n}",
+							"raw": "{\n    \"email\": \"a@gmail.com\",\n    \"password\": \"12345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,6 +155,15 @@
 									"    pm.expect(res.response).to.eql(\"Usuario registrado con exito\")",
 									"})",
 									"",
+									"pm.test(\"Usuario registrado con todos los datos\", function() {",
+									"    const res = pm.response.json()",
+									"    pm.expect(res.user.name).to.eql(\"userPrueba\")",
+									"    pm.expect(res.user.email).to.eql(\"a2@gmail.com\")",
+									"    pm.expect(res.user.password).to.eql(\"userPrueba\")",
+									"    pm.expect(res.user.receptionist).to.eql(false)",
+									"    pm.expect(res.user.doctor).to.eql(true)",
+									"})",
+									"",
 									"pm.sendRequest({",
 									"    url: 'https://sistema-gestion-paciente.herokuapp.com/api/register',",
 									"    method: 'POST',",
@@ -166,7 +175,9 @@
 									"        raw: JSON.stringify({",
 									"            \"name\": \"userPrueba\",",
 									"            \"email\": \"a@gmail.com\",",
-									"            \"password\": \"userPrueba\"",
+									"            \"password\": \"userPrueba\",",
+									"            \"receptionist\": true,",
+									"            \"doctor\": false",
 									"        })",
 									"    }",
 									"}, (err, res) => {",
@@ -191,7 +202,9 @@
 									"        raw: JSON.stringify({",
 									"            \"name\": \"userPrueba\",",
 									"            \"emai\": \"mailParaPersonaNueva@gmail.com\",",
-									"            \"passwor\": \"userPrueba\"",
+									"            \"passwor\": \"userPrueba\", ",
+									"            \"receptionist\": true,",
+									"            \"doctor\": false",
 									"        })",
 									"    }",
 									"}, (err, res) => {",
@@ -210,7 +223,7 @@
 									"    const res = pm.response.json()",
 									"",
 									"    pm.sendRequest({",
-									"    url: `localhost:3000/api/delete/${res.user._id}`,",
+									"    url: `https://sistema-gestion-paciente.herokuapp.com/api/delete/${res.user._id}`,",
 									"    method: 'PUT',",
 									"    header: {",
 									"        'content-type': 'application/json'",
@@ -239,7 +252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"userPrueba\",\n    \"email\": \"a2@gmail.com\",\n    \"password\": \"userPrueba\"\n}",
+							"raw": "{\n    \"name\": \"userPrueba\",\n    \"email\": \"a2@gmail.com\",\n    \"password\": \"userPrueba\",\n    \"receptionist\": false,\n    \"doctor\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -380,6 +393,47 @@
 							]
 						},
 						"description": "Devuelve todos los usuarios de la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Get User by Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Usuario encontrado exitosamente con status 200\", function() {\r",
+									"    pm.response.to.have.status(200)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response 'Usuario encontrado' \", function() {\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.response).to.eql('Usuario encontrado') \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sistema-gestion-paciente.herokuapp.com/api/users/byEmail/b@gmail.com",
+							"protocol": "https",
+							"host": [
+								"sistema-gestion-paciente",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"byEmail",
+								"b@gmail.com"
+							]
+						}
 					},
 					"response": []
 				}

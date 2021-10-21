@@ -1,36 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Form, Col, Row, InputGroup, Container, Button } from 'react-bootstrap';
 import Navegation from './Navegation';
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
+import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
-import { altaPaciente } from '../routes/apiCallsPatient';
+import { updatePatient } from '../routes/apiCallsPatient';
 
 const PatientEdit = () => {
 
     const location = useLocation()
+    const history = useHistory()
 
     const [data, setData] = useState({
-        nombre: '',
-        apellido: '',
+        name: '',
+        surname: '',
         dni: '',
-        calle: '',
-        numero: '',
-        piso: '',
-        codigo_postal: '',
-        localidad: '',
-        sintomas: [],
-        sintomasExtras: '',
-        provincia: '',
+        street: '',
+        number: '',
+        floor: '',
+        zipCode: '',
+        location: '',
+        sympthoms: [],
+        dataExtraSympthoms: '',
+        state: '',
         isNn: false,
         infoNN: '',
-        bSintomasExtras: false,
+        hasExtraSympthoms: false,
         born: '',
     })
 
     const handleCheckBoxSymptoms = (event) => {
-        const name = event.target.name;
 
-        event.target.checked ? this.state.sintomas.push(name) : this.setState({ [name]: this.state.sintomas.filter(s => s !== name) })
+        const name = event.target.name;
+        const value = event.target.checked;
+        const test =  document.getElementsByName(name)
+
+        
+        if (event.target.checked) {
+            setData({
+                ...data,
+                sympthoms: data.sympthoms.concat([name])
+            })
+        } else {
+            setData({
+                ...data,
+                sympthoms: data.sympthoms.filter(s => s !== name)
+            })
+        }
     }
 
     const handleExtraSymptoms = (event) => {
@@ -39,12 +55,15 @@ const PatientEdit = () => {
         const area = document.getElementById('formControlSE')
 
         area.disabled = !event.target.checked
-        this.setState({
+
+        setData({
+            ...data,
             [name]: value
         });
     }
 
     useEffect(() => {
+        console.log(location.state)
         location.state ? setData(location.state) : setData()
     }, [])
 
@@ -52,33 +71,44 @@ const PatientEdit = () => {
         const name = event.target.name;
         const value = event.target.value;
 
-        name == 'born' ? console.log(event.target.value) : console.log("")
+
 
         setData({
+            ...data,
             [name]: value
         });
     }
 
     const handleSubmit = async event => {
-        const Toast =  Swal.mixin({
+        const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
 
         event.preventDefault();
 
-        await altaPaciente(this.state).then(r => {
+        await updatePatient(data).then(r => {
             Toast.fire({
                 icon: 'success',
-                title: r.data.response
+                title: `Paciente ${r.data.data.name} ${r.data.data.surname} actualizado Corectamente!`
             })
+
+            if(history.location.state) {
+                const nData = r.data.data
+                history.replace({
+                    pathname: 'patient-edit',
+                    state: nData
+                })
+            }
+
+            setData(r.data.data)
         })
             .catch(e => {
                 Toast.fire({
@@ -89,71 +119,70 @@ const PatientEdit = () => {
     }
 
     const checkWithValues = () => {
-        const symthomps = location.state ? location.state.sympthoms : []
 
         return (
             <>
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Fiebre"
-                    checked= {symthomps.includes("Fiebre")}   
+                        checked={data.sympthoms.includes("Fiebre")}
                     />
                     <InputGroup.Text> Fiebre </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Tos"
-                    checked= {symthomps.includes("Tos")}
+                        checked={data.sympthoms.includes("Tos")}
                     />
                     <InputGroup.Text> Tos </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Perdida de Gusto/Olfato"
-                    checked= {symthomps.includes("Perdida de Gusto/Olfato")}
+                        checked={data.sympthoms.includes("Perdida de Gusto/Olfato")}
                     />
                     <InputGroup.Text> Perdida de Gusto/olfato </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dolor de Cabeza"
-                    checked= {symthomps.includes("Dolor de Cabeza")}   
+                        checked={data.sympthoms.includes("Dolor de Cabeza")}
                     />
                     <InputGroup.Text> Dolor de Cabeza </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dolor de Garganta"
-                    // checked= {symthomps.includes("Dolor de Garganta")} 
+                        checked={data.sympthoms.includes("Dolor de Garganta")}
                     />
                     <InputGroup.Text> Dolor de Garganta </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckBoxSymptoms} className="checkBoxToResetPFIngreso" name="Dificultad para respirar o disnea"
-                     checked= {symthomps.includes("Dificultad para respirar o disnea")}   
+                        checked={data.sympthoms.includes("Dificultad para respirar o disnea")}
                     />
                     <InputGroup.Text> Dificultad para respirar o disnea </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox onChange={handleExtraSymptoms} className="checkBoxToResetPFIngreso" name="bSintomasExtras"
-                    //checked={location.state.hasExtraSympthoms} 
+                    <InputGroup.Checkbox onChange={handleExtraSymptoms} className="checkBoxToResetPFIngreso" name="hasExtraSympthoms"
+                        checked={data.hasExtraSympthoms}
                     />
                     <InputGroup.Text> Aclaraciones Extras </InputGroup.Text>
                     <Col xs={4}>
                         <Form.Control
                             onChange={handleChange}
                             id='formControlSE'
-                            name='sintomasExtras'
+                            name='dataExtraSympthoms'
                             as="textarea" rows={5}
-                       // value= {location.state.dataExtraSympthoms}
+                            value={data.dataExtraSympthoms}
                         />
                     </Col>
                 </InputGroup>
             </>
         )
     }
-
+ 
 
     return (
         <>
@@ -165,9 +194,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN1">
                                 <Form.Label>Nombre/s</Form.Label>
                                 <Form.Control
-                                    // value={location.state.name}
+                                    value={data.name}
                                     onChange={handleChange}
-                                    name='nombre'
+                                    name='name'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -176,9 +205,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN2">
                                 <Form.Label>Apellido/s</Form.Label>
                                 <Form.Control
-                                    // value={location.state.surname}
+                                    value={data.surname}
                                     onChange={handleChange}
-                                    name='apellido'
+                                    name='surname'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -189,7 +218,7 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN3">
                                 <Form.Label>DNI</Form.Label>
                                 <Form.Control
-                                    // value={location.state.dni}
+                                    value={data.dni}
                                     onChange={handleChange}
                                     name='dni'
                                     size="sm"
@@ -202,13 +231,13 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN10">
                                 <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Form.Control
-                                    // value={location.state.dni}
+                                    value={data.born}
                                     onChange={handleChange}
                                     name='born'
                                     size="sm"
                                     type="date"
-                                    className="controlNumber" 
-                                    />
+                                    className="controlNumber"
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -217,9 +246,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN4">
                                 <Form.Label>Provincia</Form.Label>
                                 <Form.Control
-                                    // value={location.state.state}
+                                    value={data.state}
                                     onChange={handleChange}
-                                    name='provincia'
+                                    name='state'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -228,9 +257,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN5">
                                 <Form.Label>Localidad</Form.Label>
                                 <Form.Control
-                                    // value={location.state.location}
+                                    value={data.location}
                                     onChange={handleChange}
-                                    name='localidad'
+                                    name='location'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -241,9 +270,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN6">
                                 <Form.Label>Calle</Form.Label>
                                 <Form.Control
-                                    // value={location.state.street}
+                                    value={data.street}
                                     onChange={handleChange}
-                                    name='calle'
+                                    name='street'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -252,9 +281,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN7">
                                 <Form.Label>Numero</Form.Label>
                                 <Form.Control
-                                    // value={location.state.number}
+                                    value={data.number}
                                     onChange={handleChange}
-                                    name='numero'
+                                    name='number'
                                     size="sm"
                                     type="number"
                                     className="controlNumber" />
@@ -264,9 +293,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN8">
                                 <Form.Label>Piso</Form.Label>
                                 <Form.Control
-                                    // value={location.state.floor}
+                                    value={data.floor}
                                     onChange={handleChange}
-                                    name='piso'
+                                    name='floor'
                                     size="sm"
                                     type="number"
                                     className="controlNumber" />
@@ -276,9 +305,9 @@ const PatientEdit = () => {
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN9">
                                 <Form.Label>Código Postal</Form.Label>
                                 <Form.Control
-                                    // value={location.state.zipCode}
+                                    value={data.zipCode}
                                     onChange={handleChange}
-                                    name='codigo_postal'
+                                    name='zipCode'
                                     size="sm"
                                     type="text" />
                             </Form.Group>
@@ -291,24 +320,24 @@ const PatientEdit = () => {
                     </Row>
                     <Row hidden>
                         <InputGroup className="mb-3">
-                            <InputGroup.Checkbox name="isNn" id="checkNN"  className="checkBoxToResetPFIngreso" />
+                            <InputGroup.Checkbox name="isNn" id="checkNN" className="checkBoxToResetPFIngreso" />
                             <InputGroup.Text> Es NN </InputGroup.Text>
                         </InputGroup>
 
                         <Col xs={4}>
                             <Form.Group className="mb-3" controlId="ControlTextAreaNN" >
                                 <Form.Label>Datos Extras Ingresos NN</Form.Label>
-                                <Form.Control 
+                                <Form.Control
                                     // value={this.state.infoNN}
-                                       // onChange={this.handleChange}
-                                        name='infoNN'
-                                        as="textarea" rows={5}
-                                        disabled
-                                    />
+                                    //    onChange={this.handleChange}
+                                    name='infoNN'
+                                    as="textarea" rows={5}
+                                    disabled
+                                />
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="primary" id="ingresarButton" type="submit"> Editar Paciente </Button>
+                    <Button variant="primary" onClick={handleSubmit} id="ingresarButton" type="submit"> Editar Paciente </Button>
                 </Form>
             </Container>
         </>

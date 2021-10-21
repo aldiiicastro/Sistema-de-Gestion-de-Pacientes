@@ -28,4 +28,9 @@ router.put('/attendPatient/:id', timeout('30s'), async (req,res) => {
     pacienteControllers.updateTurnState(req,res);
 })
 
+router.post('/updatePatientData', timeout('20s'), async (req, res) => {
+    pacienteControllers.update_patient(req, res)
+})
+
+
 module.exports = router;

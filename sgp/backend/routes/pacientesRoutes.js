@@ -20,11 +20,23 @@ router.get('/pacientesAtendidos', timeout('30s'), async (req, res) => {
     pacienteControllers.get_attended_patients(req, res);
 });
 
+router.get('/pacientesEnEspera', timeout('30s'), async (req, res) => {
+    pacienteControllers.get_firts_waitting_patients(req, res);
+});
+
+router.get('/pacuenteEnTurno', timeout('30s'), async (req, res) => {
+    pacienteControllers.get_patient_attending(req, res);
+});
+
 router.get('/waitingPatients', timeout('30s'), async (req, res) => {
     pacienteControllers.get_waiting_patients(req, res);
 });
 
-router.put('/attendPatient/:id', timeout('30s'), async (req,res) => {
+router.put('/attendingPatient/:id', timeout('30s'), async (req,res) => {
+    pacienteControllers.update_turn_attending(req,res);
+})
+
+router.put('/attededPatient/:id', timeout('30s'), async (req,res) => {
     pacienteControllers.updateTurnState(req,res);
 })
 

@@ -79,6 +79,18 @@ exports.get_attended_patients = async function (req, res) {
     }
 }
 
+exports.get_firts_waitting_patients = async function (req, res) {
+    try {
+        const patients = await Patient.find({ turnState: 'WAITTING' })
+
+        res.status(200).json({ response: 'pacientes en espera', data: patients[0] });
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
 exports.delete_patient = async function (req, res) {
     try {
         if (!req.params.id) {
@@ -98,6 +110,46 @@ exports.delete_patient = async function (req, res) {
     }
 }
 
+
+exports.get_patient_attending= async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        const patient =await Patient.find({_id: req.params.id},{turnState: 'ATTENDING'});
+        res.status(200).json({ response: 'Paciente atendido', date: patient });
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
+
+exports.update_turn_attending = async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await Patient.updateOne({_id: req.params.id},{turnState: 'ATTENDING'});
+        res.status(200).json({ response: 'Se actualizo el paciente!'});
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
+
+
 exports.updateTurnState = async function (req,res) {
     try {
         if (!req.params.id) {
@@ -107,7 +159,6 @@ exports.updateTurnState = async function (req,res) {
         }
         
         await Patient.updateMany({_id: req.params.id},{turnState: 'ATTENDED'});
-        
         res.status(200).json({ response: 'Se actualizo el paciente!'});
     
     } catch (error) {

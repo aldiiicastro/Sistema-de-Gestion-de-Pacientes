@@ -1,12 +1,9 @@
 import React from "react";
 import axios from 'axios';
 import '../styles/WattingList.css';
-<<<<<<< HEAD
 import Navegation from './Navegation';
-import { pacientesEnEspera } from "../routes/apiCallsPatient";
-=======
+import { pacientesEsperando } from "../routes/apiCallsPatient";
 import NavegationDoctor from './NavegationDoctor';
->>>>>>> 6f8f9e047017a64bb87efc75543ef7dda0f5bbb3
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -34,7 +31,7 @@ class WattingList extends React.Component {
     }
     
     getData = () => {
-        pacientesEnEspera()
+        pacientesEsperando()
         .then(res => {
           console.log(res.data);
           var data = res.data

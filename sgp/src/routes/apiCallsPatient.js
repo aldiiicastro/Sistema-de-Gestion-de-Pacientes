@@ -29,3 +29,7 @@ export const deletePatient = (id) => {
 export const allPatient = () => {
     return axios.get(basicUrl + '/api/allPatients');
 }
+
+export const updatePatient = (data) => { console.log("ENTRE")
+    return axios.post(basicUrl + '/api/updatePatientData', data);
+}

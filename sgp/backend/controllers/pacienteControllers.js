@@ -116,3 +116,34 @@ exports.updateTurnState = async function (req,res) {
         })
     }
 }
+
+exports.update_patient = async function (req, res) {
+    try {
+        const body = req.body
+
+        if (body.name.trim() === '' || body.surname.trim() === '' || body.dni.trim() === '') {
+            return res.status(400).json({
+                response: 'Error al Actualizar, paciente sin datos principales'
+            })
+        }
+
+        const uPatient = await Patient.updateOne({_id: body._id}, {
+            name: body.name, surname: body.surname, dni: body.dni, street: body.street, number: body.number,
+            floor: body.floor, zipCode: body.zipCode, location: body.location, state: body.state,
+            isNn: body.isNn, clinicHistory: '', sympthoms: body.sympthoms, hasExtraSympthoms: body.hasExtraSympthoms,
+            dataExtraSympthoms: body.dataExtraSympthoms, dataNN: body.infoNN, born: body.born
+        })
+
+        const newData = await Patient.findOne({_id: body._id})
+
+        res.status(201).json({
+            data: newData
+        });
+        
+    } catch (error) {
+        console.log(res)
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}

@@ -19,6 +19,7 @@ import AttendedList from "./AttendedList";
 import WattingList from "./WattingList";
 import PatientFormPostTurn from "./PatientFormPostTurn";
 import PatientEdit from "./PatientEdit";
+import SearchPatient from "./searchPatient";
 
 const Spg = () => {
   return (
@@ -34,6 +35,7 @@ const Spg = () => {
           <Route path="/Home" component={Home}></Route>
           <Route path="/add-patient" component={PacientForm}></Route>
           <Route path="/watting-list" component={WattingList}></Route>
+          <Route path="/search-list" component={SearchPatient}></Route>
           <Route path="/error" component={PageError}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/" component={Login}></Route>

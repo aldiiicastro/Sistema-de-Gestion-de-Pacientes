@@ -24,15 +24,9 @@ const WattingList = () => {
             state: patient  
         })
     }
-<<<<<<< HEAD
-    
-    getData = () => {
-        pacientesEsperando()
-=======
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/waitingPatients')
->>>>>>> 8569adce4e5875476e62852c163c08c2a8ff4e9d
         .then(res => {
           setData(res.data.data)
         })

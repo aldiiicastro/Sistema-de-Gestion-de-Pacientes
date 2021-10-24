@@ -1,8 +1,8 @@
 import '../styles/Navegation.css';
 import React from 'react';
 import { useHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
-import { Navbar, Nav, Container } from "react-bootstrap"
+import {FontAwesome,} from 'react-fontawesome';
+import { Navbar, Nav, Container,} from "react-bootstrap"
 import Swal from 'sweetalert2';
 const Navegation = () => { 
   const history = useHistory();
@@ -27,6 +27,7 @@ const Navegation = () => {
       }
     })
   }
+  
  
   return(
   <Navbar bg="light" expand="lg" className='navegationPosition'>
@@ -41,6 +42,7 @@ const Navegation = () => {
           <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
           <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
           <Nav.Link href="/attended-list" id="attendedNav" className="linkNavBar">Ver pacientes atendidos</Nav.Link>
+          
           <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
         </Nav>
       </Navbar.Collapse>

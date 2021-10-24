@@ -62,13 +62,15 @@ const Navegation = () => {
         </Nav>
 
         <InputGroup size='sm' className="mb-3" >
-          <FormControl size='sm'
+          <FormControl 
+          id='search'
+          size='sm'
           className="search"
           value={busqueda}
           placeholder="Búsqueda de Pacientes"
           onChange = {handleChange}
           />
-            <button className="btn btn-success" onClick={goSearch}>
+            <button id ='click' className="btn btn-success" onClick={goSearch}>
               <FontAwesomeIcon icon={faSearch}/>
             </button>
           </InputGroup>

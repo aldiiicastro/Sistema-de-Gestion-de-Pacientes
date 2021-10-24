@@ -35,9 +35,8 @@ const SearchPatient = () => {
     useEffect(() => {
         
         getDatos();
-        console.log(data)
         
-    },[])
+    },[loc.state])
 
 
     const getRender = () => {
@@ -83,7 +82,7 @@ const SearchPatient = () => {
 
                     <div className="centrar">
                         <FontAwesomeIcon icon={faClinicMedical} size="4x"/>
-                        <p>No se encontraron pacientes con ese nombre</p>
+                        <p>No se encontro el paciente buscado</p>
                     </div>
                 </React.Fragment>
                

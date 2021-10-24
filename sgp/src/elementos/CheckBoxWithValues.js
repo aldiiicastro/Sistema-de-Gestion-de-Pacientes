@@ -23,7 +23,7 @@ const CheckWithValues = () => {
 
     useEffect(() => {
         location.state ? setData(location.state) : setData()
-    }, [])
+    }, [location.state])
 
 
     return (

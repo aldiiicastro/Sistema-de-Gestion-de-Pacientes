@@ -148,15 +148,6 @@ export class PacientForm extends Component {
         areaExtra.disabled = true
     }
 
-    test = () => { 
-        const check = document.getElementById('checkNN')
-
-        console.log(check)
-
-        return check.checked
-    }
-
-
     render() {
         return (
             <>

@@ -56,9 +56,8 @@ const Navegation = () => {
       <Navbar.Collapse>
         <Nav className="me-auto" >
           <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
-          <Nav.Link href="/watting-list" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
-          <Nav.Link href="/start-turn" id="startTurnNav" className="linkNavBar" disabled>Comenzar turno</Nav.Link>
-          <Nav.Link href="/finish-turn" id="finishTurnNav" className="linkNavBar" disabled>Finalizar turno</Nav.Link>
+          <Nav.Link href="/Home" id="wattingListNav" className="linkNavBar">Ver lista de espera</Nav.Link>
+          <Nav.Link href="/start-turn" id="startTurnNav" className="linkNavBar">Comenzar turno</Nav.Link>
           <Nav.Link href="/attended-list" id="attendedNav" className="linkNavBar">Ver pacientes atendidos</Nav.Link>
         </Nav>
 

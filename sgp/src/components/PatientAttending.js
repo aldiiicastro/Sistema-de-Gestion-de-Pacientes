@@ -207,7 +207,7 @@ const PatientAttending = (props) => {
                     </Row>
                     <Row>
                         {
-                            checkWithValues()
+                            checkWithValues(data)
                         }
                     </Row>
                     <Row hidden>

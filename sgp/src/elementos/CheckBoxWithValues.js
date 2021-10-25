@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { useLocation} from "react-router-dom";
 import { Form, Col,  InputGroup} from 'react-bootstrap';
-const CheckWithValues = () => {
+const CheckWithValues = (props) => {
     const location = useLocation()
     const [data, setData] = useState({
         name: '',
@@ -21,9 +21,10 @@ const CheckWithValues = () => {
         born: '',
     })
 
-    useEffect(() => {
-        location.state ? setData(location.state) : setData()
-    }, [location.state])
+    useEffect(async () => {
+        const data = await props
+        data ? setData(data) : setData()
+    }, [data])
 
 
     return (

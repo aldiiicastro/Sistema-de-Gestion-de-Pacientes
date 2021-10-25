@@ -38,7 +38,7 @@ exports.get_user_by_id = async function (req, res) {
     try {
         const user = await User.findById(req.params.id);
 
-        res.status(200).json({ response: 'Usuario encontrado', data: {name: user.name, email: user.email, receptionist: user.receptionist, doctor: user.doctor} })
+        res.status(200).json({ response: 'Usuario encontrado', data: {_id:user._id,name: user.name, email: user.email, receptionist: user.receptionist, doctor: user.doctor, firstLog: user.firstLog} })
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'
@@ -72,7 +72,7 @@ exports.register_user = async function (req, res) {
                 response: 'Usuario ya creado para este email'
             })
         } else {
-            const user = await User.create({ name: req.body.name, email: req.body.email, password: req.body.password, receptionist: req.body.receptionist, doctor: req.body.doctor })
+            const user = await User.create({ name: req.body.name, email: req.body.email, password: req.body.password, receptionist: req.body.receptionist, doctor: req.body.doctor, firstLog: true })
     
             res.status(200).json({
                 response: 'Usuario registrado con exito',
@@ -183,4 +183,22 @@ exports.change_password = async function(req, res) {
     }
 }
 
+exports.update_firstLog = async function(req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await User.updateMany({_id: req.params.id},{firstLog: false});
+        
+        res.status(200).json({ response: 'Se actualizo el usuario!'});
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
 

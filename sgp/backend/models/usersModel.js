@@ -6,7 +6,8 @@ const userSchema = new Schema({
   email: String,
   password: String,
   receptionist: Boolean,
-  doctor: Boolean
+  doctor: Boolean,
+  firstLog: Boolean 
 });
 
 mongoose.model('User', userSchema, 'Users'); 

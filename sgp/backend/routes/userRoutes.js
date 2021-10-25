@@ -40,5 +40,9 @@ router.post('/mailRegistered', timeout('20s'), async (req, res) => {
     usersControllers.mail_registered(req, res)
 })
 
+router.put('/updateFirstLog/:id',timeout('30s'),async (req,res)=>{
+ usersControllers.update_firstLog(req,res);
+});
+
 
 module.exports = router;

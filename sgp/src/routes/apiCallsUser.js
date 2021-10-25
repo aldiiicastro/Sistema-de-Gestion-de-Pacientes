@@ -19,3 +19,7 @@ export const changePassword =  (obj) => {
 }
 
 export const getLoggedUser = (obj) => axios.get(basicUrl + `/api/users/${localStorage.getItem('id')}`, obj).then((response) => response.data)
+
+export const updateFirstLog = (id) => {
+    return axios.put(basicUrl + '/api/updateFirstLog/'+id);
+}

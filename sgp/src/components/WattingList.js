@@ -1,9 +1,6 @@
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
 import '../styles/WattingList.css';
-import Navegation from './Navegation';
+import React, {useEffect, useState} from "react";
 import { pacientesEsperando } from "../routes/apiCallsPatient";
-import NavegationDoctor from './NavegationDoctor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +11,7 @@ import { atenderPaciente } from "../routes/apiCallsPatient";
 const WattingList = () => {
     
     const [data, setData] = useState([])
+
     
     const history = useHistory();
 
@@ -32,12 +30,20 @@ const WattingList = () => {
         })
     }
 
+
     useEffect(() => {
-        axios.get('http://localhost:3000/api/waitingPatients')
+
+        pacientesEsperando()
         .then(res => {
           setData(res.data.data)
         })
+
+        
+        
+        
     }, [])
+
+    console.log(data);
 
     return (
         <React.Fragment>
@@ -62,6 +68,7 @@ const WattingList = () => {
                                     <td>{pati.name}</td>
                                     <td>{pati.surname}</td>
                                     <td>{pati.dni}</td>
+                                    {console.log(pati.turnState)}
                                     <FontAwesomeIcon title="Atender" className="icono" icon={faUserPlus} size="2x"
                                     onClick={() => goToAttending(pati)}/>  
                                     <FontAwesomeIcon title="Editar" className="icono" icon={faUserEdit} size="2x" 

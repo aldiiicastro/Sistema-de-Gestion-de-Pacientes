@@ -5,7 +5,6 @@ import NavegationRecepcionista from './NavegationRecepcionista';
 import HomeRecepcionist from './HomeRecepcionist';
 import WattingList from './WattingList';
 import { getLoggedUser } from '../routes/apiCallsUser'
-import { pacienteEnTurno, pacienteAtendido } from '../routes/apiCallsPatient';
 import TutorialDoctor from './TutorialDoctor';
 import TutorialRecepcionista from './TutorialRecepcionista';
 import HomeDoctor from './HomeDoctor';

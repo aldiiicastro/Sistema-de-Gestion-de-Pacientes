@@ -15,11 +15,11 @@ const Estadisticas = () => {
   
  
 
-        const data ={
+        const data ={ 
           type: 'pie',
           labels:['Pacientes atendidos','Pacientes en espera'],
           datasets:[{data:[80,20],
-          backgraundColor:['rgba(255, 99, 132, 1)',
+          backgroundColor:['rgba(255, 99, 132, 0.2)',
           'rgba(255, 206, 86, 0.2)',
         ],borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -35,7 +35,7 @@ const Estadisticas = () => {
           type: 'bar',
           labels:['Pacientes atendidos','Pacientes en espera'],
           datasets:[{data:[80,20],
-          backgraundColor:['rgba(255, 99, 132, 1)',
+          backgroundColor:['rgba(255, 99, 132, 1)',
           'rgba(255, 206, 86, 0.2)',
         ],borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -49,6 +49,7 @@ const Estadisticas = () => {
         const opciones2={
           responsive: false
         }
+        
             return (
                 <React.Fragment>
 

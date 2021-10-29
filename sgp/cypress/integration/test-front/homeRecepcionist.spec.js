@@ -32,7 +32,7 @@ describe('HomeRecepcionist', () => {
     })
     /*Se puede ir dentro de ver las estadisticas --PROVISORIO, aun no existe la pagina*/
     it('go to statistics', () => {
-        cy.get('[id=statistics]').should('be.disabled')
+        cy.get('[id=statistics]').click()
     })
     /*Lo mismo pero para la nav bar*/
     it('go to statistics in nav', () => {

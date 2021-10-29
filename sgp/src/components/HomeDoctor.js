@@ -1,7 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router';
 import ButtonActions from '../elementos/ButtonActions';
-const HomeDoctor = () => {     const history = useHistory();
+const HomeDoctor = () => {     
+    
+    const history = useHistory();
+
     //Para poder ir a la pagina de agregar paciente.
     const goToAddPatient = () => {
         history.push("/add-patient")

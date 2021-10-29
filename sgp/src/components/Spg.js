@@ -21,6 +21,8 @@ import PatientFormPostTurn from "./PatientFormPostTurn";
 import PatientEdit from "./PatientEdit";
 import SearchPatient from "./searchPatient";
 import PatientAttending from "./PatientAttending.js";
+import Estadisticas from "./Estadisticas";
+
 
 
 const Spg = () => {
@@ -33,6 +35,7 @@ const Spg = () => {
           <Route path="/patient-attending" component={PatientAttending}></Route>
           <Route path="/patient-list" component={PatientsList}></Route>
           <Route path="/post-add-patient" component={PatientFormPostTurn}></Route>
+          <Route path="/estadisticas" component={Estadisticas}></Route>
           <Route path="/attended-list" component={AttendedList}></Route>
           <Route path="/restabContraseña" component={RestabContraseña}></Route>
           <Route path="/recoverPassword" component={RecoverPassword}></Route>

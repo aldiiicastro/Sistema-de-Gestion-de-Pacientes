@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
 import '../styles/WattingList.css';
-import Navegation from './Navegation';
+import React, {useEffect, useState} from "react";
 import { pacientesEsperando } from "../routes/apiCallsPatient";
-import NavegationDoctor from './NavegationDoctor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
+import { faClinicMedical, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router";
@@ -14,6 +11,7 @@ import { atenderPaciente } from "../routes/apiCallsPatient";
 const WattingList = () => {
     
     const [data, setData] = useState([])
+
     
     const history = useHistory();
 
@@ -32,12 +30,19 @@ const WattingList = () => {
         })
     }
 
+
     useEffect(() => {
-        axios.get('http://localhost:3000/api/waitingPatients')
+
+        pacientesEsperando()
         .then(res => {
           setData(res.data.data)
         })
+
+        
+        
+        
     }, [])
+
 
     return (
         <React.Fragment>
@@ -62,10 +67,16 @@ const WattingList = () => {
                                     <td>{pati.name}</td>
                                     <td>{pati.surname}</td>
                                     <td>{pati.dni}</td>
-                                    <FontAwesomeIcon title="Atender" className="icono" icon={faUserPlus} size="2x"
+                                    {pati.turnState==='ATTENDING' ? <td><FontAwesomeIcon title="Siendo Atendido" className="icono" icon={faUserCheck} size="1x"/></td>:
+                                    <td>
+                                    <FontAwesomeIcon title="Atender" className="icono" icon={faUserPlus} size="1x"
                                     onClick={() => goToAttending(pati)}/>  
-                                    <FontAwesomeIcon title="Editar" className="icono" icon={faUserEdit} size="2x" 
-                                    onClick={() => goToEdit(pati)}/>                                 
+                                    <FontAwesomeIcon title="Editar" className="icono" icon={faUserEdit} size="1x" 
+                                    onClick={() => goToEdit(pati)}/>
+                                    </td>
+                                    }
+                                    
+                                                                     
                                 </tr>
                                 
                         ))}

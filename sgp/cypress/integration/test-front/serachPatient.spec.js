@@ -16,6 +16,7 @@ describe('search Patient', () =>
 
     it('search patient by dni',()=>
     {
+        cy.get('[id = search').clear();
         cy.get('[id = search').type("45869547");
         cy.get('[id = click').click();
         

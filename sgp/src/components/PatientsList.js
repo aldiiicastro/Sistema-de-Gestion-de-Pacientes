@@ -8,7 +8,7 @@ import NavegationRecepcionista from './NavegationRecepcionista';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
-import { deletePatient , allPatient } from '../routes/apiCallsPatient';
+import { deletePatient } from '../routes/apiCallsPatient';
 
 class PatientsList extends React.Component {
 
@@ -18,15 +18,20 @@ class PatientsList extends React.Component {
           data: []
         }
     }
-    
     getData = () => {
-        allPatient()
+        axios.get('http://localhost:3000/api/waitingPatients')
         .then(res => {
           console.log(res.data);
           var data = res.data
           this.setState({data : data.data})
         })
     }
+/*     useEffect(() => {
+        axios.get('http://localhost:3000/api/waitingPatients')
+        .then(res => {
+          setData(res.data.data)
+        })
+    }, []) */
 
     componentDidMount = () => {
         this.getData();

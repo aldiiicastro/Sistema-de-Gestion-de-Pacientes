@@ -22,13 +22,7 @@ const HomeDoctor = () => {
 
     return(
         <React.Fragment>
-            <div className='gridStyle marginTop'>
-                <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={false}/>
-            </div>
-            <div className='gridStyle'>
-                <ButtonActions id={"startTurn"} text={'Comenzar turno'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={true}/>
-                <ButtonActions id={"finishTurn"} text={'Finalizar turno'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={true}/>
-            </div>
         </React.Fragment>
     )}
+    
 export default HomeDoctor;

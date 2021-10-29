@@ -18,7 +18,7 @@ const Estadisticas = () => {
         const data ={ 
           type: 'pie',
           labels:['Pacientes atendidos','Pacientes en espera'],
-          datasets:[{data:[80,20],
+          datasets:[{data:[80,20], //modificar el datasets para traer la informacion real 
           backgroundColor:['rgba(255, 99, 132, 0.2)',
           'rgba(255, 206, 86, 0.2)',
         ],borderColor: [

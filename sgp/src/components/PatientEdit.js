@@ -1,14 +1,17 @@
 import React, {useEffect, useState } from 'react';
 import { Form, Col, Row, InputGroup, Container, Button } from 'react-bootstrap';
-import Navegation from './Navegation';
+import Navegation from './NavegationDoctor';
 import { useLocation} from "react-router-dom";
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
+import { getLoggedUser } from '../routes/apiCallsUser'
 import { updatePatient } from '../routes/apiCallsPatient';
+import NavegationRecepcionista from './NavegationRecepcionista';
 
 const PatientEdit = () => {
     const location = useLocation()
     const history = useHistory()
+    const [userLogged, setUserLogged] = useState(Object);
 
     const [data, setData] = useState({
         name: '',
@@ -57,8 +60,8 @@ const PatientEdit = () => {
     }
 
     useEffect(() => {
-        console.log(location.state)
-        location.state ? setData(location.state) : setData()
+        location.state ? setData(location.state) : setData();
+        getLoggedUser().then(data => setUserLogged(data.data));
     }, [])
 
     const handleChange = event => {
@@ -169,6 +172,7 @@ const PatientEdit = () => {
                             id='formControlSE'
                             name='dataExtraSympthoms'
                             as="textarea" rows={5}
+                            style= {{width: '250px'}}
                             value={data.dataExtraSympthoms}
                         />
                     </Col>
@@ -180,7 +184,10 @@ const PatientEdit = () => {
 
     return (
         <>
-            <Navegation />
+         { 
+            userLogged.doctor ? <Navegation/> : <NavegationRecepcionista/>
+         }
+            
             <Container className='marginTop'>
                 <Form >
                     <Row>

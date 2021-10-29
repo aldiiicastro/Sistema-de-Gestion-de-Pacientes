@@ -76,12 +76,13 @@ const CheckWithValues = (props) => {
                     checked={data.hasExtraSympthoms} disabled
                 />
                 <InputGroup.Text> Aclaraciones Extras </InputGroup.Text>
-                <Col xs={4}>
+                <Col xs={5}>
                     <Form.Control
                         id='formControlSE'
                         name='dataExtraSympthoms'
                         as="textarea" rows={5}
                         value={data.dataExtraSympthoms}
+                        style= {{width: '280px'}}
                         disabled
                     />
                 </Col>

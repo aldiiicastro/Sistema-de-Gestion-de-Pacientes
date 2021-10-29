@@ -1,8 +1,6 @@
 describe('Tutorial Doctor', () => {
     it('register', () => {
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            return false
-        })
+        
         cy.visit('http://localhost:5000/register')
         cy.get('[placeholder="Nombre completo"]').type('sergio')
         cy.get('[placeholder="Email"]').type('s@gmail.com')

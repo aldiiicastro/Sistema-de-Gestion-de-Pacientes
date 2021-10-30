@@ -31,4 +31,8 @@ describe('Tutorial Doctor', () => {
         cy.contains('Finalizar Turno');
         cy.contains('Terminar').click();
     })
+
+    it('delete b person too next test', () => {
+        cy.request('DELETE', 'localhost:3000/api/delete/byEmail/l@gmail.com').then((response) =>{expect(response.body).to.have.property('response', 'Usuario eliminado correctamente!')})
+    })
 })

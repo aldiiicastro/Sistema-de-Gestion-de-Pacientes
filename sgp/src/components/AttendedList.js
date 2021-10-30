@@ -57,10 +57,8 @@ const AttendedList = () => {
     return (
         <>
             <NavegationDoctor></NavegationDoctor>
-            <br />
-            <br />
-            <br />
-            <Row xs={1} md={2} className="g-4">
+            
+            <Row xs={1} md={2} className="g-4 marginCards">
                 {attended.map((person, index) => (
                     <OverlayTrigger
                         key={index}

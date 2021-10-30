@@ -1,6 +1,8 @@
 describe('Tutorial Doctor', () => {
     it('register', () => {
-        
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+        })
         cy.visit('http://localhost:5000/register')
         cy.get('[placeholder="Nombre completo"]').type('sergio')
         cy.get('[placeholder="Email"]').type('s@gmail.com')
@@ -28,5 +30,9 @@ describe('Tutorial Doctor', () => {
         cy.contains('Siguiente').click();
         cy.contains('Ver estadisticas');
         cy.contains('Terminar').click();
+    })
+
+    it('delete b person too next test', () => {
+        cy.request('DELETE', 'localhost:3000/api/delete/byEmail/s@gmail.com').then((response) =>{expect(response.body).to.have.property('response', 'Usuario eliminado correctamente!')      })
     })
 })

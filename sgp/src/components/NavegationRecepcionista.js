@@ -39,7 +39,7 @@ const NavegationRecepcionista = () => {
           <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
           <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
           <Nav.Link href="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
-          <Nav.Link href="/Estadisticas" id="statisticsNav" className="linkNavBar">Ver estadisticas</Nav.Link>
+          <Nav.Link href="/Estadisticas" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
         </Nav>
         <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
       </Navbar.Collapse>

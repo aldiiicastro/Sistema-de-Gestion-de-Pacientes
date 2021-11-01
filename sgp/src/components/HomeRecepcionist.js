@@ -31,7 +31,7 @@ const HomeRecepcionist = () => {
         <React.Fragment>
             <div className='gridStyle marginTop'>
                 {/* <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={false}/> */}
-                <ButtonActions id={"statistics"} text={'Ver estadisticas'} onClickDo={goToEstadisticas} icon={'signal'} isDisabled={false}/>
+                <ButtonActions id={"statistics"} text={'Ver estadisticas'} onClickDo={goToEstadisticas} icon={'signal'} isDisabled= {true}/>
             </div>
             <div className='gridStyle'>
                 <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={false}/>

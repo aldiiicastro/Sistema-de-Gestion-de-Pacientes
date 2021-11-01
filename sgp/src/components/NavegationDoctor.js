@@ -55,7 +55,7 @@ const Navegation = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto" >
-          <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link><Nav.Link></Nav.Link><Nav.Link></Nav.Link><Nav.Link></Nav.Link>
+          <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
           <Nav.Link href="/attended-list" id="attendedNav" className="linkNavBar">Ver pacientes atendidos</Nav.Link>
         </Nav>
 

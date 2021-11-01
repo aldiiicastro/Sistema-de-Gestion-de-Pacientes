@@ -13,6 +13,7 @@ import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
 const SearchPatient = () => {
 
     const[data,setData] = useState([]);
+    
     const loc = useLocation();
 
     

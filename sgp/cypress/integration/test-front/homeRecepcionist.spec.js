@@ -30,7 +30,7 @@ describe('HomeRecepcionist', () => {
         cy.get('[id=deletePatientNav]').click()
         cy.contains('No hay pacientes')
     })
-    /*Se puede ir dentro de ver las estadisticas --PROVISORIO, aun no existe la pagina*/
+    /*Se puede ir dentro de ver las estadisticas*/
     it('go to statistics', () => {
         cy.get('[id=statistics]').click()
     })

@@ -4,11 +4,6 @@ describe('Attended Patient', () => {
     })
 
     it('Puedo acceder a la pagina pacientes atendidos', () => {
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            // returning false here prevents Cypress from
-            // failing the test
-            return false
-        })
         cy.get('[placeholder="Email"]').type('a@gmail.com');
         cy.get('[placeholder="Contraseña"]').type('12345');
         cy.get('[id=btnLogIn]').click();
@@ -16,11 +11,6 @@ describe('Attended Patient', () => {
     })
 
     it('Puedo ver datos del ingreso del paciente',() => {
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            // returning false here prevents Cypress from
-            // failing the test
-            return false
-        })
         cy.get('[placeholder="Email"]').type('a@gmail.com');
         cy.get('[placeholder="Contraseña"]').type('12345');
         cy.get('[id=btnLogIn]').click();

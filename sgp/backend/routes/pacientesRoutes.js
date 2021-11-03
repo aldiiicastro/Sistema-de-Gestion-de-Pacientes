@@ -20,6 +20,11 @@ router.get('/pacientesAtendidos', timeout('30s'), async (req, res) => {
     pacienteControllers.get_attended_patients(req, res);
 });
 
+
+router.get('/pacienteEnTurno', timeout('30s'), async (req, res) => {
+    pacienteControllers.get_attending_patients(req, res);
+});
+
 router.get('/pacientesEnEspera', timeout('30s'), async (req, res) => {
     pacienteControllers.get_firts_waitting_patients(req, res);
 });

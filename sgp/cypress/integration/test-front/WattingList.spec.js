@@ -1,10 +1,7 @@
 /*global cy*/
 describe('WattingPatient', () =>
 {
-    
-
     it('add a patient', () => {
-        
         cy.visit('http://localhost:5000/add-patient');
         cy.get('[id= ControlTextAreaNN1]').type("Emanuel");
         cy.get('[id= ControlTextAreaNN2]').type("Righi");
@@ -19,12 +16,4 @@ describe('WattingPatient', () =>
         cy.contains("Righi");
         cy.contains("11111111");
     })
-
-   
-
-
-   
-
-
-
 })

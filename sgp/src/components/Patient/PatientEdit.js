@@ -94,13 +94,13 @@ const PatientEdit = () => {
         await updatePatient(data).then(r => {
             Toast.fire({
                 icon: 'success',
-                title: `Paciente ${r.data.data.name} ${r.data.data.surname} actualizado Corectamente!`
+                title: `Paciente ${r.data.data.name} ${r.data.data.surname} actualizado Correctamente!`
             })
 
             if(history.location.state) {
                 const nData = r.data.data
                 history.replace({
-                    pathname: 'patient-attending',
+                    pathname: 'patient-edit',
                     state: nData
                 })
             }

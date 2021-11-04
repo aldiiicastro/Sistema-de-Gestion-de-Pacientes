@@ -160,7 +160,7 @@ exports.update_turn_attending = async function (req,res) {
         })
     }
 }
-// Ruta para pasar estado a waitting
+
 exports.update_turn_waitting = async function (req,res) {
     try {
         if (!req.params.id) {

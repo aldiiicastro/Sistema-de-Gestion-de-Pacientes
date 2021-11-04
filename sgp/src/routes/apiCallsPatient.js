@@ -26,7 +26,7 @@ export const pacientesEnEspera = () => {
 export const atenderPaciente = (id) => {
     return axios.put(basicUrl + '/api/attendingPatient/'+ id);
 }
-//agregue para volver a estado waitting
+
 export const desatenderPaciente = (id) => {
     return axios.put(basicUrl + '/api/waittingPatient/'+ id);
 }

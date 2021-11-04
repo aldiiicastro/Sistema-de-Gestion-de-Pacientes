@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Col, Row, InputGroup, Container } from 'react-bootstrap';
 import RecepcionistNavegation from '../Navegation/RecepcionistNavegation';
+import { getLoggedUser } from '../../routes/apiCallsUser';
+import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { useLocation } from "react-router-dom";
 
 const PatientFormPostTurn = () => {
 
-    const location = useLocation()
+    const location = useLocation();
+    const [userLogged, setUserLogged] = useState(Object);
 
     const [data, setData] = useState({
         nombre: '',
@@ -25,43 +28,45 @@ const PatientFormPostTurn = () => {
     })
 
     useEffect(() => {
-        setData(location.state)
+        setData(location.state);
+        getLoggedUser().then(data => setUserLogged(data.data));
     }, [])
 
     const checkWithValues = () => {
         const symthomps = location.state.sympthoms
-        
+
         console.log(location.state)
 
         return (
             <>
+
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Fiebre" checked= {symthomps.includes("Fiebre")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Fiebre" checked={symthomps.includes("Fiebre")} disabled />
                     <InputGroup.Text> Fiebre </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Tos" checked= {symthomps.includes("Tos")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Tos" checked={symthomps.includes("Tos")} disabled />
                     <InputGroup.Text> Tos </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Perdida de Gusto/Olfato" checked= {symthomps.includes("Perdida de Gusto/Olfato")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Perdida de Gusto/Olfato" checked={symthomps.includes("Perdida de Gusto/Olfato")} disabled />
                     <InputGroup.Text> Perdida de Gusto/olfato </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Cabeza" checked= {symthomps.includes("Dolor de Cabeza")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Cabeza" checked={symthomps.includes("Dolor de Cabeza")} disabled />
                     <InputGroup.Text> Dolor de Cabeza </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Garganta" checked= {symthomps.includes("Dolor de Garganta")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Garganta" checked={symthomps.includes("Dolor de Garganta")} disabled />
                     <InputGroup.Text> Dolor de Garganta </InputGroup.Text>
                 </InputGroup>
 
                 <InputGroup className="mb-3">
-                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dificultad para respirar o disnea" checked= {symthomps.includes("Dificultad para respirar o disnea")} disabled />
+                    <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dificultad para respirar o disnea" checked={symthomps.includes("Dificultad para respirar o disnea")} disabled />
                     <InputGroup.Text> Dificultad para respirar o disnea </InputGroup.Text>
                 </InputGroup>
 
@@ -73,7 +78,7 @@ const PatientFormPostTurn = () => {
                             id='formControlSE'
                             name='sintomasExtras'
                             as="textarea" rows={5}
-                            value= {location.state.dataExtraSympthoms}
+                            value={location.state.dataExtraSympthoms}
                             disabled
                         />
                     </Col>
@@ -85,7 +90,9 @@ const PatientFormPostTurn = () => {
 
     return (
         <>
-            <RecepcionistNavegation />
+            {
+                userLogged.doctor ? <DoctorNavegation /> : <RecepcionistNavegation />
+            }
             <Container className='marginTop'>
                 <Form >
                     <Row>

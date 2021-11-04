@@ -5,6 +5,7 @@ import '../../styles/WattingList.css';
 import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
+import moment from "moment";
 
 const SearchPatient = () => {
 
@@ -53,6 +54,7 @@ const SearchPatient = () => {
                             <tr>                          
                             <th>Nombre</th>
                             <th>Apellido</th>
+                            <th> Ingreso </th>
                             <th>DNI</th>
                             </tr>
                         </thead>
@@ -61,6 +63,7 @@ const SearchPatient = () => {
                                 <tr key = {pati._id}>
                                     <td>{pati.name}</td>
                                     <td>{pati.surname}</td>
+                                    <td>{moment(pati.entryDate).format("DD/MM/YYYY")} </td>
                                     <td>{pati.dni}</td>                                
                                 </tr>
                                 

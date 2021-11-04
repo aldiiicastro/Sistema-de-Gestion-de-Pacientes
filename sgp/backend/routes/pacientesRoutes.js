@@ -38,6 +38,11 @@ router.put('/attendingPatient/:id', timeout('30s'), async (req,res) => {
     pacienteControllers.update_turn_attending(req,res);
 })
 
+//Agregue esta ruta
+router.put('/waittingPatient/:id', timeout('30s'), async (req,res) => {
+    pacienteControllers.update_turn_waitting(req,res);
+})
+
 router.put('/attededPatient/:id', timeout('30s'), async (req,res) => {
     pacienteControllers.updateTurnState(req,res);
 })

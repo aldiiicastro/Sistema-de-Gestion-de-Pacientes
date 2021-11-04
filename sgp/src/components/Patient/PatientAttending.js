@@ -5,6 +5,7 @@ import { useLocation} from "react-router-dom";
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { pacienteAtendido } from '../../routes/apiCallsPatient';
+import { desatenderPaciente } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues'
 import { pacientesEnEspera } from "../../routes/apiCallsPatient";
 const PatientAttending = (props) => {
@@ -30,6 +31,7 @@ const PatientAttending = (props) => {
         born: '',
     })
 
+
     useEffect(() => {
         const fsPatient = async event => {
             const patient = await pacientesEnEspera().then((response) => {return response.data.data});
@@ -37,7 +39,27 @@ const PatientAttending = (props) => {
         }
 
         !props.isTherePatient && location.state ? setData(location.state) : setData(fsPatient);
+
+       
+       
+
     }, [])
+
+    window.onpopstate = function (){
+        desatenderPaciente(data._id);
+    }
+
+    const goBack=()=>
+
+    {  
+        desatenderPaciente(data._id)
+        history.replace({
+            pathname: '/Home',       
+        })
+
+
+    }
+    
 
     const goToEdit = () => {
         history.replace({
@@ -78,7 +100,7 @@ const PatientAttending = (props) => {
     return (
         <>
             <DoctorNavegation />
-            
+            {window.goBack ? goBack() : null}
             <Container className='marginTop'>
                 <Form >
                     <Row>
@@ -227,6 +249,7 @@ const PatientAttending = (props) => {
                             </Form.Group>
                         </Col>
                     </Row>
+                    <Button variant="primary" onClick={goBack} id="backButton" type="submit"> Volver Atras </Button>
                     <Button variant="primary" onClick={goToEdit} id="editButton" type="submit"> Editar Paciente </Button>
                     <Button variant="primary" onClick={finishTurn} id="finishButton" type="submit"> Terminar turno </Button>
                 </Form>

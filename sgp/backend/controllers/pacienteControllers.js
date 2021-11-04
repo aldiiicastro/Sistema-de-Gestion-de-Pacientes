@@ -160,6 +160,24 @@ exports.update_turn_attending = async function (req,res) {
         })
     }
 }
+// Ruta para pasar estado a waitting
+exports.update_turn_waitting = async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await Patient.updateOne({_id: req.params.id},{turnState: 'WAITTING'});
+        res.status(200).json({ response: 'Se actualizo el paciente!'});
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
 
 
 

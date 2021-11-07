@@ -6,8 +6,9 @@ import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { pacienteAtendido } from '../../routes/apiCallsPatient';
 import { desatenderPaciente } from '../../routes/apiCallsPatient';
-import checkWithValues from '../../elementos/CheckBoxWithValues'
+import checkWithValues from '../../elementos/CheckBoxWithValues';
 import { pacientesEnEspera } from "../../routes/apiCallsPatient";
+import { pacienteEnTurno } from "../../routes/apiCallsPatient";
 const PatientAttending = (props) => {
 
     const location = useLocation()
@@ -68,6 +69,35 @@ const PatientAttending = (props) => {
         })
     }
 
+
+    const ConfirmCaso = async event => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        event.preventDefault();
+        
+        await pacienteAtendido(data._id).then(r => {
+            Toast.fire({
+                icon: 'success',
+                title: `Paciente ${data.name} ${data.surname} confirmacion exitosa!`
+            })
+            history.push('/Home')
+        }).catch(e => {
+                Toast.fire({
+                    icon: 'error',
+                    title: e.response.data.response
+                })
+            })
+    }
     const finishTurn = async event => {
         const Toast = Swal.mixin({
             toast: true,
@@ -252,6 +282,8 @@ const PatientAttending = (props) => {
                     <Button variant="primary" onClick={goBack} id="backButton" type="submit"> Volver Atras </Button>
                     <Button variant="primary" onClick={goToEdit} id="editButton" type="submit"> Editar Paciente </Button>
                     <Button variant="primary" onClick={finishTurn} id="finishButton" type="submit"> Terminar turno </Button>
+                    <Button variant="primary" onClick={ConfirmCaso} id="finishButton" type="submit"> Confirmar caso </Button>
+
                 </Form>
             </Container>
         </>

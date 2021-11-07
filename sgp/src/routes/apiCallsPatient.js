@@ -32,7 +32,7 @@ export const desatenderPaciente = (id) => {
 }
 
 export const pacienteEnTurno = () => {
-    return axios.get(basicUrl + '/api/pacienteEnTurno')
+    return axios.put(basicUrl + '/api/attededPatient')
 }
 
 export const pacienteAtendido = (id) => {

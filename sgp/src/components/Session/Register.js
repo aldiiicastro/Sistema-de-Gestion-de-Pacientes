@@ -102,6 +102,10 @@ const Register = () => {
 		esRecepcionista(event.target.checked)
 	}
 
+	const goToLogin = () => {
+        history.push("/Login");
+    }
+
 	return (
 		<>
 			<img src={background} alt="background" className="myBackgroundLogin" />
@@ -180,6 +184,7 @@ const Register = () => {
 					</Form.Group>
 					<ContenedorBotonCentrado>
 						<Boton id="btnLogIn" type="submit" className="boton" >Enviar</Boton>
+						<Boton id="btnVolver" type="button" className="boton" onClick={goToLogin} >Volver</Boton>
 					</ContenedorBotonCentrado>
 				</Form>
 			

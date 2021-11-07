@@ -10,11 +10,17 @@ describe('Login',()=> {
         cy.get('[placeholder="Email"]')
         cy.get('[placeholder="Contraseña"]')
         cy.get('[id=btnLogIn]')
+        cy.get('[id=btnRegister]')
         cy.contains('¿Olvidaste tu contraseña?')
     })
     /*Se puede clickear el recuperar contrseña*/
     it('login page recover password click', () => {
         cy.contains('¿Olvidaste tu contraseña?').click()
+    })
+    /* Se puede ir a la pagina de registro con el boton Registrarse y volver al login*/ 
+    it('se puede ir a la pagina de registro y volver', () => {
+        cy.contains('Registrarse').click();
+        cy.contains('Volver').click();
     })
     /*No se puede loguear */
     it('login page cant log in', () => {
@@ -40,10 +46,9 @@ describe('Login',()=> {
         cy.get('[placeholder="Email"]').type('a@gmail.com')
         cy.get('[placeholder="Contraseña"]').type('12345')
         cy.get('[id=btnLogIn]').click()
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
-        cy.contains('Agregar un paciente')
-        cy.contains('Dar de baja un paciente')
-        cy.contains('Ver lista de espera')
+        cy.contains('a : Bienvenidos al Sistema de Gestión de Pacientes')
+        cy.contains('Inicio')
+        cy.contains('Ver pacientes atendidos')
         cy.contains('Cerrar sesión')
     })
 })

@@ -73,6 +73,9 @@ const Login = () => {
     const goToHomes = () => {
         history.push("/Home")
     };
+    const goToRegister = () => {
+        history.push("/register");
+    }
 
     return (
         <>
@@ -88,8 +91,11 @@ const Login = () => {
                         <Form.Control ref={passwordRef} className="boxInput" name="password" type="password" placeholder="Contraseña" onChange={handleInputChange} />
                     </Form.Group>
 
-                    <Button id="btnLogIn" className="boton"onClick={goToHomes} ref={inputRef} variant="success" type="submit" disabled>
+                    <Button id="btnLogIn" className="boton" onClick={goToHomes} ref={inputRef} variant="success" type="submit" disabled>
                         Iniciar sesion
+                    </Button>
+                    <Button id="btnRegister" className="boton" onClick={goToRegister} variant="success" type="button">
+                        Registrarse
                     </Button>
                     <hr />
                     <Form.Group>

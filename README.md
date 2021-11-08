@@ -5,10 +5,10 @@
 - NodeJs
 - MongoDB
 - Postman
-- Jest
+- Cypress
 - Jenkins
-- Axios ?? 
-- Mongoose ??
+- Axios
+- Mongoose
 
 
 ## Jira 

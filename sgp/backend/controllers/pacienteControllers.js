@@ -69,7 +69,7 @@ exports.get_waiting_patients = async function (req, res) {
 
 exports.get_confirm_patients = async function (req, res) {
     try {
-        const patients = await Patient.find({turnState: { $in: [ 'CONFIRMCASO', 'ATTENDING']}});
+        const patients = await Patient.find({turnState: { $in: [ 'confirmedcase']}});
         res.status(200).json({ response: 'confirmacionPacientes', data: patients });
     } catch (error) {
         res.status(500).json({

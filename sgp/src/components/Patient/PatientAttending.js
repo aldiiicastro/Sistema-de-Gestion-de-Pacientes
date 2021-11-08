@@ -7,8 +7,8 @@ import Swal from 'sweetalert2';
 import { pacienteAtendido } from '../../routes/apiCallsPatient';
 import { desatenderPaciente } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues';
-import { pacientesEsperando } from "../../routes/apiCallsPatient";
-import { pacienteEnTurno } from "../../routes/apiCallsPatient";
+import { pacientesEnEspera } from "../../routes/apiCallsPatient";
+import { confirmacionPacientes } from "../../routes/apiCallsPatient";
 const PatientAttending = (props) => {
 
     const location = useLocation()
@@ -35,7 +35,7 @@ const PatientAttending = (props) => {
 
     useEffect(() => {
         const fsPatient = async event => {
-            const patient = await pacientesEsperando().then((response) => {return response.data.data});
+            const patient = await pacientesEnEspera().then((response) => {return response.data.data});
             return patient
         }
 
@@ -85,7 +85,7 @@ const PatientAttending = (props) => {
 
         event.preventDefault();
         
-        await pacienteAtendido(data._id).then(r => {
+        await confirmacionPacientes(data._id).then(r => {
             Toast.fire({
                 icon: 'success',
                 title: `Paciente ${data.name} ${data.surname} confirmacion exitosa!`

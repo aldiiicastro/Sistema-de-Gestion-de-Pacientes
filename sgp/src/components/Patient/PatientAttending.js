@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { pacienteAtendido } from '../../routes/apiCallsPatient';
 import { desatenderPaciente } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues';
-import { pacientesEnEspera } from "../../routes/apiCallsPatient";
+import { pacientesEsperando } from "../../routes/apiCallsPatient";
 import { pacienteEnTurno } from "../../routes/apiCallsPatient";
 const PatientAttending = (props) => {
 
@@ -35,7 +35,7 @@ const PatientAttending = (props) => {
 
     useEffect(() => {
         const fsPatient = async event => {
-            const patient = await pacientesEnEspera().then((response) => {return response.data.data});
+            const patient = await pacientesEsperando().then((response) => {return response.data.data});
             return patient
         }
 

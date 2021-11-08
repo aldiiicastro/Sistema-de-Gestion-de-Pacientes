@@ -13,6 +13,9 @@ export const altaPaciente = (obj) => {
 export const pacientesEsperando= () => {
     return axios.get(basicUrl + '/api/waitingPatients' );
 }
+export const confirmacionPacientes= () => {
+    return axios.get(basicUrl + '/api/confirmPatients' ); //endpoint de estado
+}
 
 
 export const pacientesAtendidos = () => {

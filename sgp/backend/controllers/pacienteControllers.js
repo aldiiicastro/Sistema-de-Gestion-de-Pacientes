@@ -58,7 +58,7 @@ exports.get_all_patients = async function (req, res) {
 exports.get_waiting_patients = async function (req, res) {
     try {
         const patients = await Patient.find({turnState: { $in: [ 'WAITTING', 'ATTENDING']}});
-        res.status(200).json({ response: 'pacientes que esperan', data: patients });
+        res.status(200).json({ response: 'pacientesEsperando', data: patients });
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'
@@ -66,6 +66,17 @@ exports.get_waiting_patients = async function (req, res) {
     }
 }
 
+
+exports.get_confirm_patients = async function (req, res) {
+    try {
+        const patients = await Patient.find({turnState: { $in: [ 'CONFIRMCASO', 'ATTENDING']}});
+        res.status(200).json({ response: 'confirmacionPacientes', data: patients });
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
 
 exports.get_attended_patients = async function (req, res) {
     try {

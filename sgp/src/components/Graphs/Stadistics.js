@@ -12,6 +12,19 @@ import  {Bar} from 'react-chartjs-2'
 
 const Stadistics = () => {
   const [data, setData] = useState([]);
+
+/*   setData({
+    ...data,
+    sympthoms: data.sympthoms.filter(s => s !== name)
+}) */
+
+//let filtro = data.filter(data => data.pacientesEsperando !== 'ATTENDING');
+
+/* handleCheckBoxSymptoms = (event) => {
+  const name = event.target.name;
+  event.target.checked ? this.state.sintomas.push(name) : this.setState({ [name]: this.state.sintomas.filter(s => s !== name) })
+} */
+  
   const data2 = {
     type: "bar",
     labels: ["Pacientes en espera"],

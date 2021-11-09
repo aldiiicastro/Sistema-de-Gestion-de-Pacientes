@@ -1,79 +1,44 @@
-import React, { useEffect, useState } from "react";
-import "../../styles/PatientList.css";
-import { pacientesEsperando } from "../../routes/apiCallsPatient";
-import NavegationRecepcionista from "../Navegation/RecepcionistNavegation";
-import {
-  faClinicMedical,
-  
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { Pie } from "react-chartjs-2";
-import  {Bar} from 'react-chartjs-2'
+import React from 'react';
+import { useHistory } from 'react-router';
+
+import { faVirus, faChartBar, faChartLine, faChartPie } from "@fortawesome/free-solid-svg-icons";
+import ButtonActions from '../../elementos/ButtonActions';
+import NavegationRecepcionista from '../Navegation/RecepcionistNavegation';
 
 const Stadistics = () => {
-  const [data, setData] = useState([]);
-
-/*   setData({
-    ...data,
-    sympthoms: data.sympthoms.filter(s => s !== name)
-}) */
-
-//let filtro = data.filter(data => data.pacientesEsperando !== 'ATTENDING');
-
-/* handleCheckBoxSymptoms = (event) => {
-  const name = event.target.name;
-  event.target.checked ? this.state.sintomas.push(name) : this.setState({ [name]: this.state.sintomas.filter(s => s !== name) })
-} */
-  
-  const data2 = {
-    type: "bar",
-    labels: ["Pacientes en espera"],
-    datasets: [
-      {
-        label:"Pacientes en espera",
-        data: [data.length], 
-        backgroundColor: [ "rgba(229, 112, 126, 0.5)"],
-        borderColor: ["rgba(229, 112, 126, 0.2)"],
-        borderWidth: 2,
-      },
-    ],
+  const history = useHistory();
+  const goToWaittingGraph = () => {
+    history.push('/stadistics/waittingGraph')
   };
 
-  const opciones = {
-    responsive: false,
+  const goToEntryGraph = () => {
+    history.push('/stadistics/entryGraph')
   };
- 
-  useEffect(() => {
-    pacientesEsperando().then((res) => {
-      setData(res.data.data);
-    });
-  }, []);
 
-  return (
-    <>
-      {data.length !== 0 ? (
-        <div>
-          <div className="centro">
-            <br /><br />
-  
-          </div>
-        </div>
-      ) : (
-          <div className="noPatient">
-            <FontAwesomeIcon icon={faClinicMedical} size="4x" />
-            <p>No hay pacientes</p>
-          </div>
-      )}
+  const goToDieGraph = () => {
+    history.push('/Home')
+  };
 
-      <div className="centro"><br /><br />
-        <h3>Graficos de Pacientes en lista de espera</h3>
+  const goToConfirmedGraph = () => {
+    history.push('/stadistics/confirmedCases')
+  };
+
+  return(
+    <React.Fragment>
+      <NavegationRecepcionista/>
+      <div className='centro marginTop'>
+        <h3>Graficos pacientes</h3>
+      </div>
+      <div className='gridStyle'>
+        <ButtonActions id={'confirmedGraph'} text={'Grafico de contagiados'} onClickDo={goToConfirmedGraph} icon={faVirus} isDisabled={false}/>
+        <ButtonActions id={'waittingGraph'} text={'Grafico de espera'} onClickDo={goToWaittingGraph} icon={faChartPie} isDisabled={false} />
+      </div>
+      <div className='gridStyle'>
+        <ButtonActions id={'entryGraph'} text={'Grafico de ingresos'} onClickDo={goToEntryGraph} icon={faChartBar} isDisabled={false} />
+        <ButtonActions id={'dieGraph'} text={'Grafico de descesos'} onClickDo={goToDieGraph} icon={faChartLine} isDisabled={false} />
       </div>
 
-      <div className="App">
-        <Bar data={data2} opciones={opciones} />
-        {/* <Bar data={data2} opciones={opciones2}/> */}
-      </div>
-    </>
+    </React.Fragment>
   );
 };
 export default Stadistics;

@@ -1,0 +1,9 @@
+.centerTitle {
+    text-align: center; 
+}
+.centerGraph{
+    padding:8px;
+    margin-left: 28%;
+    width: 500px;
+    z-index: 1;
+}

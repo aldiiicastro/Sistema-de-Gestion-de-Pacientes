@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const pacienteSchema = new Schema({
-
     name: String,
     surname: String,
     dni: String,
@@ -18,7 +17,8 @@ const pacienteSchema = new Schema({
     hasExtraSympthoms: Boolean,
     dataExtraSympthoms: String,
     dataNN: String,
-    entryDate: Date,
+    confirmedDate: String,
+    entryDate: String,
     outDate: Date,
     turnState: String,
     born: String

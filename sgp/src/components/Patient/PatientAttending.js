@@ -4,11 +4,10 @@ import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { useLocation} from "react-router-dom";
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
-import { pacienteAtendido } from '../../routes/apiCallsPatient';
-import { desatenderPaciente } from '../../routes/apiCallsPatient';
+import { updateTurnAttended, updateTurnConfirmed, firstPatientWaiting, updateTurnWaiting } from '../../routes/apiCallsPatient';
+import {  } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues';
-import { pacientesEnEspera } from "../../routes/apiCallsPatient";
-import { confirmacionPacientes } from "../../routes/apiCallsPatient";
+
 const PatientAttending = (props) => {
 
     const location = useLocation()
@@ -35,7 +34,7 @@ const PatientAttending = (props) => {
 
     useEffect(() => {
         const fsPatient = async event => {
-            const patient = await pacientesEnEspera().then((response) => {return response.data.data});
+            const patient = await firstPatientWaiting().then((response) => {return response.data.data});
             return patient
         }
 
@@ -47,13 +46,13 @@ const PatientAttending = (props) => {
     }, [])
 
     window.onpopstate = function (){
-        desatenderPaciente(data._id);
+        updateTurnWaiting(data._id);
     }
 
     const goBack=()=>
 
     {  
-        desatenderPaciente(data._id)
+        updateTurnWaiting(data._id)
         history.replace({
             pathname: '/Home',       
         })
@@ -85,7 +84,7 @@ const PatientAttending = (props) => {
 
         event.preventDefault();
         
-        await confirmacionPacientes(data._id).then(r => {
+        await updateTurnConfirmed(data._id).then(r => {
             Toast.fire({
                 icon: 'success',
                 title: `Paciente ${data.name} ${data.surname} confirmacion exitosa!`
@@ -113,7 +112,7 @@ const PatientAttending = (props) => {
 
         event.preventDefault();
         
-        await pacienteAtendido(data._id).then(r => {
+        await updateTurnAttended(data._id).then(r => {
             Toast.fire({
                 icon: 'success',
                 title: `Paciente ${data.name} ${data.surname} actualizado corectamente!`

@@ -36,6 +36,10 @@ export const updateTurnAttended = (id) => {
 export const updateTurnConfirmed = (id) => {
     return axios.put(basicUrl + '/api/actualizarPaciente/confirmado/'+ id);
 }
+
+export const admitPatient = (id) => {
+    return axios.put(basicUrl + '/api/actualizarPaciente/internar/'+id);
+}
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */

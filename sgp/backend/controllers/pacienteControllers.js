@@ -166,6 +166,24 @@ exports.update_turn_confirmed = async function (req,res) {
         })
     }
 }
+
+exports.update_turn_internee = async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await Patient.updateMany({_id: req.params.id},{turnState: 'INTERNEE'});
+        res.status(200).json({ response: 'Se actualizo el paciente!'});
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */

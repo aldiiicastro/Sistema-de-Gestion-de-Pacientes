@@ -33,6 +33,10 @@ router.put('/actualizarPaciente/atendido/:id', timeout('30s'), async (req,res) =
 router.put('/actualizarPaciente/confirmado/:id', timeout('30s'), async (req,res) => {
     pacienteControllers.update_turn_confirmed(req,res);
 })
+
+router.put('/actualizarPaciente/internar/:id',timeout('30s'), async (req,res) => {
+    pacienteControllers.update_turn_internee(req,res);
+})
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */

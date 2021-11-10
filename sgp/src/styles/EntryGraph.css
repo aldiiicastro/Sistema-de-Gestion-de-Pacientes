@@ -1,0 +1,9 @@
+.centerEntryTitle {
+    text-align: center; 
+}
+.centerEntryGraph{
+    padding:8px;
+    margin-left: 11%;
+    width: 850px;
+    z-index: 1;
+}

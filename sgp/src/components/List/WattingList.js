@@ -1,12 +1,11 @@
 import '../../styles/WattingList.css';
 import React, {useEffect, useState} from "react";
-import { pacientesEsperando } from "../../routes/apiCallsPatient";
+import { waitingAttendingPatients, updateTurnAttending } from "../../routes/apiCallsPatient";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router";
-import { atenderPaciente } from "../../routes/apiCallsPatient";
 
 const WattingList = () => {
     
@@ -23,7 +22,7 @@ const WattingList = () => {
     }
 
     const goToAttending = (patient) => { 
-        atenderPaciente(patient._id)
+        updateTurnAttending(patient._id)
         history.push({
             pathname: "/patient-attending",     
             state: patient  
@@ -33,7 +32,7 @@ const WattingList = () => {
 
     useEffect(() => {
 
-        pacientesEsperando()
+        waitingAttendingPatients()
         .then(res => {
           setData(res.data.data)
         })

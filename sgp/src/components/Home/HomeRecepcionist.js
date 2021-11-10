@@ -1,4 +1,5 @@
 import React from 'react'
+import { faSignal, faUserPlus,  faUserTimes} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from 'react-router';
 import ButtonActions from '../../elementos/ButtonActions';
 const HomeRecepcionist = () => { 
@@ -22,11 +23,11 @@ const HomeRecepcionist = () => {
         <React.Fragment>
             <div className='gridStyle marginTop'>
                 {/* <ButtonActions id={"wattingList"} text={'Ver lista de espera'} onClickDo={goToWattingList} icon={'list'} isDisabled={false}/> */}
-                <ButtonActions id={"stadistics"} text={'Ver estadisticas'} onClickDo={goToEstadisticas} icon={'signal'} isDisabled= {false}/>
+                <ButtonActions id={"stadistics"} text={'Ver estadisticas'} onClickDo={goToEstadisticas} icon={faSignal} isDisabled= {false}/>
             </div>
             <div className='gridStyle'>
-                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={'user-plus'} isDisabled={false}/>
-                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToPatientsList} icon={'user-times'} isDisabled={false}/>
+                <ButtonActions id={"addPatient"} text={'Agregar un paciente'} onClickDo={goToAddPatient} icon={faUserPlus} isDisabled={false}/>
+                <ButtonActions id={"deletePatient"} text={'Dar de baja un paciente'} onClickDo={goToPatientsList} icon={faUserTimes} isDisabled={false}/>
             </div>
 
         </React.Fragment>

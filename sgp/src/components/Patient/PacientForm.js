@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { altaPaciente } from '../../routes/apiCallsPatient';
+import { registerPatient } from '../../routes/apiCallsPatient';
 import Swal from 'sweetalert2';
 import '../../styles/PacientForm.css'
 import RecepcionistNavegation from '../Navegation/RecepcionistNavegation'
@@ -92,7 +92,7 @@ export class PacientForm extends Component {
 
         event.preventDefault();
 
-        await altaPaciente(this.state).then(r => {
+        await registerPatient(this.state).then(r => {
             Toast.fire({
                 icon: 'success',
                 title: r.data.response

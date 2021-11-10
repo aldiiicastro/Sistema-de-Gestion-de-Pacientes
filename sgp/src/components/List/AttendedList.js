@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { pacientesAtendidos } from '../../routes/apiCallsPatient';
+import { attendedPatients } from '../../routes/apiCallsPatient';
 import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { Card, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import '../../styles/AttendedList.css'
@@ -30,7 +30,7 @@ const AttendedList = () => {
             }
         })
 
-        await pacientesAtendidos().then(r => {
+        await attendedPatients().then(r => {
             setAttended(r.data.data)
         }).catch(e => {
             Toast.fire({

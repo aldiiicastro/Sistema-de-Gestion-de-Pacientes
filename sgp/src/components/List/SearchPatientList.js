@@ -24,7 +24,7 @@ const SearchPatient = () => {
     }
 
     const filtrado = data.filter(objeto => {
-        if(objeto.name.toString().toLowerCase().includes(loc.state.toLowerCase())
+        if(objeto.surname.toString().toLowerCase().includes(loc.state.toLowerCase())
     || objeto.dni.toString().toLowerCase().includes(loc.state.toLowerCase()|| objeto)
     ){
         return objeto;

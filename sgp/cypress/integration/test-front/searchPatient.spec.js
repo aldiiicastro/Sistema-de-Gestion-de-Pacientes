@@ -8,10 +8,10 @@ describe('search Patient', () =>
         cy.get('[placeholder="Contraseña"]').type('44444');
         cy.get('[id=btnLogIn]').click();
         cy.wait(1000);
-        cy.get('[id = search ').type('Carlos');
+        cy.get('[id = search ').type('saldaña');
         cy.get('[id = click').click();
         cy.wait(2000);
-        cy.contains('Carlos');
+        cy.contains('Saldaña');
         cy.contains("12345679");
         cy.contains('02/11/2021');
     })
@@ -25,7 +25,7 @@ describe('search Patient', () =>
         cy.wait(1000);
         cy.contains("12345679");
         cy.contains('Carlos');
-        cy.contains('02/11/2021')
+        cy.contains('02/11/2021');
     })
 
     it('search nothing', ()=>

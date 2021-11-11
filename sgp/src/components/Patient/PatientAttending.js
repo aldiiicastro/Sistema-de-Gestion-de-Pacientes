@@ -4,11 +4,11 @@ import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { useLocation} from "react-router-dom";
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
-import { updateTurnAttended, updateTurnConfirmed, firstPatientWaiting, updateTurnWaiting, admitPatient } from '../../routes/apiCallsPatient';
+import { updateTurnAttended, updateTurnConfirmed, updateTurnWaiting, admitPatient } from '../../routes/apiCallsPatient';
 import {  } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues';
 
-const PatientAttending = (props) => {
+const PatientAttending = () => {
 
     const location = useLocation()
     const history = useHistory()
@@ -31,19 +31,9 @@ const PatientAttending = (props) => {
         born: '',
     })
 
-
     useEffect(() => {
-        const fsPatient = async event => {
-            const patient = await firstPatientWaiting().then((response) => {return response.data.data});
-            return patient
-        }
-
-        !props.isTherePatient && location.state ? setData(location.state) : setData(fsPatient);
-
-       
-       
-
-    }, [])
+        location.state ? setData(location.state) : setData('');
+    }, [location])
 
     window.onpopstate = function (){
         updateTurnWaiting(data._id);

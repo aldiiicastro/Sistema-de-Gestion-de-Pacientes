@@ -1,5 +1,4 @@
 import Button from "@restart/ui/esm/Button";
-import FontAwesome from 'react-fontawesome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //Se crea el siguiente componente para poder agregar la cantidad de botones que queramos mas facilmente a la pagina.
 const ButtonsHome = props => { 

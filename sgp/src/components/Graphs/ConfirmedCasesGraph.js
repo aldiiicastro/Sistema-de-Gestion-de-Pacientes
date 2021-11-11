@@ -9,21 +9,23 @@ import { confirmedPatients } from '../../routes/apiCallsPatient'
 import NavegationRecepcionista from '../Navegation/RecepcionistNavegation';
 
 const ConfirmedCasesGraph = () => {
-    Chart.defaults.color = 'rgba(0,0,0,1)'
-    const [dataGraph, setDataGraph] = useState([])
-    const [labelsGraph, setLabelsGraph] = useState([])
-    const labelsPerDay = new Array;
-    const amountConfirmedPatientPerDay = new Array;
+    Chart.defaults.color = 'rgba(0,0,0,1)';
+    const [dataGraph, setDataGraph] = useState([]);
+    const [labelsGraph, setLabelsGraph] = useState([]);
+    
     useEffect(() => {
+        const labelsPerDay = [];
+        const amountConfirmedPatientPerDay = [];
         confirmedPatients().then((response) => {
             const confirmedCases = lodash.chain(response.data.data).groupBy("confirmedDate").map((value, key) => ({ date: key, patients: value })).value()
             confirmedCases.map((values) => {
-                amountConfirmedPatientPerDay.push(values.patients.length)
+                amountConfirmedPatientPerDay.push(values.patients.length);
                 var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                labelsPerDay.push((new Date(values.date)).toLocaleDateString('es-ES', options))
+                labelsPerDay.push((new Date(values.date)).toLocaleDateString('es-ES', options));
+                return '';
             })
-            setDataGraph(amountConfirmedPatientPerDay)
-            setLabelsGraph(labelsPerDay)
+            setDataGraph(amountConfirmedPatientPerDay);
+            setLabelsGraph(labelsPerDay);
         })
     }, [])
 

@@ -62,7 +62,7 @@ const PatientEdit = () => {
     useEffect(() => {
         location.state ? setData(location.state) : setData();
         getLoggedUser().then(data => setUserLogged(data.data));
-    }, [])
+    }, [location])
 
     const handleChange = event => {
         const name = event.target.name;

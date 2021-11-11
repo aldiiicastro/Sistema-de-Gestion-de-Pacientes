@@ -21,9 +21,6 @@ const Navegation = () => {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si',
-      confirmButtonAttributes :{
-        id: 'yesLogOut'
-      }
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(

@@ -1,79 +1,54 @@
-import React, {useEffect, useState } from 'react';
-import { useLocation} from "react-router-dom";
+import React from 'react';
 import { Form, Col,  InputGroup} from 'react-bootstrap';
 const CheckWithValues = (props) => {
-    const location = useLocation()
-    const [data, setData] = useState({
-        name: '',
-        surname: '',
-        dni: '',
-        street: '',
-        number: '',
-        floor: '',
-        zipCode: '',
-        location: '',
-        sympthoms: [],
-        dataExtraSympthoms: '',
-        state: '',
-        isNn: false,
-        infoNN: '',
-        hasExtraSympthoms: false,
-        born: '',
-    })
-
-    useEffect(async () => {
-        const data = await props
-        data ? setData(data) : setData()
-    }, [data])
-
 
     return (
         <>
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Fiebre"
-                    checked={data.sympthoms.includes("Fiebre")} disabled
+                    checked={props.sympthoms.includes("Fiebre")} disabled
                 />
                 <InputGroup.Text> Fiebre </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Tos"
-                    checked={data.sympthoms.includes("Tos")} disabled
+                    checked={props.sympthoms.includes("Tos")} disabled
                 />
                 <InputGroup.Text> Tos </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Perdida de Gusto/Olfato"
-                    checked={data.sympthoms.includes("Perdida de Gusto/Olfato")} disabled
+                    checked={props.sympthoms.includes("Perdida de Gusto/Olfato")} disabled
                 />
                 <InputGroup.Text> Perdida de Gusto/olfato </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Cabeza"
-                    checked={data.sympthoms.includes("Dolor de Cabeza")} disabled
+                    checked={props.sympthoms.includes("Dolor de Cabeza")} disabled
                 />
                 <InputGroup.Text> Dolor de Cabeza </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dolor de Garganta"
-                    checked={data.sympthoms.includes("Dolor de Garganta")} disabled
+                    checked={props.sympthoms.includes("Dolor de Garganta")} disabled
                 />
                 <InputGroup.Text> Dolor de Garganta </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="Dificultad para respirar o disnea"
-                    checked={data.sympthoms.includes("Dificultad para respirar o disnea")} disabled
+                    checked={props.sympthoms.includes("Dificultad para respirar o disnea")} disabled
                 />
                 <InputGroup.Text> Dificultad para respirar o disnea </InputGroup.Text>
             </InputGroup>
 
             <InputGroup className="mb-3">
                 <InputGroup.Checkbox className="checkBoxToResetPFIngreso" name="hasExtraSympthoms"
-                    checked={data.hasExtraSympthoms} disabled
+                    checked={props.hasExtraSympthoms} disabled
                 />
                 <InputGroup.Text> Aclaraciones Extras </InputGroup.Text>
                 <Col xs={5}>
@@ -81,7 +56,7 @@ const CheckWithValues = (props) => {
                         id='formControlSE'
                         name='dataExtraSympthoms'
                         as="textarea" rows={5}
-                        value={data.dataExtraSympthoms}
+                        value={props.dataExtraSympthoms}
                         style= {{width: '280px'}}
                         disabled
                     />

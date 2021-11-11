@@ -24,11 +24,15 @@ const SearchPatient = () => {
     }
 
     const filtrado = data.filter(objeto => {
-        if(objeto.surname.toString().toLowerCase().includes(loc.state.toLowerCase())
-    || objeto.dni.toString().toLowerCase().includes(loc.state.toLowerCase()|| objeto)
-    ){
-        return objeto;
-    }});
+        var patient = ''
+        if(objeto.surname.toString().toLowerCase().includes(loc.state.toLowerCase()) 
+            || objeto.dni.toString().toLowerCase().includes(loc.state.toLowerCase()
+            || objeto ))
+        { patient =  objeto; }
+        return patient;    
+    } 
+            
+        );
 
     useEffect(() => {
         

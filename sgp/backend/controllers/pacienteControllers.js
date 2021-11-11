@@ -1,4 +1,3 @@
-const { response, json } = require('express');
 const mongoose = require('mongoose');
 const Patient = mongoose.model('Patient')
 /* CRUD DE PACIENTE */ 
@@ -12,7 +11,7 @@ exports.register_patient = async function (req, res) {
                 name: '', surname: '', dni: "", street: '', number: '',
                 floor: '', zipCode: '', location: '', state: '',
                 isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING'
+                dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING', confirmedDate: ''
             })
 
             return res.status(201).json({
@@ -29,7 +28,7 @@ exports.register_patient = async function (req, res) {
             name: body.nombre, surname: body.apellido, dni: body.dni, street: body.calle, number: body.numero,
             floor: body.piso, zipCode: body.codigo_postal, location: body.localidad, state: body.provincia,
             isNn: body.isNn, clinicHistory: '', sympthoms: body.sintomas, hasExtraSympthoms: body.bSintomasExtras,
-            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING', born: body.born
+            dataExtraSympthoms: body.sintomasExtras, dataNN: body.infoNN, entryDate: date, turnState: 'WAITING', born: body.born, confirmedDate: ''
         })
 
         res.status(201).json({
@@ -52,8 +51,7 @@ exports.delete_patient = async function (req, res) {
             })
         }
 
-        const patient = await Patient.deleteOne({ _id: req.params.id });
-
+        await Patient.deleteOne({ _id: req.params.id });
         res.status(200).json({ response: 'Paciente eliminado correctamente!' })
 
     } catch (error) {
@@ -77,7 +75,7 @@ exports.update_patient = async function (req, res) {
             name: body.name, surname: body.surname, dni: body.dni, street: body.street, number: body.number,
             floor: body.floor, zipCode: body.zipCode, location: body.location, state: body.state,
             isNn: body.isNn, clinicHistory: '', sympthoms: body.sympthoms, hasExtraSympthoms: body.hasExtraSympthoms,
-            dataExtraSympthoms: body.dataExtraSympthoms, dataNN: body.infoNN, born: body.born
+            dataExtraSympthoms: body.dataExtraSympthoms, dataNN: body.infoNN, born: body.born, confirmedDate: ''
         })
 
         const newData = await Patient.findOne({_id: body._id})
@@ -156,8 +154,9 @@ exports.update_turn_confirmed = async function (req,res) {
                 response: 'No se pasó ningún Id como parametro'
             })
         }
-        
-        await Patient.updateMany({_id: req.params.id},{turnState: 'CONFIRMED'});
+        const dateTime = new Date();
+        const date = dateTime.toISOString().split("T")[0]        
+        await Patient.updateMany({_id: req.params.id},{turnState: 'CONFIRMED', confirmedDate: date});
         res.status(200).json({ response: 'Se actualizo el paciente!'});
     
     } catch (error) {
@@ -214,7 +213,7 @@ exports.get_all_patients = async function (req, res) {
 
 exports.get_waiting_attending_patients = async function (req, res) {
     try {
-        const patients = await Patient.find({turnState: { $in: [ 'WAITTING', 'ATTENDING']}});
+        const patients = await Patient.find({turnState: { $in: [ 'WAITING', 'ATTENDING']}});
         res.status(200).json({ response: 'pacientesEsperando', data: patients });
     } catch (error) {
         res.status(500).json({

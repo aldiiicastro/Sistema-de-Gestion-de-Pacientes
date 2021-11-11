@@ -12,19 +12,20 @@ const EntryGraph = () => {
     Chart.defaults.color = 'rgba(0,0,0,1)'
     const [dataGraph, setDataGraph] = useState([])
     const [labelsGraph, setLabelsGraph] = useState([])
-    const labelsPerDay = new Array;
-    const amountOfPatientsPerDay = new Array;
     
     useEffect(() => {
+        const labelsPerDay = [];
+        const amountOfPatientsPerDay = [];
         allPatient().then((response) => {
             const entryPatients = lodash.chain(response.data.data).groupBy("entryDate").map((value, key) => ({ date: key, patients: value })).value()
             entryPatients.map((values) => {
-                amountOfPatientsPerDay.push(values.patients.length)
+                amountOfPatientsPerDay.push(values.patients.length);
                 var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                labelsPerDay.push((new Date(values.date)).toLocaleDateString('es-ES', options))
+                labelsPerDay.push((new Date(values.date)).toLocaleDateString('es-ES', options));
+                return '';
             })
-            setDataGraph(amountOfPatientsPerDay)
-            setLabelsGraph(labelsPerDay)
+            setDataGraph(amountOfPatientsPerDay);
+            setLabelsGraph(labelsPerDay);
         })
     }, [])
 

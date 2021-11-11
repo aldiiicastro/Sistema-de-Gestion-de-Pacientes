@@ -4,10 +4,11 @@ import { waitingAttendingPatients } from "../../routes/apiCallsPatient";
 import NavegationRecepcionista from "../Navegation/RecepcionistNavegation";
 import {faClinicMedical} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import  {Bar} from 'react-chartjs-2'
+import  {Chart,Bar} from 'react-chartjs-2'
 
 const WaittingGraph = () => {
   
+Chart.defaults.color = 'black';
 const [data, setData] = useState([]);
   
 const waittingFilter = data.filter((objeto => {
@@ -23,24 +24,17 @@ const waittingFilter = data.filter((objeto => {
 
 const grafico = {
 type: "bar",
-labels: ["Pacientes en Espera"],
+labels: ["Pacientes esperando actualemente"],
 datasets: [
   {
     label:"Pacientes en espera",
     data: [waittingFilter.length], 
-    color: 'rgba(0,0,0,1)',
     backgroundColor: [ "rgba(255, 255, 255, 0.8)"],
     borderColor: ["rgba(0,0,0,0.5)"],
     borderWidth: 2,
   },
 ],
 };
-
-const opciones = {
-labels: {display:false}
-};
-
-
 
 useEffect(() => {
 
@@ -63,7 +57,7 @@ return (
           <br/>
           <br/>
           <div className="centrar">
-            <Bar data={grafico} options={opciones} />
+            <Bar data={grafico} />
           </div>
         </div>
       </div>

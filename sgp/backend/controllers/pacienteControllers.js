@@ -214,7 +214,7 @@ exports.get_all_patients = async function (req, res) {
 
 exports.get_waiting_attending_patients = async function (req, res) {
     try {
-        const patients = await Patient.find({turnState: { $in: [ 'WAITING', 'ATTENDING']}});
+        const patients = await Patient.find({turnState: { $in: [ 'WAITTING', 'ATTENDING']}});
         res.status(200).json({ response: 'pacientesEsperando', data: patients });
     } catch (error) {
         res.status(500).json({

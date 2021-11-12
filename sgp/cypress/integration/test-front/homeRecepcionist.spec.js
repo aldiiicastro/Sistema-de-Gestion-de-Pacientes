@@ -36,6 +36,6 @@ describe('HomeRecepcionist', () => {
     })
     /*Lo mismo pero para la nav bar*/
     it('go to statistics in nav', () => {
-        cy.get('[id=statisticsNav]').should('have.class', 'disabled')
+        cy.get('[id=statisticsNav]').click()
     })
 }) 

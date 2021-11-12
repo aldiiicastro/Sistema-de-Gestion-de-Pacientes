@@ -72,7 +72,7 @@ const AttendedList = () => {
                         <Card className="MainCardAt" key={index} onClick={() => goToFormCharged(person)}>
                             <Card.Title>
                                 <span className="spanAt">
-                                    <i className="fa fa-user fa-1x" aria-hidden="true"></i>          {`${person.surname}, ${person.name}`}</span>
+                                    <i className="fa fa-user fa-1x" aria-hidden="true"></i> {`${person.surname}, ${person.name}`}</span>
                             </Card.Title>
                             <hr />
                             <Card.Body>

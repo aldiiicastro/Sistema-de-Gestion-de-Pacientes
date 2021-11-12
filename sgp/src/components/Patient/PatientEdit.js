@@ -94,7 +94,7 @@ const PatientEdit = () => {
         await updatePatient(data).then(r => {
             Toast.fire({
                 icon: 'success',
-                title: `Paciente ${r.data.data.name} ${r.data.data.surname} actualizado Correctamente!`
+                title: `Paciente ${r.data.data.name} ${r.data.data.surname} actualizado correctamente!`
             })
 
             if(history.location.state) {
@@ -338,7 +338,7 @@ const PatientEdit = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="primary" onClick={handleSubmit} id="ingresarButton" type="submit"> Editar Paciente </Button>
+                    <Button variant="primary" onClick={handleSubmit} id="editingButton" type="submit"> Editar Paciente </Button>
                 </Form>
             </Container>
         </>

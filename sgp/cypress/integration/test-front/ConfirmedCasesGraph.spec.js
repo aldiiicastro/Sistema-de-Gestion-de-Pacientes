@@ -12,7 +12,7 @@ describe('ConfirmedCasesGraph', () => {
     })
     /*Se puede ir dentro de ver las estadisticas*/
     it('go to statistics', () => {
-        cy.get('[id=stadistics]').click()
+        cy.get('[id=statistics]').click()
         cy.contains('Graficos pacientes')
         cy.get('[id=confirmedGraph]').click()
         cy.contains('Cantidad de pacientes contagiados')

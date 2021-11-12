@@ -1,5 +1,4 @@
-describe('', () => {
-
+describe('Volver al registro', () => {
     it('go to register', () => {
         cy.visit('http://localhost:5000/register')
         cy.get('[placeholder="Nombre completo"]')

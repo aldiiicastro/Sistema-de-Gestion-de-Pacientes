@@ -12,7 +12,7 @@ describe('HomeDoctor', () => {
     })
     /*Se puede ver la lista de espera*/
     it('watch wattingList', () => {
-        cy.request('GET', 'localhost:3000/api/waitingPatients').then((response) => {
+        cy.request('GET', 'localhost:3000/api/pacientes-esperando-atendiendose').then((response) => {
             console.log(response.body.data.length == 0)
             if (response.body.data.length == 0) {
                 cy.contains('No hay pacientes')        

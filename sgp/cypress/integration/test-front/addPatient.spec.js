@@ -42,8 +42,17 @@ describe('Add Patient', () => {
         cy.get('[id= ControlTextAreaNN9]').type("1888");
         cy.get('input[name= Fiebre]').check();
         cy.get('input[name= Tos]').check();
-        cy.scrollTo(0, 500)
         cy.get('[id= ingresarButton]').click();
         cy.contains(`Paciente Carlos Saldaña ingresado con Exito!`);
+    })
+    
+    it('Delete new patient of Test', () => {
+        cy.request('GET', 'localhost:3000/api/pacientes-esperando-atendiendose').then((response) => {
+            let patient = response.body.data.find(p=> p.name == 'Carlos')
+            cy.request('DELETE', 'localhost:3000/api/borrarPaciente/' + patient._id)
+                 .then((response) =>{
+                     expect(response.body).to.have.property('response', 'Paciente eliminado correctamente!')
+                 })
+         })
     })
 })

@@ -2,13 +2,12 @@ import React from "react";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import '../../styles/PatientList.css';
 import RecepcionistNavegation from '../Navegation/RecepcionistNavegation';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClinicMedical } from '@fortawesome/free-solid-svg-icons';
-import { deletePatient } from '../../routes/apiCallsPatient';
+import { deletePatient, waitingAttendingPatients } from '../../routes/apiCallsPatient';
 
 class PatientsList extends React.Component {
 
@@ -19,19 +18,12 @@ class PatientsList extends React.Component {
         }
     }
     getData = () => {
-        axios.get('http://localhost:3000/api/waitingPatients')
+        waitingAttendingPatients()
         .then(res => {
-          console.log(res.data);
           var data = res.data
           this.setState({data : data.data})
         })
     }
-/*     useEffect(() => {
-        axios.get('http://localhost:3000/api/waitingPatients')
-        .then(res => {
-          setData(res.data.data)
-        })
-    }, []) */
 
     componentDidMount = () => {
         this.getData();
@@ -83,13 +75,13 @@ class PatientsList extends React.Component {
                     <br/>
                     <h3>Pacientes a dar de baja:</h3>
                     <Row xs={1} md={2} className="g-4">
-                         {this.state.data.map(paciente => (
+                         {this.state.data.map((paciente, index) => (
                              <Card  className="titlePatientList" key={paciente._id} style={{ width: '18rem' }}>
                                  <Card.Body>
                                  <Card.Title className="linea">{paciente.name} {paciente.surname}</Card.Title>
                                  <Card.Text>DNI: {paciente.dni}</Card.Text>
                                  <Card.Text>Localidad: {paciente.location}</Card.Text>
-                                 <Button variant="danger" onClick = {() => this.deletePatient(paciente._id)}>Dar de baja</Button>
+                                 <Button id={`deleteOnePatient${index}`}variant="danger" onClick = {() => this.deletePatient(paciente._id)}>Dar de baja</Button>
                                  </Card.Body>
                              </Card>
                          ))}

@@ -1,4 +1,4 @@
-describe('Attended Patient', () => {
+describe('Attend and Finish', () => {
     it('can attend patient who is watting',() => {
         cy.visit('http://localhost:5000');
         cy.get('[placeholder="Email"]').type('aldana@gmail.com');
@@ -30,22 +30,18 @@ describe('Attended Patient', () => {
         })
         cy.wait(1000)
         let variableToStop = true;
-        let index = 0;
-            while (variableToStop) {
-                    if(cy.get(`[id=name${index}]`).contains('Test')) {
-                        variableToStop = false;
-                        cy.get(`[id=Attending${index}]`).click()
-                    }   
-                    index++;
-            };
-        
-        
-        for (let index = 1; index < 10; index++) {
-            cy.get(`[id= ControlTextAreaNN${index}]`).should('be.disabled');
-        }
-        cy.get('[id=finishButton]').click()
-        cy.contains('Paciente Test Front actualizado corectamente!')
-        cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+
+        cy.wait(1000)
+        cy.request('GET', 'localhost:3000/api/pacientes-esperando-atendiendose').then((response) => {
+             cy.get(`[id=Attending${response.body.data.length - 1}]`).click()
+             for (let index = 1; index < 10; index++) {
+                 cy.get(`[id= ControlTextAreaNN${index}]`).should('be.disabled');
+             }
+             cy.get('[id=finishButton]').click()
+             cy.contains('Paciente Test Front actualizado corectamente!')
+             cy.contains('Bienvenidos al Sistema de Gestión de Pacientes')
+        })
+
     })
 
     it('Delete new patient of Test', () => {

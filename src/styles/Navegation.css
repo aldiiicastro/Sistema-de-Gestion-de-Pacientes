@@ -1,5 +1,6 @@
 /*Estilo para los links de la navbar */
 .linkNavBar { 
+
     color: #69b190 !important;
 }
 .linkNavBar:hover { 
@@ -66,4 +67,16 @@
 
 .btnNo {
     background-color: #00B8EE;
+}
+
+.search
+{
+    width: auto;
+    margin-right: auto;
+}
+
+.mb-3
+{
+    width: auto;
+    padding-top: 10px;
 }

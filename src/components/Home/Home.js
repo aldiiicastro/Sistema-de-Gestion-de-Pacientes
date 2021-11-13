@@ -1,41 +1,46 @@
-import '../styles/Home.css';
+import '../../styles/Home.css';
 import React, { useEffect, useState } from 'react'
-
-import NavegationDoctor from './NavegationDoctor';
-import NavegationRecepcionista from './NavegationRecepcionista';
+import { getLoggedUser } from '../../routes/apiCallsUser'
+import DoctorNavegation from '../Navegation/DoctorNavegation';
+import RecepcionistNavegation from '../Navegation/RecepcionistNavegation';
 import HomeRecepcionist from './HomeRecepcionist';
-import HomeDoctor from './HomeDoctor';
-import { getLoggedUser } from '../routes/apiCallsUser'
+import WattingList from '../List/WattingList';
+import TutorialDoctor from '../Tutorial/TutorialDoctor';
+import TutorialRecepcionista from '../Tutorial/TutorialRecepcionista';
 
 const Home = () => {
 
     const [userLogged, setUserLogged] = useState(Object);
+
     useEffect(() => { 
         getLoggedUser().then(data => setUserLogged(data.data))
-    });
+    }, []);
 
     return(
         <React.Fragment>
-
-            {/*La barra de navegacion, se encuentra en otro componente*/}
-            {/*El fondo de la pagina*/}
-
-            {/* Botones, te llevan a las paginas que dice */}
             { 
             userLogged.doctor ? 
                 <>
-                    <NavegationDoctor/>
+                    <DoctorNavegation/>
                     <div className='welcome'>
                         <p>{userLogged.name} : Bienvenidos al Sistema de Gestión de Pacientes</p>
                     </div>
-                    <HomeDoctor/>
+                    <WattingList/>
+                    <TutorialDoctor
+                    nombre={userLogged.name}
+                    show= {userLogged.firstLog}
+                    id={userLogged._id}/>
                 </>
                 :
                 <>
-                    <NavegationRecepcionista/>
+                    <RecepcionistNavegation/>
                     <div className='welcome'>
                         <p>{userLogged.name} : Bienvenidos al Sistema de Gestión de Pacientes</p>
                     </div>
+                    <TutorialRecepcionista
+                        nombre={userLogged.name}
+                        show= {userLogged.firstLog}
+                        id={userLogged._id}/>
                     <HomeRecepcionist/>
                 </>
             }

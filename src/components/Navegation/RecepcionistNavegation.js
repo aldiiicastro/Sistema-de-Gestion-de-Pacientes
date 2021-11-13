@@ -1,4 +1,4 @@
-import '../styles/Navegation.css';
+import '../../styles/Navegation.css';
 import React from 'react';
 import { useHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
@@ -39,7 +39,7 @@ const NavegationRecepcionista = () => {
           <Nav.Link href="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</Nav.Link>
           <Nav.Link href="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</Nav.Link>
           <Nav.Link href="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</Nav.Link>
-          <Nav.Link href="/Home" id="statisticsNav" className="linkNavBar" disabled>Ver estadisticas</Nav.Link>
+          <Nav.Link href="/stadistics" id="statisticsNav" className="linkNavBar">Ver estadisticas</Nav.Link>
         </Nav>
         <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
       </Navbar.Collapse>

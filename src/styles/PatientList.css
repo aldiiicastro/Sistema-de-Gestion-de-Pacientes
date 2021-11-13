@@ -26,3 +26,23 @@ h3 {
     font-family: 'Anton', sans-serif;
     margin: 15px;
 }
+
+.centro
+{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+
+.App {
+    background-position: center;
+    display:flex;
+    text-align: center;
+    width: 45%;
+    height: 45%;
+    z-index: 1;
+  }
+ 

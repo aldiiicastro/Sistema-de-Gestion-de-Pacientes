@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import {ContenedorBotonCentrado, Boton } from "../elementos/Formularios";
+import {ContenedorBotonCentrado, Boton } from "../../elementos/Formularios";
 import { Form } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import Control from "../elementos/Control";
-import background from "../assets/background.jpg";
-import "../styles/Register.css";
-import { register } from "../routes/apiCallsUser";
+import Control from "../../elementos/Control";
+import background from "../../assets/background.jpg";
+import "../../styles/Register.css";
+import { register } from "../../routes/apiCallsUser";
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router';
 
@@ -102,6 +102,10 @@ const Register = () => {
 		esRecepcionista(event.target.checked)
 	}
 
+	const goToLogin = () => {
+        history.push("/Login");
+    }
+
 	return (
 		<>
 			<img src={background} alt="background" className="myBackgroundLogin" />
@@ -180,6 +184,7 @@ const Register = () => {
 					</Form.Group>
 					<ContenedorBotonCentrado>
 						<Boton id="btnLogIn" type="submit" className="boton" >Enviar</Boton>
+						<Boton id="btnVolver" type="button" className="boton" onClick={goToLogin} >Volver</Boton>
 					</ContenedorBotonCentrado>
 				</Form>
 			

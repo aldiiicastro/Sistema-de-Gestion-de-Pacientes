@@ -12,6 +12,10 @@
     background-color: white;
 }
 
+.marginCards {
+    margin-top: 75px;
+}
+
 
 .spanAt:hover {
     white-space: initial;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { pacientesAtendidos } from '../routes/apiCallsPatient';
-import NavegationDoctor from './NavegationDoctor';
+import { attendedPatients } from '../../routes/apiCallsPatient';
+import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { Card, Row, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import '../styles/AttendedList.css'
+import '../../styles/AttendedList.css'
 import moment from 'moment';
 import { useHistory } from 'react-router';
 
@@ -30,7 +30,7 @@ const AttendedList = () => {
             }
         })
 
-        await pacientesAtendidos().then(r => {
+        await attendedPatients().then(r => {
             setAttended(r.data.data)
         }).catch(e => {
             Toast.fire({
@@ -56,11 +56,9 @@ const AttendedList = () => {
 
     return (
         <>
-            <NavegationDoctor></NavegationDoctor>
-            <br />
-            <br />
-            <br />
-            <Row xs={1} md={2} className="g-4">
+            <DoctorNavegation></DoctorNavegation>
+            
+            <Row xs={1} md={2} className="g-4 marginCards">
                 {attended.map((person, index) => (
                     <OverlayTrigger
                         key={index}
@@ -74,14 +72,14 @@ const AttendedList = () => {
                         <Card className="MainCardAt" key={index} onClick={() => goToFormCharged(person)}>
                             <Card.Title>
                                 <span className="spanAt">
-                                    <i className="fa fa-user fa-1x" aria-hidden="true"></i>          {`${person.surname}, ${person.name}`}</span>
+                                    <i className="fa fa-user fa-1x" aria-hidden="true"></i> {`${person.surname}, ${person.name}`}</span>
                             </Card.Title>
                             <hr />
                             <Card.Body>
-                                <Card.Text className="textAt">
+                                <Card.Text className="textAt" name ="dniT">
                                     DNI: <span> {person.dni} </span>
                                 </Card.Text>
-                                <Card.Text className="textAt">
+                                <Card.Text className="textAt" name="ingresoT">
                                     Ingreso: {transformDate(person.entryDate)}
                                 </Card.Text>
                             </Card.Body>

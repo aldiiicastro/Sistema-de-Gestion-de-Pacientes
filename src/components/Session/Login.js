@@ -1,19 +1,21 @@
 import React, { useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../styles/Login.css';
+import '../../styles/Login.css';
 import { useHistory } from 'react-router';
-import background from '../assets/background.jpg';
-import { mailRegistered } from '../routes/apiCallsUser';
+import background from '../../assets/background.jpg';
+import { login } from '../../routes/apiCallsUser';
 import FontAwesome from 'react-fontawesome';
 import Swal from 'sweetalert2';
 
-const RecoverPassword = () => {
+const Login = () => {
 
     const history = useHistory();
     const inputRef = useRef(null);
     const emailRef = useRef(null);
+    const passwordRef = useRef(null);
     const [data, setData] = useState({
-        email: ''
+        email: '',
+        password: ''
     });
 
     const handleInputChange = (event) => {
@@ -21,7 +23,7 @@ const RecoverPassword = () => {
             ...data,
             [event.target.name]: event.target.value
         })
-        inputRef.current.disabled = !checkEmail()
+        inputRef.current.disabled = !checkEmail() || !checkPassword()
     };
 
 
@@ -32,13 +34,13 @@ const RecoverPassword = () => {
         return emailInput.length >= 5 && re.test(String(emailInput).toLowerCase())
     };
 
-    const goToHome =  (event) => {
-        event.preventDefault();
-        history.push("/")
+    const checkPassword = () => {
+        const passwordInput = passwordRef.current.value
+
+        return passwordInput.trim().length >= 5
     };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
+    const goToHome = async (event) => {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -51,48 +53,59 @@ const RecoverPassword = () => {
             }
         })
 
-        await mailRegistered(data).then( r =>{
-            history.push({
-                pathname: "/restabContraseña",
-                state: data
-            })
-        })
-        .catch(e => {
+        event.preventDefault();
+        const dataAx = {
+            email: data.email,
+            password: data.password
+        }
+
+        await login(dataAx).then(r => history.push('/home')).catch(e => {
             Toast.fire({
                 icon: 'error',
                 title: e.response.data.response
             })
         })
-    }
+    };
 
+    const goToRecover = () => {
+        history.push("/recoverPassword")
+    };
+    const goToHomes = () => {
+        history.push("/Home")
+    };
+    const goToRegister = () => {
+        history.push("/register");
+    }
 
     return (
         <>
             <img src={background} alt="background" className="myBackgroundLogin" />
 
             <div className="divFormLogin">
-
                 <p className='title'><FontAwesome name='heartbeat'> SGP </FontAwesome></p>
-                <p className='center'> ¿Olvidaste tu contraseña?</p>
-
-                <Form className="mainForm" onSubmit={onSubmit}>
+                <Form className="mainForm" onSubmit={goToHome}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={emailRef} className="boxInput" name="email" onChange={handleInputChange} placeholder="Email" />
                     </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Control ref={passwordRef} className="boxInput" name="password" type="password" placeholder="Contraseña" onChange={handleInputChange} />
+                    </Form.Group>
 
-
-                    <Button id="btnReestablecer" className="boton" ref={inputRef} variant="success" type="submit">
-                        Reestablecer contraseña
+                    <Button id="btnLogIn" className="boton" onClick={goToHomes} ref={inputRef} variant="success" type="submit" disabled>
+                        Iniciar sesion
+                    </Button>
+                    <Button id="btnRegister" className="boton" onClick={goToRegister} variant="success" type="button">
+                        Registrarse
                     </Button>
                     <hr />
+                    <Form.Group>
+                        <p id="passRecover" className="urlRecover" onClick={goToRecover}>¿Olvidaste tu contraseña?</p>
+                    </Form.Group>
                 </Form>
-                <Button id="btnLog" className="boton" variant="success" onClick={goToHome}>
-                    Ir a Login
-                </Button>
             </div>
         </>
     );
 };
 
 
-export default RecoverPassword;
+export default Login;

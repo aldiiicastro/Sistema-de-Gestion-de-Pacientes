@@ -27,7 +27,7 @@ const Spg = () => {
 
   return (
     <>
-      <HashRouter>
+      <Router>
         <Switch>
           <Route exact path='/patient-edit' component={PatientEdit}/>
           <Route exact path='/patient-attending' component={PatientAttending}/>
@@ -48,7 +48,7 @@ const Spg = () => {
           <Route exact path='/register' component={Register}/>
           <Route exact path='/' component={Login}/>
         </Switch>
-      </HashRouter>
+      </Router>
     </>
   )
 }

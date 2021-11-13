@@ -37,12 +37,12 @@ const NavegationRecepcionista = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto" >
-          <NavLink to='/Home' id='homeNav' activeClassName="active" className='linkNavBar borderBrand'>Inicio</NavLink>
-          <NavLink to='/add-patient' id='addPatientNav' activeClassName="active" className='linkNavBar'>Agregar paciente</NavLink>
-          <NavLink to='/patient-list' id='deletePatientNav' activeClassName="active" className='linkNavBar'>Dar de baja paciente</NavLink>
-          <NavLink to='/stadistics' id='statisticsNav' activeClassName="active" className='linkNavBar'>Ver estadisticas</NavLink>
+          <Nav.Link href='/Home' id='homeNav' activeClassName="active" className='linkNavBar borderBrand'>Inicio</Nav.Link>
+          <Nav.Link href='/add-patient' id='addPatientNav' activeClassName="active" className='linkNavBar'>Agregar paciente</Nav.Link>
+          <Nav.Link href='/patient-list' id='deletePatientNav' activeClassName="active" className='linkNavBar'>Dar de baja paciente</Nav.Link>
+          <Nav.Link href='/stadistics' id='statisticsNav' activeClassName="active" className='linkNavBar'>Ver estadisticas</Nav.Link>
         </Nav>
-        <NavLink id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</NavLink>
+        <Nav.Link id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</Nav.Link>
       </Navbar.Collapse>
     </Container>
   </Navbar>

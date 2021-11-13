@@ -37,6 +37,10 @@ router.put('/actualizarPaciente/confirmado/:id', timeout('30s'), async (req,res)
 router.put('/actualizarPaciente/internar/:id',timeout('30s'), async (req,res) => {
     pacienteControllers.update_turn_internee(req,res);
 })
+
+router.put('/actualizarPaciente/muerte/:id',timeout('30s'), async (req,res) => {
+    pacienteControllers.update_is_alive(req,res);
+})
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */
@@ -68,6 +72,10 @@ router.get('/pacientesEsperando', timeout('30s'), async (req, res) => {
 
 router.get('/pacientesConfirmados', timeout('30s'), async (req, res) => {
     pacienteControllers.get_confirmed_patients(req, res);
+});
+
+router.get('/pacientes-fallecidos', timeout('30s'), async (req, res) => {
+    pacienteControllers.get_deceased_patients(req, res);
 });
 /* FIN LISTAS DE PACIENTES */
 

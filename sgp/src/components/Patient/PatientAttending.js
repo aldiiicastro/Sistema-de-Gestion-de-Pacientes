@@ -4,7 +4,7 @@ import DoctorNavegation from '../Navegation/DoctorNavegation';
 import { useLocation} from "react-router-dom";
 import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
-import { updateTurnAttended, updateTurnConfirmed, updateTurnWaiting, admitPatient } from '../../routes/apiCallsPatient';
+import { updateTurnAttended, updateTurnConfirmed, updateTurnWaiting, admitPatient, patientDied } from '../../routes/apiCallsPatient';
 import {  } from '../../routes/apiCallsPatient';
 import checkWithValues from '../../elementos/CheckBoxWithValues';
 
@@ -143,6 +143,36 @@ const PatientAttending = () => {
                     title: e.response.data.response
                 })
             })
+    }
+
+    const ConfirmDecease = async (event) => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        event.preventDefault();
+        
+        await patientDied(data._id).then(r => {
+            Toast.fire({
+                icon: 'success',
+                title: `Paciente ${data.name} ${data.surname} declarado como fallecido!`
+            })
+            history.push('/Home')
+        }).catch(e => {
+                Toast.fire({
+                    icon: 'error',
+                    title: e.response.data.response
+                })
+            })
+
     }
 
     return (
@@ -302,6 +332,7 @@ const PatientAttending = () => {
                     <Button variant="primary" className="mx-1" onClick={finishTurn} id="finishButton" type="submit"> Terminar turno </Button>
                     <Button variant="primary" className="mx-1" onClick={ConfirmCase} id="confirmButton" type="submit"> Confirmar caso </Button>
                     <Button variant="primary" className="mx-1" onClick={admit} id="interneeButton" type="submit"> Internar </Button>
+                    <Button variant="primary" className="mx-1" onClick={ConfirmDecease} id="confirmButton" type="submit"> Confirmar Deceso </Button>
                 </Form>
             </Container>
         </>

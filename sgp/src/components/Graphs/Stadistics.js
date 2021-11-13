@@ -15,7 +15,7 @@ const Stadistics = () => {
   };
 
   const goToDieGraph = () => {
-    history.push('/Home')
+    history.push('/stadistics/deceasedGraph')
   };
 
   const goToConfirmedGraph = () => {

@@ -40,6 +40,10 @@ export const updateTurnConfirmed = (id) => {
 export const admitPatient = (id) => {
     return axios.put(basicUrl + '/api/actualizarPaciente/internar/'+id);
 }
+
+export const patientDied = (id) => {
+    return axios.put(basicUrl + '/api/actualizarPaciente/muerte/' + id)
+}
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */
@@ -55,6 +59,10 @@ export const allPatient = () => {
 
 export const waitingAttendingPatients = () => {
     return axios.get(basicUrl + '/api/pacientes-esperando-atendiendose' );
+}
+
+export const deceasedPatients = () => {
+    return axios.get(basicUrl + '/api/pacientes-fallecidos' );
 }
 
 export const attendedPatients = () => {

@@ -21,6 +21,7 @@ import Stadistics from './Graphs/Stadistics';
 import EntryGraph from './Graphs/EntryGraph';
 import WaittingGraph from './Graphs/WaittingGraph';
 import ConfirmedCasesGraph from './Graphs/ConfirmedCasesGraph';
+import DeceasedGraph from './Graphs/DeceasedGraph';
 
 const Spg = () => {
 
@@ -35,6 +36,7 @@ const Spg = () => {
           <Route path='/stadistics/entryGraph' component={EntryGraph}/>
           <Route path='/stadistics/waittingGraph' component={WaittingGraph}/>
           <Route path='/stadistics/confirmedCases' component={ConfirmedCasesGraph}/>
+          <Route path='/stadistics/deceasedGraph' component={DeceasedGraph}/>
           <Route path='/stadistics' component={Stadistics}/>
           <Route path='/attended-list' component={AttendedList}/>
           <Route path='/recoverPassword' component={RecoverPassword}/>
@@ -45,6 +47,7 @@ const Spg = () => {
           <Route path='/watting-list' component={WattingList}/>
           <Route path='/search-list' component={SearchPatient}/>
           <Route path='/register' component={Register}/>
+          
           <Route path='/' component={Login}/>
         </Switch>
       </Router>

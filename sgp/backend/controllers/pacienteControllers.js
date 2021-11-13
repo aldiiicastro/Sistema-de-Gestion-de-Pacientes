@@ -183,6 +183,24 @@ exports.update_turn_internee = async function (req,res) {
         })
     }
 }
+
+exports.update_is_alive = async function (req,res) {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({
+                response: 'No se pasó ningún Id como parametro'
+            })
+        }
+        
+        await Patient.updateMany({_id: req.params.id},{turnState: 'DECEASED'});
+        res.status(200).json({ response: 'Se actualizo el paciente!'});
+    
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */
@@ -259,6 +277,17 @@ exports.get_confirmed_patients = async function (req, res) {
     try {
         const patients = await Patient.find({turnState: 'CONFIRMED'});
         res.status(200).json({ response: 'confirmacionPacientes', data: patients });
+    } catch (error) {
+        res.status(500).json({
+            response: 'Error en el sistema'
+        })
+    }
+}
+
+exports.get_deceased_patients = async function (req, res) {
+    try {
+        const patients = await Patient.find({turnState: 'DECEASED'});
+        res.status(200).json({ response: 'pacientes fallecidos', data: patients });
     } catch (error) {
         res.status(500).json({
             response: 'Error en el sistema'

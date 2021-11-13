@@ -3,7 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { Navbar, Nav, Container } from "react-bootstrap"
-import {NavLink} from "react-router-dom"
+import {NavLink} from 'react-router-dom'
 import Swal from 'sweetalert2';
 const NavegationRecepcionista = () => { 
   const history = useHistory();
@@ -37,10 +37,10 @@ const NavegationRecepcionista = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto" >
-          <NavLink to="/Home" id="homeNav" className="linkNavBar borderBrand">Inicio</NavLink>
-          <NavLink to="/add-patient" id="addPatientNav" className="linkNavBar">Agregar paciente</NavLink>
-          <NavLink to="/patient-list" id="deletePatientNav" className="linkNavBar">Dar de baja paciente</NavLink>
-          <NavLink to="/stadistics" id="statisticsNav" className="linkNavBar">Ver estadisticas</NavLink>
+          <NavLink to='/Home' id='homeNav' activeClassName="active" className='linkNavBar borderBrand'>Inicio</NavLink>
+          <NavLink to='/add-patient' id='addPatientNav' activeClassName="active" className='linkNavBar'>Agregar paciente</NavLink>
+          <NavLink to='/patient-list' id='deletePatientNav' activeClassName="active" className='linkNavBar'>Dar de baja paciente</NavLink>
+          <NavLink to='/stadistics' id='statisticsNav' activeClassName="active" className='linkNavBar'>Ver estadisticas</NavLink>
         </Nav>
         <NavLink id="logoutNav" className="logoutNavBar" onClick={openModal}>Cerrar sesión</NavLink>
       </Navbar.Collapse>

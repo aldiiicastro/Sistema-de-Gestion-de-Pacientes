@@ -29,24 +29,24 @@ const Spg = () => {
     <>
       <HashRouter>
         <Switch>
-          <Route path='/patient-edit' component={PatientEdit}/>
-          <Route path='/patient-attending' component={PatientAttending}/>
-          <Route path='/patient-list' component={PatientsList}/>
-          <Route path='/post-add-patient' component={PatientFormPostTurn}/>
-          <Route path='/stadistics/entryGraph' component={EntryGraph}/>
-          <Route path='/stadistics/waittingGraph' component={WaittingGraph}/>
-          <Route path='/stadistics/confirmedCases' component={ConfirmedCasesGraph}/>
-          <Route path='/stadistics' component={Stadistics}/>
-          <Route path='/attended-list' component={AttendedList}/>
-          <Route path='/recoverPassword' component={RecoverPassword}/>
-          <Route path='/Home' component={Home}/>
-          <Route path='/finish-turn' render={() => (<PatientAttending isTherePatient={false} isFinish={true}/>)}/>
-          <Route path='/start-turn'  render={() => (<PatientAttending isTherePatient={true} isFinish={false}/>)} />
-          <Route path='/add-patient' component={PacientForm}/>
-          <Route path='/watting-list' component={WattingList}/>
-          <Route path='/search-list' component={SearchPatient}/>
-          <Route path='/register' component={Register}/>
-          <Route path='/' component={Login}/>
+          <Route exact path='/patient-edit' component={PatientEdit}/>
+          <Route exact path='/patient-attending' component={PatientAttending}/>
+          <Route exact path='/patient-list' component={PatientsList}/>
+          <Route exact path='/post-add-patient' component={PatientFormPostTurn}/>
+          <Route exact path='/stadistics/entryGraph' component={EntryGraph}/>
+          <Route exact path='/stadistics/waittingGraph' component={WaittingGraph}/>
+          <Route exact path='/stadistics/confirmedCases' component={ConfirmedCasesGraph}/>
+          <Route exact path='/stadistics' component={Stadistics}/>
+          <Route exact path='/attended-list' component={AttendedList}/>
+          <Route exact path='/recoverPassword' component={RecoverPassword}/>
+          <Route exact path='/Home' component={Home}/>
+          <Route exact path='/finish-turn' render={() => (<PatientAttending isTherePatient={false} isFinish={true}/>)}/>
+          <Route exact path='/start-turn'  render={() => (<PatientAttending isTherePatient={true} isFinish={false}/>)} />
+          <Route exact path='/add-patient' component={PacientForm}/>
+          <Route exact path='/watting-list' component={WattingList}/>
+          <Route exact path='/search-list' component={SearchPatient}/>
+          <Route exact path='/register' component={Register}/>
+          <Route exact path='/' component={Login}/>
         </Switch>
       </HashRouter>
     </>

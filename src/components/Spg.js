@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  HashRouter
 } from 'react-router-dom';
 
 import React from 'react';
@@ -26,7 +27,7 @@ const Spg = () => {
 
   return (
     <>
-      <Router>
+      <HashRouter>
         <Switch>
           <Route path='/patient-edit' component={PatientEdit}/>
           <Route path='/patient-attending' component={PatientAttending}/>
@@ -47,7 +48,7 @@ const Spg = () => {
           <Route path='/register' component={Register}/>
           <Route path='/' component={Login}/>
         </Switch>
-      </Router>
+      </HashRouter>
     </>
   )
 }

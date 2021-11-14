@@ -191,8 +191,9 @@ exports.update_is_alive = async function (req,res) {
                 response: 'No se pasó ningún Id como parametro'
             })
         }
-        
-        await Patient.updateMany({_id: req.params.id},{turnState: 'DECEASED'});
+        const dateTime = new Date();
+        const date = dateTime.toISOString().split("T")[0]     
+        await Patient.updateMany({_id: req.params.id},{turnState: 'DECEASED',confirmedDate: date});
         res.status(200).json({ response: 'Se actualizo el paciente!'});
     
     } catch (error) {

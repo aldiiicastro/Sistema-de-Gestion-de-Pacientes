@@ -6,7 +6,6 @@ import { faClinicMedical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Chart, Bar } from 'react-chartjs-2';
 import lodash from 'lodash';
-import moment from "moment";
 
 
 const DeceasedGraph = () => {
@@ -25,7 +24,7 @@ const DeceasedGraph = () => {
     const sort = lodash.sortBy(res, (o) => {
         return o.entryDate
     })
-    const groupByDay = Object.values(lodash.groupBy(sort, 'entryDate'))
+    const groupByDay = Object.values(lodash.groupBy(sort, 'confirmedDate'))
     const newArray = []
       
     groupByDay.forEach( t => {
@@ -44,10 +43,12 @@ const DeceasedGraph = () => {
         return 0;
       }))
 
-    const groupByDay = Object.keys(lodash.groupBy(res, 'entryDate'))
+    const groupByDay = Object.keys(lodash.groupBy(res, 'confirmedDate'))
     const sort = lodash.sortBy(groupByDay, (o) => {
         return o
     })
+
+    console.log(res)
     
     sort.forEach( s => {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -64,7 +65,7 @@ const DeceasedGraph = () => {
     labels: getDays(),
     datasets: [
       {
-        label: "Pacientes en espera",
+        label: "Pacientes Fallecidos",
         data: deceasedFilter(),
         backgroundColor: ["rgba(255, 255, 255, 0.8)"],
         borderColor: ["rgba(0,0,0,0.5)"],
@@ -99,7 +100,7 @@ const DeceasedGraph = () => {
           </div>
         </div>
       ) : (
-        <div className="noPatient">
+        <div className="noPatient" style={{marginTop: "100px"}}>
           <FontAwesomeIcon icon={faClinicMedical} size="4x" />
           <p>No hay pacientes</p>
         </div>

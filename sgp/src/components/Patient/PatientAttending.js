@@ -332,7 +332,7 @@ const PatientAttending = () => {
                     <Button variant="primary" className="mx-1" onClick={finishTurn} id="finishButton" type="submit"> Terminar turno </Button>
                     <Button variant="primary" className="mx-1" onClick={ConfirmCase} id="confirmButton" type="submit"> Confirmar caso </Button>
                     <Button variant="primary" className="mx-1" onClick={admit} id="interneeButton" type="submit"> Internar </Button>
-                    <Button variant="primary" className="mx-1" onClick={ConfirmDecease} id="confirmButton" type="submit"> Confirmar Deceso </Button>
+                    <Button variant="primary" className="mx-1" onClick={ConfirmDecease} id="deceaseButton" type="submit"> Confirmar Deceso </Button>
                 </Form>
             </Container>
         </>

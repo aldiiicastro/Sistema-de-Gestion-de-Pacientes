@@ -1,5 +1,5 @@
  /*global cy*/
-describe('waitingGraph', () => {
+describe('WaitingGraph', () => {
 
     it('login', () => {
         cy.visit('http://localhost:5000')

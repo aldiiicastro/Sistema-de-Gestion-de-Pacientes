@@ -21,14 +21,18 @@ describe('Tutorial Doctor', () => {
     it('open tutorial', () => {
         cy.contains('Como Doctor vas a poder:');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Ver lista de Pacientes');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Comenzar Turno');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Finalizar Turno');
+        cy.wait(1000)
         cy.contains('Terminar').click();
     })
 

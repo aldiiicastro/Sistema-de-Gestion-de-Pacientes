@@ -1,4 +1,4 @@
-describe('Tutorial Doctor', () => {
+describe('Tutorial recepcionist', () => {
     it('register', () => {
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false
@@ -21,14 +21,18 @@ describe('Tutorial Doctor', () => {
     it('open tutorial', () => {
         cy.contains('Como recepcionista vas a poder:');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Agregar paciente');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Dar de baja un paciente');
         cy.contains('Omitir');
+        cy.wait(1000)
         cy.contains('Siguiente').click();
         cy.contains('Ver estadisticas');
+        cy.wait(1000)
         cy.contains('Terminar').click();
     })
 

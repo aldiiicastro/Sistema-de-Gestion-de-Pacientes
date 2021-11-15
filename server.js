@@ -9,7 +9,6 @@ const path = require('path')
 require("dotenv").config()
 // ... other app.use middleware 
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -17,6 +16,9 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.use( cors({ origin: true, credentials: true  }) );
 
 app.use('/api', apiRoutes);
   
@@ -30,9 +32,7 @@ app.get("*", (req, res) => {
 });
 
 //Api
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
-app.use( cors({ origin: true, credentials: true  }) );
+
 
 //Connect to PORT
 const PORT = process.env.PORT || 3000

@@ -23,6 +23,7 @@
     "express-async-handler": "^1.1.4",
     "fix": "^0.0.6",
     "lodash": "^4.17.21",
+    "minimist": "^1.2.5",
     "moment": "^2.29.1",
     "mongoose": "^6.0.8",
     "nodemailer": "^6.6.5",

@@ -2,12 +2,14 @@ const express =  require('express')
 const app = express()
 require('./database')
 const apiRoutes = require('./routes/apiRoutes');
+const bodyParser = require('bodyParser')
 const timeout = require('connect-timeout');
 const cors = require('cors')
 const path = require('path')
 require("dotenv").config()
 // ... other app.use middleware 
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');

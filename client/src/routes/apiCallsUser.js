@@ -1,7 +1,11 @@
 
 import axios from "axios";
 
-export const login = (obj) => axios.post(`/api/login`, obj).then(response => { localStorage.setItem('id', response.data.data)})
+export const login = (obj) => axios.post(`/api/login`, obj, {
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+    }
+}).then(response => { localStorage.setItem('id', response.data.data)})
 
 export const register = (obj) => axios.post(`/api/register`, obj)
 

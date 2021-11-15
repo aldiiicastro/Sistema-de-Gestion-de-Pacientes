@@ -2,7 +2,7 @@ const express =  require('express')
 const app = express()
 require('./database')
 const apiRoutes = require('./routes/apiRoutes');
-const bodyParser = require('bodyParser')
+const bodyParser = require('body-parser')
 const timeout = require('connect-timeout');
 const cors = require('cors')
 const path = require('path')

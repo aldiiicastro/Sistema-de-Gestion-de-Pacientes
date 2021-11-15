@@ -243,7 +243,7 @@ exports.get_waiting_attending_patients = async function (req, res) {
 
 exports.get_attended_patients = async function (req, res) {
     try {
-        const patients = await Patient.find({ turnState: 'ATTENDED' })
+        const patients = await Patient.find({ turnState: {$in: ["ATTENDED", "INTERNEE", "DECEASED", "CONFIRMED"]} })
         res.status(200).json({ response: 'pacientes atendidos', data: patients });
     } catch (error) {
         res.status(500).json({

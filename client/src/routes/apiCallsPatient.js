@@ -44,6 +44,10 @@ export const admitPatient = (id) => {
 export const firstPatientWaiting = () => {
     return axios.get('/api/pacienteEnEspera')
 }
+
+export const patientDied = (id) => {
+    return axios.put( '/api/actualizarPaciente/muerte/' + id)
+}
 /* FIN PACIENTE SEGUN UN ESTADO */
 
 /* LISTAS DE PACIENTES */
@@ -53,6 +57,10 @@ export const allPatient = () => {
 
 export const waitingAttendingPatients = () => {
     return axios.get('/api/pacientes-esperando-atendiendose' );
+}
+
+export const deceasedPatients = () => {
+    return axios.get('/api/pacientes-fallecidos' );
 }
 
 export const attendedPatients = () => {

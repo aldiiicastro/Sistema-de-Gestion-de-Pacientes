@@ -8,21 +8,10 @@ const path = require('path')
 require("dotenv").config()
 // ... other app.use middleware 
 
-module.exports = function(app) {
-    app.use(
-      proxy(["/api"], { target: "http://localhost:3000" })
-    );
-  };
+app.use('/api', apiRoutes);
+  
   
 app.use(express.static(path.join(__dirname, "client", "build")))
-
-module.exports = function(app) {
-    app.use(
-      proxy(["/api"], { target: "http://localhost:3000" })
-    );
-  };
-  app.use('/api', apiRoutes);
-  
 
 // ...
 // Right before your app.listen(), add this:

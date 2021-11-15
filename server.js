@@ -16,6 +16,14 @@ module.exports = function(app) {
   
 app.use(express.static(path.join(__dirname, "client", "build")))
 
+module.exports = function(app) {
+    app.use(
+      proxy(["/api"], { target: "http://localhost:3000" })
+    );
+  };
+  app.use('/api', apiRoutes);
+  
+
 // ...
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
@@ -26,13 +34,6 @@ app.get("*", (req, res) => {
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
-
-module.exports = function(app) {
-  app.use(
-    proxy(["/api"], { target: "http://localhost:3000" })
-  );
-};
-app.use('/api', apiRoutes);
 
 
 //Connect to PORT

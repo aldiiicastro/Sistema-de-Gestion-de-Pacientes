@@ -8,13 +8,15 @@ const User = mongoose.model('User');
 
 exports.login_user = async function (req, res) {
     try {
+        console.log(req)
         if (!req.body.email || !req.body.password) {
             return res.status(404).json({
                 response: 'Revisar campos y/o sus datos'
             })
         }
+        console.log(req)
         const findUser = await User.findOne({ email: req.body.email, password: req.body.password })
-
+        console.log(req)
         findUser ? res.status(202).json({ response: 'Usuario logueado', data: findUser.id }) : res.status(406).json({ response: 'Usuario no encontrado' })
     } catch (error) {
         res.status(500).json({

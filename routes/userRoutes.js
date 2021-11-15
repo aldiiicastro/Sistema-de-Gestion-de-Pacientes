@@ -16,7 +16,7 @@ router.get('/users/byEmail/:email', timeout('20s'), async (req, res) => {
     usersControllers.get_user_by_email(req, res)
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', timeout('20s'), async (req, res) => {
     usersControllers.login_user(req, res)
 })
 

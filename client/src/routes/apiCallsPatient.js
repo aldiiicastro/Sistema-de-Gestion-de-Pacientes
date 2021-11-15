@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// const basicUrl = 'http://localhost:3000';
-
 /* CRUD DE PACIENTE */ 
 export const registerPatient = (obj) => {
     return axios.post(`/api/registrarPaciente`, obj, {
@@ -40,10 +38,6 @@ export const updateTurnConfirmed = (id) => {
 export const admitPatient = (id) => {
     return axios.put('/api/actualizarPaciente/internar/'+id);
 }
-
-export const patientDied = (id) => {
-    return axios.put('/api/actualizarPaciente/muerte/' + id)
-}
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */
@@ -58,11 +52,7 @@ export const allPatient = () => {
 }
 
 export const waitingAttendingPatients = () => {
-    return axios.get( '/api/pacientes-esperando-atendiendose' );
-}
-
-export const deceasedPatients = () => {
-    return axios.get('/api/pacientes-fallecidos' );
+    return axios.get('/api/pacientes-esperando-atendiendose' );
 }
 
 export const attendedPatients = () => {
@@ -74,7 +64,7 @@ export const attendingPatients = () => {
 }
 
 export const waitingPatients = () => {
-    return axios.get( '/api/pacientesEsperando')
+    return axios.get('/api/pacientesEsperando')
 }
 
 export const confirmedPatients = () => {

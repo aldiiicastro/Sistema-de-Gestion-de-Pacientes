@@ -7,6 +7,21 @@ const cors = require('cors')
 const path = require('path')
 require("dotenv").config()
 // ... other app.use middleware 
+
+module.exports = function(app) {
+    app.use(
+      proxy(["/api"], { target: "http://localhost:3000" })
+    );
+  };
+  
+  app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+      res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+      next();
+  });
+  
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 // ...
@@ -16,7 +31,6 @@ app.get("*", (req, res) => {
 });
 
 //Api
-app.use(timeout('5s'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())

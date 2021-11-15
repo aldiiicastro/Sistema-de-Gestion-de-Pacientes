@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-require('./models/usersModel');
-require('./models/patienteModel')
-const databaseName='sgp';
-const password='interfaces'
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+const connection = "mongodb+srv://sgp:interfaces@cluster0.javrm.mongodb.net/sgp?retryWrites=true&w=majority";
+mongoose.connect(connection)
+    .then(() => console.log("Database Connected Successfully"))
+    .catch(err => console.log(err));

@@ -26,10 +26,17 @@ app.get("*", (req, res) => {
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
+
+module.exports = function(app) {
+  app.use(
+    proxy(["/api"], { target: "http://localhost:3000" })
+  );
+};
 app.use('/api', apiRoutes);
 
+
 //Connect to PORT
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 // app.listen(PORT, console.log(`App is running in ${process.env.NODE_ENV} mode on port ${PORT}`))
 app.listen(PORT)
 

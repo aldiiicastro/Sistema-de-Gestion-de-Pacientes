@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const basicUrl = 'http://localhost:3000';
+// const basicUrl = 'http://localhost:3000';
 
 /* CRUD DE PACIENTE */ 
 export const registerPatient = (obj) => {
-    return axios.post(basicUrl + `/api/registrarPaciente`, obj, {
+    return axios.post(`/api/registrarPaciente`, obj, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         }
@@ -12,72 +12,72 @@ export const registerPatient = (obj) => {
 }
 
 export const deletePatient = (id) => {
-    return axios.delete(basicUrl + '/api/borrarPaciente/' +id);
+    return axios.delete('/api/borrarPaciente/' +id);
 }
 
 export const updatePatient = (data) => { 
-    return axios.post(basicUrl + '/api/actualizarPaciente', data);
+    return axios.post('/api/actualizarPaciente', data);
 }
 /* FIN CRUD DE PACIENTE */ 
 
 /* ACTUALIZAR ESTADO DE PACIENTE */
 export const updateTurnAttending = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/atendiendose/'+ id);
+    return axios.put('/api/actualizarPaciente/atendiendose/'+ id);
 }
 
 export const updateTurnWaiting = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/esperando/'+ id);
+    return axios.put('/api/actualizarPaciente/esperando/'+ id);
 }
 
 export const updateTurnAttended = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/atendido/'+ id);
+    return axios.put('/api/actualizarPaciente/atendido/'+ id);
 }
 
 export const updateTurnConfirmed = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/confirmado/'+ id);
+    return axios.put('/api/actualizarPaciente/confirmado/'+ id);
 }
 
 export const admitPatient = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/internar/'+id);
+    return axios.put('/api/actualizarPaciente/internar/'+id);
 }
 
 export const patientDied = (id) => {
-    return axios.put(basicUrl + '/api/actualizarPaciente/muerte/' + id)
+    return axios.put('/api/actualizarPaciente/muerte/' + id)
 }
 /* FIN ACTUALIZAR ESTADO DE PACIENTE */
 
 /* PACIENTE SEGUN UN ESTADO */
 export const firstPatientWaiting = () => {
-    return axios.get(basicUrl + '/api/pacienteEnEspera')
+    return axios.get('/api/pacienteEnEspera')
 }
 /* FIN PACIENTE SEGUN UN ESTADO */
 
 /* LISTAS DE PACIENTES */
 export const allPatient = () => {
-    return axios.get(basicUrl + '/api/todosLosPacientes');
+    return axios.get('/api/todosLosPacientes');
 }
 
 export const waitingAttendingPatients = () => {
-    return axios.get(basicUrl + '/api/pacientes-esperando-atendiendose' );
+    return axios.get( '/api/pacientes-esperando-atendiendose' );
 }
 
 export const deceasedPatients = () => {
-    return axios.get(basicUrl + '/api/pacientes-fallecidos' );
+    return axios.get('/api/pacientes-fallecidos' );
 }
 
 export const attendedPatients = () => {
-    return axios.get(basicUrl + '/api/pacientesAtendidos')
+    return axios.get('/api/pacientesAtendidos')
 }
 
 export const attendingPatients = () => {
-    return axios.get(basicUrl + '/api/pacientesEnTurno')
+    return axios.get('/api/pacientesEnTurno')
 }
 
 export const waitingPatients = () => {
-    return axios.get(basicUrl + '/api/pacientesEsperando')
+    return axios.get( '/api/pacientesEsperando')
 }
 
 export const confirmedPatients = () => {
-    return axios.get(basicUrl + '/api/pacientesConfirmados')
+    return axios.get('/api/pacientesConfirmados')
 }
 /* FIN LISTAS DE PACIENTES */
